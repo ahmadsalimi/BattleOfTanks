@@ -17,7 +17,7 @@ set(SDL2_LIBS SDL2 SDL2main SDL2_GFX m dinput8 dxguid dxerr8 user32 gdi32 winmm 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ${SDL2_FLAGS}")
 
 file(GLOB_RECURSE SOURCE "src/*.c" "src/*.h")
-add_executable(project "${SOURCE}" src/LIBs/View.c src/LIBs/View.h src/LIBs/Physics.c src/LIBs/Physics.h src/LIBs/Struct.h)
+add_executable(project "${SOURCE}" src/LIBs/View.c src/LIBs/View.h src/LIBs/Physics.c src/LIBs/Physics.h src/LIBs/Struct.h src/LIBs/Constants.h src/main.c)
 
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_GFX_INCLUDE_DIR})
 target_link_libraries(project ${SDL2_LIBS})

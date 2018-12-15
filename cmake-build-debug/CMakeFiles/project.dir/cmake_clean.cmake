@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj"
   "CMakeFiles/project.dir/src/LIBs/Physics.c.obj"
   "CMakeFiles/project.dir/src/LIBs/View.c.obj"
+  "CMakeFiles/project.dir/src/main.c.obj"
   "project.pdb"
   "project.exe"
   "project.exe.manifest"

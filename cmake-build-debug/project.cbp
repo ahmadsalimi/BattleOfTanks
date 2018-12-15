@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/ALTER TANK - Ahmad Salimi.c">
+		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Constants.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.c">
@@ -96,6 +96,9 @@
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/main.c">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/CMakeLists.txt">

@@ -56,24 +56,10 @@ include CMakeFiles/project.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/project.dir/flags.make
 
-CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj: CMakeFiles/project.dir/includes_C.rsp
-CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj: ../src/ALTER\ TANK\ -\ Ahmad\ Salimi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj"
-	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\ALTER_TANK_-_Ahmad_Salimi.c.obj   -c "C:\Users\nik\Documents\GitHub\97106013\src\ALTER TANK - Ahmad Salimi.c"
-
-CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.i"
-	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\nik\Documents\GitHub\97106013\src\ALTER TANK - Ahmad Salimi.c" > CMakeFiles\project.dir\src\ALTER_TANK_-_Ahmad_Salimi.c.i
-
-CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.s"
-	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\nik\Documents\GitHub\97106013\src\ALTER TANK - Ahmad Salimi.c" -o CMakeFiles\project.dir\src\ALTER_TANK_-_Ahmad_Salimi.c.s
-
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: CMakeFiles/project.dir/includes_C.rsp
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Physics.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project.dir/src/LIBs/Physics.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/project.dir/src/LIBs/Physics.c.obj"
 	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\LIBs\Physics.c.obj   -c C:\Users\nik\Documents\GitHub\97106013\src\LIBs\Physics.c
 
 CMakeFiles/project.dir/src/LIBs/Physics.c.i: cmake_force
@@ -87,7 +73,7 @@ CMakeFiles/project.dir/src/LIBs/Physics.c.s: cmake_force
 CMakeFiles/project.dir/src/LIBs/View.c.obj: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/View.c.obj: CMakeFiles/project.dir/includes_C.rsp
 CMakeFiles/project.dir/src/LIBs/View.c.obj: ../src/LIBs/View.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/project.dir/src/LIBs/View.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project.dir/src/LIBs/View.c.obj"
 	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\LIBs\View.c.obj   -c C:\Users\nik\Documents\GitHub\97106013\src\LIBs\View.c
 
 CMakeFiles/project.dir/src/LIBs/View.c.i: cmake_force
@@ -98,18 +84,32 @@ CMakeFiles/project.dir/src/LIBs/View.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/src/LIBs/View.c.s"
 	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\nik\Documents\GitHub\97106013\src\LIBs\View.c -o CMakeFiles\project.dir\src\LIBs\View.c.s
 
+CMakeFiles/project.dir/src/main.c.obj: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/src/main.c.obj: CMakeFiles/project.dir/includes_C.rsp
+CMakeFiles/project.dir/src/main.c.obj: ../src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/project.dir/src/main.c.obj"
+	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\main.c.obj   -c C:\Users\nik\Documents\GitHub\97106013\src\main.c
+
+CMakeFiles/project.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/src/main.c.i"
+	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\nik\Documents\GitHub\97106013\src\main.c > CMakeFiles\project.dir\src\main.c.i
+
+CMakeFiles/project.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/src/main.c.s"
+	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\nik\Documents\GitHub\97106013\src\main.c -o CMakeFiles\project.dir\src\main.c.s
+
 # Object files for target project
 project_OBJECTS = \
-"CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj" \
 "CMakeFiles/project.dir/src/LIBs/Physics.c.obj" \
-"CMakeFiles/project.dir/src/LIBs/View.c.obj"
+"CMakeFiles/project.dir/src/LIBs/View.c.obj" \
+"CMakeFiles/project.dir/src/main.c.obj"
 
 # External object files for target project
 project_EXTERNAL_OBJECTS =
 
-project.exe: CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj
 project.exe: CMakeFiles/project.dir/src/LIBs/Physics.c.obj
 project.exe: CMakeFiles/project.dir/src/LIBs/View.c.obj
+project.exe: CMakeFiles/project.dir/src/main.c.obj
 project.exe: CMakeFiles/project.dir/build.make
 project.exe: ../sdl2/sdl2-lib/libSDL2.a
 project.exe: ../sdl2/sdl2-lib/libSDL2main.a

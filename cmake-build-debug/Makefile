@@ -122,33 +122,6 @@ project/fast:
 	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
-src/ALTER_TANK_-_Ahmad_Salimi.obj: src/ALTER_TANK_-_Ahmad_Salimi.c.obj
-
-.PHONY : src/ALTER_TANK_-_Ahmad_Salimi.obj
-
-# target to build an object file
-src/ALTER_TANK_-_Ahmad_Salimi.c.obj:
-	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.obj
-.PHONY : src/ALTER_TANK_-_Ahmad_Salimi.c.obj
-
-src/ALTER_TANK_-_Ahmad_Salimi.i: src/ALTER_TANK_-_Ahmad_Salimi.c.i
-
-.PHONY : src/ALTER_TANK_-_Ahmad_Salimi.i
-
-# target to preprocess a source file
-src/ALTER_TANK_-_Ahmad_Salimi.c.i:
-	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.i
-.PHONY : src/ALTER_TANK_-_Ahmad_Salimi.c.i
-
-src/ALTER_TANK_-_Ahmad_Salimi.s: src/ALTER_TANK_-_Ahmad_Salimi.c.s
-
-.PHONY : src/ALTER_TANK_-_Ahmad_Salimi.s
-
-# target to generate assembly for a file
-src/ALTER_TANK_-_Ahmad_Salimi.c.s:
-	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/ALTER_TANK_-_Ahmad_Salimi.c.s
-.PHONY : src/ALTER_TANK_-_Ahmad_Salimi.c.s
-
 src/LIBs/Physics.obj: src/LIBs/Physics.c.obj
 
 .PHONY : src/LIBs/Physics.obj
@@ -203,6 +176,33 @@ src/LIBs/View.c.s:
 	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/View.c.s
 .PHONY : src/LIBs/View.c.s
 
+src/main.obj: src/main.c.obj
+
+.PHONY : src/main.obj
+
+# target to build an object file
+src/main.c.obj:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/main.c.obj
+.PHONY : src/main.c.obj
+
+src/main.i: src/main.c.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.c.i:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/main.c.i
+.PHONY : src/main.c.i
+
+src/main.s: src/main.c.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.c.s:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/main.c.s
+.PHONY : src/main.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -212,15 +212,15 @@ help:
 	@echo ... project
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... src/ALTER_TANK_-_Ahmad_Salimi.obj
-	@echo ... src/ALTER_TANK_-_Ahmad_Salimi.i
-	@echo ... src/ALTER_TANK_-_Ahmad_Salimi.s
 	@echo ... src/LIBs/Physics.obj
 	@echo ... src/LIBs/Physics.i
 	@echo ... src/LIBs/Physics.s
 	@echo ... src/LIBs/View.obj
 	@echo ... src/LIBs/View.i
 	@echo ... src/LIBs/View.s
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
 .PHONY : help
 
 
