@@ -98,6 +98,7 @@ CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../sdl2/sdl2-include/begin_code.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../sdl2/sdl2-include/close_code.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Physics.c
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Physics.h
+CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/View.h
 
 CMakeFiles/project.dir/src/LIBs/View.c.obj: ../sdl2/sdl2-gfx-include/SDL2_gfxPrimitives.h
 CMakeFiles/project.dir/src/LIBs/View.c.obj: ../sdl2/sdl2-include/SDL.h

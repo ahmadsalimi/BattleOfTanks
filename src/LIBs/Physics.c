@@ -9,10 +9,18 @@
 #include <math.h>
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
+#include "View.h"
 
 int keys[100];
 const int SPEED = 3;
 const double PI = 3.141592653589;
+int shooting_flag = 0;
+
+void shoot(double *x, double *y, int *angle, int *time){
+    *x = *x + 2 * SPEED * cos((*angle) * PI / 180);
+    *y = *y + 2 * SPEED * sin((*angle) * PI / 180);
+    (*time)--;
+}
 
 int move(double *x, double *y, int *angle) {
     SDL_Event event;
@@ -25,8 +33,17 @@ int move(double *x, double *y, int *angle) {
                 break;
             case SDL_KEYUP:
                 keys[event.key.keysym.sym % 100] = 0;
+                if (event.key.keysym.sym == SDLK_m){
+                    shooting_flag = 0;
+                }
                 break;
         }
+    }
+    if (keys[SDLK_m % 100]) {
+        if(!shooting_flag){
+            make_shot(*x, *y, *angle);
+        }
+        shooting_flag = 1;
     }
     *x += SPEED * cos(*angle * PI / 180) * (keys[SDLK_UP % 100] - keys[SDLK_DOWN % 100]);
     *y += SPEED * sin(*angle * PI / 180) * (keys[SDLK_UP % 100] - keys[SDLK_DOWN % 100]);
@@ -38,3 +55,4 @@ int move(double *x, double *y, int *angle) {
         *angle += 360;
     }
 }
+

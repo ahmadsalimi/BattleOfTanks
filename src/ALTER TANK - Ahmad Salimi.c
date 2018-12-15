@@ -8,13 +8,13 @@
 #include "LIBs/Struct.h"
 #include "LIBs/Physics.h"
 
-const double FPS = 50;
 
 #ifdef main
 #undef main
 #endif /*main*/
 
 int main(int argc, char *argv[]) {
+    const double FPS = 50;
     show_window();
     int start_ticks = SDL_GetTicks();
     struct TANK tank1 = {1, 100, 100, 0};

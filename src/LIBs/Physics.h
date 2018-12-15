@@ -5,6 +5,7 @@
 #ifndef PROJECT_PHYSICS_H
 #define PROJECT_PHYSICS_H
 
-int move(double*, double*, int*);
+void shoot(double *x, double *y, int *angle, int *time);
+int move(double *x, double *y, int *angle);
 
 #endif //PROJECT_PHYSICS_H

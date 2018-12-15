@@ -14,5 +14,6 @@
 void show_window();
 void drawing(double*, double*, int*);
 void Quit();
+void make_shot(double, double, int);
 #endif //PROJECT_VIEW_H
 
