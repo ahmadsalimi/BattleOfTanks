@@ -10,13 +10,13 @@ typedef struct TANK {
     double x;
     double y;
     int angle;
-}TANK;
+} TANK;
 
 typedef struct SHOT {
     int time;
     double x;
     double y;
     int angle;
-}SHOT;
+} SHOT;
 
 #endif //PROJECT_STRUCT_H

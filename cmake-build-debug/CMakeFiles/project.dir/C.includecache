@@ -591,24 +591,14 @@ close_code.h
 ../sdl2/sdl2-include/close_code.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Constants.h
+View.h
+C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
-stdio.h
--
-stdbool.h
--
-stdlib.h
--
-math.h
--
-SDL.h
--
-SDL2_gfxPrimitives.h
--
 
 C:/Users/nik/Documents/GitHub/97106013/src/main.c
 stdio.h

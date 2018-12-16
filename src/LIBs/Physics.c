@@ -2,18 +2,17 @@
 // Created by nik on 12/15/2018.
 //
 
-#include "Physics.h"
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
+#include "Physics.h"
 #include "View.h"
 #include "Constants.h"
 
 
-int keys[100];
+int keys[501];
 int shooting_flag = 0;
 
 void shoot(double *x, double *y, int *angle, int *time) {
@@ -35,37 +34,37 @@ int move(double *x, double *y, int *angle) {
             case SDL_QUIT:
                 return 1;
             case SDL_KEYDOWN:
-                keys[event.key.keysym.sym % 100] = 1;
+                keys[event.key.keysym.sym % 501] = 1;
                 break;
             case SDL_KEYUP:
-                keys[event.key.keysym.sym % 100] = 0;
+                keys[event.key.keysym.sym % 501] = 0;
                 if (event.key.keysym.sym == SDLK_m) {
                     shooting_flag = 0;
                 }
                 break;
         }
     }
-    if (keys[SDLK_m % 100]) {
+    if (keys[SDLK_m % 501]) {
         if (!shooting_flag) {
             make_shot(*x, *y, *angle);
         }
         shooting_flag = 1;
     }
-    if (*x < SCREEN_WIDTH - RADIUS && *x > RADIUS) {
-        *x += SPEED * cos(*angle * PI / 180) * (keys[SDLK_UP % 100] - keys[SDLK_DOWN % 100]);
-    } else if (*x >= SCREEN_WIDTH - RADIUS) {
+    if (*x < SCREEN_WIDTH - TANK_RADIUS && *x > TANK_RADIUS) {
+        *x += SPEED * cos(*angle * PI / 180) * (keys[SDLK_UP % 501] - keys[SDLK_DOWN % 501]);
+    } else if (*x >= SCREEN_WIDTH - TANK_RADIUS) {
         (*x)--;
     } else {
         (*x)++;
     }
-    if (*y < SCREEN_HEIGHT - RADIUS && *y > RADIUS) {
-        *y += SPEED * sin(*angle * PI / 180) * (keys[SDLK_UP % 100] - keys[SDLK_DOWN % 100]);
-    } else if (*y >= SCREEN_HEIGHT - RADIUS) {
+    if (*y < SCREEN_HEIGHT - TANK_RADIUS && *y > TANK_RADIUS) {
+        *y += SPEED * sin(*angle * PI / 180) * (keys[SDLK_UP % 501] - keys[SDLK_DOWN % 501]);
+    } else if (*y >= SCREEN_HEIGHT - TANK_RADIUS) {
         (*y)--;
     } else {
         (*y)++;
     }
-    *angle -= SPEED * (keys[SDLK_LEFT % 100] - keys[SDLK_RIGHT % 100]);
+    *angle -= OMEGA * (keys[SDLK_LEFT % 501] - keys[SDLK_RIGHT % 501]);
     if (*angle <= 360) {
         *angle -= 360;
     }
