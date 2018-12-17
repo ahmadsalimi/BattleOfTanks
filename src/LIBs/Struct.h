@@ -14,8 +14,8 @@ typedef struct TANK {
 
 typedef struct SHOT {
     int time;
-    double x;
-    double y;
+    int x;
+    int y;
     int angle;
 } SHOT;
 

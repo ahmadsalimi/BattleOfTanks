@@ -2,11 +2,12 @@
 // Created by nik on 12/15/2018.
 //
 #include "View.h"
+
 #ifndef PROJECT_CONSTANTS_H
 #define PROJECT_CONSTANTS_H
 
 
-#define FPS 60
+#define FPS 70
 #define BOX_WIDTH 90
 #define SCREEN_WIDTH max_boxes_x * BOX_WIDTH + 1
 #define SCREEN_HEIGHT max_boxes_y * BOX_WIDTH + 1

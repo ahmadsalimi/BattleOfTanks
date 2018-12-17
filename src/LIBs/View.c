@@ -31,7 +31,8 @@ void setting() {
 
 void show_window() {
     SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("AlterTank", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("AlterTank", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT,
+                              SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
@@ -60,22 +61,35 @@ void read_map() {
                 horizontal_walls[y1][i] = 1;
             }
         }
-        if (x2 > max_boxes_x){
+        if (x2 > max_boxes_x) {
             max_boxes_x = x2;
         }
-        if (y2 > max_boxes_y){
+        if (y2 > max_boxes_y) {
             max_boxes_y = y2;
         }
+    }
+    for (i = 0; i <= max_boxes_y; i++) {
+        for (j = 0; j <= max_boxes_x; j++) {
+            printf("%d ", horizontal_walls[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for (i = 0; i <= max_boxes_y; i++) {
+        for (j = 0; j <= max_boxes_x; j++) {
+            printf("%d ", vertical_walls[i][j]);
+        }
+        printf("\n");
     }
 }
 
 void draw_map() {
-    for (int m = 0; m <= max_boxes_y; m++){
-        for (int n = 0; n <= max_boxes_x; n++){
-            if(horizontal_walls[m][n]){
+    for (int m = 0; m <= max_boxes_y; m++) {
+        for (int n = 0; n <= max_boxes_x; n++) {
+            if (horizontal_walls[m][n]) {
                 lineRGBA(renderer, n * BOX_WIDTH, m * BOX_WIDTH, (n + 1) * BOX_WIDTH, m * BOX_WIDTH, 0, 0, 0, 255);
             }
-            if(vertical_walls[m][n]){
+            if (vertical_walls[m][n]) {
                 lineRGBA(renderer, n * BOX_WIDTH, m * BOX_WIDTH, n * BOX_WIDTH, (m + 1) * BOX_WIDTH, 0, 0, 0, 255);
             }
         }
@@ -84,7 +98,8 @@ void draw_map() {
 
 void draw_tank(const double *x, const double *y, const int *angle) {
     for (int i = -10; i <= 10; i++) {
-        lineRGBA(renderer, *x, *y, *x + LENGTH * cos((*angle + i / 2.0) * PI / 180), *y + LENGTH * sin((*angle + i / 2.0) * PI / 180), 0, 0, 0, 255);
+        lineRGBA(renderer, *x, *y, *x + LENGTH * cos((*angle + i / 2.0) * PI / 180),
+                 *y + LENGTH * sin((*angle + i / 2.0) * PI / 180), 0, 0, 0, 255);
     }
     filledCircleRGBA(renderer, *x, *y, TANK_RADIUS, 232, 170, 0, 255);
 }
