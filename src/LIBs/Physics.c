@@ -6,71 +6,170 @@
 #include <stdlib.h>
 #include <math.h>
 #include <SDL.h>
-#include <SDL2_gfxPrimitives.h>
 #include "Physics.h"
 #include "View.h"
 #include "Constants.h"
+#include "Struct.h"
 
 
 int keys[401];
 int shooting_flag = 0;
 
-void shoot(int *x, int *y, int *angle, int *time) {
-    if (*x >= SCREEN_WIDTH - SHOT_RADIUS ||
-        ((*x) / BOX_WIDTH < (int) (*x + 2 * SPEED * cos((*angle) * PI / 180)) / BOX_WIDTH &&
-         vertical_walls[(int) (*y + 2 * SPEED * sin((*angle) * PI / 180)) / BOX_WIDTH][
-                 (int) (*x + 2 * SPEED * cos((*angle) * PI / 180)) / BOX_WIDTH])) {
-        *angle = 180 - *angle;
-        (*x)--;
-    } else if (*x <= SHOT_RADIUS || ((*x) / BOX_WIDTH > (int) (*x + 2 * SPEED * cos((*angle) * PI / 180)) / BOX_WIDTH &&
-                                     vertical_walls[(*y) / BOX_WIDTH][(*x) / BOX_WIDTH])) {
-        *angle = 180 - *angle;
-        (*x)++;
+
+void shoot(SHOT *shot) {
+    if (shot->x >= SCREEN_WIDTH - SHOT_RADIUS ||
+        ((shot->x) / BOX_WIDTH < (int) (shot->x + 2 * SPEED * cos((shot->angle) * PI / 180)) / BOX_WIDTH &&
+         vertical_walls[(int) (shot->y + 2 * SPEED * sin((shot->angle) * PI / 180)) / BOX_WIDTH][
+                 (int) (shot->x + 2 * SPEED * cos((shot->angle) * PI / 180)) / BOX_WIDTH])) {
+        shot->angle = 180 - shot->angle;
+        (shot->x)--;
+    } else if (shot->x <= SHOT_RADIUS ||
+               ((shot->x) / BOX_WIDTH > (int) (shot->x + 2 * SPEED * cos((shot->angle) * PI / 180)) / BOX_WIDTH &&
+                vertical_walls[(shot->y) / BOX_WIDTH][(shot->x) / BOX_WIDTH])) {
+        shot->angle = 180 - shot->angle;
+        (shot->x)++;
     }
-    if (*y >= SCREEN_HEIGHT - SHOT_RADIUS ||
-        ((*y) / BOX_WIDTH < (int) (*y + 2 * SPEED * sin((*angle) * PI / 180)) / BOX_WIDTH &&
-         horizontal_walls[(int) (*y + 2 * SPEED * sin((*angle) * PI / 180)) / BOX_WIDTH][
-                 (int) (*x + 2 * SPEED * cos((*angle) * PI / 180)) / BOX_WIDTH])) {
-        *angle = -*angle;
-        (*y)--;
-    } else if (*y <= SHOT_RADIUS || ((*y) / BOX_WIDTH > (int) (*y + 2 * SPEED * sin((*angle) * PI / 180)) / BOX_WIDTH &&
-                                     horizontal_walls[(*y) / BOX_WIDTH][(*x) / BOX_WIDTH])) {
-        *angle = -*angle;
-        (*y)++;
+    if (shot->y >= SCREEN_HEIGHT - SHOT_RADIUS ||
+        ((shot->y) / BOX_WIDTH < (int) (shot->y + 2 * SPEED * sin((shot->angle) * PI / 180)) / BOX_WIDTH &&
+         horizontal_walls[(int) (shot->y + 2 * SPEED * sin((shot->angle) * PI / 180)) / BOX_WIDTH][
+                 (int) (shot->x + 2 * SPEED * cos((shot->angle) * PI / 180)) / BOX_WIDTH])) {
+        shot->angle = -shot->angle;
+        (shot->y)--;
+    } else if (shot->y <= SHOT_RADIUS ||
+               ((shot->y) / BOX_WIDTH > (int) (shot->y + 2 * SPEED * sin((shot->angle) * PI / 180)) / BOX_WIDTH &&
+                horizontal_walls[(shot->y) / BOX_WIDTH][(shot->x) / BOX_WIDTH])) {
+        shot->angle = -shot->angle;
+        (shot->y)++;
     }
-    *x = (int) (*x + 2 * SPEED * cos((*angle) * PI / 180));
-    *y = (int) (*y + 2 * SPEED * sin((*angle) * PI / 180));
-    (*time)--;
+    shot->angle %= 360;
+    shot->x = (int) (shot->x + 2 * SPEED * cos((shot->angle) * PI / 180));
+    shot->y = (int) (shot->y + 2 * SPEED * sin((shot->angle) * PI / 180));
+    (shot->time)--;
 }
 
-void tank_motion(double *x, double *y, int *angle) {
-    if (*x < SCREEN_WIDTH - TANK_RADIUS && *x > TANK_RADIUS) {
-        *x += SPEED * cos(*angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]);
-    } else if (*x >= SCREEN_WIDTH - TANK_RADIUS) {
-        (*x)--;
+void tank_motion(TANK *tank) {
+    //moving
+    tank->x += SPEED * cos(tank->angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]);
+    tank->y += SPEED * sin(tank->angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]);
+
+    struct POINT box[4] = {
+            {((int) tank->x / BOX_WIDTH) * BOX_WIDTH,     ((int) tank->y / BOX_WIDTH) * BOX_WIDTH},
+            {((int) tank->x / BOX_WIDTH) * BOX_WIDTH,     ((int) tank->y / BOX_WIDTH + 1) * BOX_WIDTH},
+            {((int) tank->x / BOX_WIDTH + 1) * BOX_WIDTH, ((int) tank->y / BOX_WIDTH) * BOX_WIDTH},
+            {((int) tank->x / BOX_WIDTH + 1) * BOX_WIDTH, ((int) tank->y / BOX_WIDTH + 1) * BOX_WIDTH}
+    };
+
+    //checking confluence for heads of walls
+
+    for (int i = 0; i < 4; i++) {
+        if (pow(box[i].x - tank->x, 2) + pow(box[i].y - tank->y, 2) <= TANK_RADIUS * TANK_RADIUS ||
+            (pow(box[i].x - (tank->x + LENGTH * cos(tank->angle * PI / 180)), 2) +
+             pow(box[i].y - (tank->y + LENGTH * sin(tank->angle * PI / 180)), 2)) <=
+            (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS) / 8 ||
+            (pow(box[i].x - (tank->x + TANK_RADIUS * cos(tank->angle * PI / 180)), 2) +
+             pow(box[i].y - (tank->y + TANK_RADIUS * sin(tank->angle * PI / 180)), 2)) <=
+            (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS)) {
+            if ((box[i].x + 1 > BOX_WIDTH && horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH - 1]) ^
+                (horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH]) &&
+                !((box[i].y > BOX_WIDTH && vertical_walls[box[i].y / BOX_WIDTH - 1][box[i].x / BOX_WIDTH]) &&
+                  (vertical_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH]))) {
+                tank->x -= SPEED * cos(tank->angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]) +
+                           horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH] -
+                           horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH - 1];
+                tank->y -= SPEED * sin(tank->angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]) - 1;
+            } else if ((box[i].y + 1 > BOX_WIDTH && vertical_walls[box[i].y / BOX_WIDTH - 1][box[i].x / BOX_WIDTH]) ^
+                (vertical_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH]) &&
+                !((box[i].x > BOX_WIDTH && horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH - 1]) &&
+                  (horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH]))) {
+                tank->x -= SPEED * cos(tank->angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]) - 1;
+                tank->y -= SPEED * sin(tank->angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]) +
+                           vertical_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH] -
+                           vertical_walls[box[i].y / BOX_WIDTH - 1][box[i].x / BOX_WIDTH];
+            }
+        }
+    }
+
+
+    //checking confluence for vertical walls
+    double max_x_left = tank->x + TANK_RADIUS, max_x_right = tank->x - TANK_RADIUS, Y = tank->y;
+    if (cos((tank->angle) * PI / 180) > 0) {
+        if (!keys[SDLK_DOWN % 401] && (keys[SDLK_UP % 401] || keys[SDLK_RIGHT % 401] || keys[SDLK_LEFT % 401])) {
+            if (LENGTH * cos((tank->angle) * PI / 180) > TANK_RADIUS) {
+                max_x_left = tank->x + LENGTH * cos((tank->angle) * PI / 180);
+                Y = tank->y + LENGTH * sin((tank->angle) * PI / 180);
+            }
+            if (max_x_left >= SCREEN_WIDTH || ((int) tank->x / BOX_WIDTH < (int) max_x_left / BOX_WIDTH &&
+                                               vertical_walls[(int) Y / BOX_WIDTH][(int) max_x_left / BOX_WIDTH])) {
+                tank->x -= SPEED * cos(tank->angle * PI / 180) + 1;
+            }
+        } else {
+            if (max_x_right <= 0 || ((int) tank->x / BOX_WIDTH > (int) max_x_right / BOX_WIDTH &&
+                                     vertical_walls[(int) Y / BOX_WIDTH][(int) tank->x / BOX_WIDTH])) {
+                tank->x += SPEED * cos(tank->angle * PI / 180) + 1;
+            }
+        }
     } else {
-        (*x)++;
+        if (!keys[SDLK_DOWN % 401] && (keys[SDLK_UP % 401] || keys[SDLK_RIGHT % 401] || keys[SDLK_LEFT % 401])) {
+            if (-LENGTH * cos((tank->angle) * PI / 180) > TANK_RADIUS) {
+                max_x_right = tank->x + LENGTH * cos((tank->angle) * PI / 180);
+                Y = tank->y + LENGTH * sin((tank->angle) * PI / 180);
+            }
+            if (max_x_right <= 0 || ((int) tank->x / BOX_WIDTH > (int) max_x_right / BOX_WIDTH &&
+                                     vertical_walls[(int) Y / BOX_WIDTH][(int) tank->x / BOX_WIDTH])) {
+                (tank->x) -= SPEED * cos(tank->angle * PI / 180) - 1;
+            }
+        } else {
+            if (max_x_left >= SCREEN_WIDTH || ((int) tank->x / BOX_WIDTH < (int) max_x_left / BOX_WIDTH &&
+                                               vertical_walls[(int) Y / BOX_WIDTH][(int) max_x_left / BOX_WIDTH])) {
+                (tank->x) += SPEED * cos(tank->angle * PI / 180) - 1;
+            }
+        }
     }
-    if (*y < SCREEN_HEIGHT - TANK_RADIUS && *y > TANK_RADIUS) {
-        *y += SPEED * sin(*angle * PI / 180) * (keys[SDLK_UP % 401] - keys[SDLK_DOWN % 401]);
-    } else if (*y >= SCREEN_HEIGHT - TANK_RADIUS) {
-        (*y)--;
+    //checking confluence for horizontal walls
+    double max_y_up = tank->y - TANK_RADIUS, max_y_down = tank->y + TANK_RADIUS, X = tank->x;
+    if (sin((tank->angle) * PI / 180) < 0) {
+        if (!keys[SDLK_DOWN % 401] && (keys[SDLK_UP % 401] || keys[SDLK_RIGHT % 401] || keys[SDLK_LEFT % 401])) {
+            if (-LENGTH * sin((tank->angle) * PI / 180) > TANK_RADIUS) {
+                max_y_up = tank->y + LENGTH * sin((tank->angle) * PI / 180);
+                X = tank->x + LENGTH * cos((tank->angle) * PI / 180);
+            }
+            if (max_y_up <= 0 || ((int) tank->y / BOX_WIDTH > (int) max_y_up / BOX_WIDTH &&
+                                  horizontal_walls[(int) max_y_up / BOX_WIDTH + 1][(int) X / BOX_WIDTH])) {
+                (tank->y) -= SPEED * sin(tank->angle * PI / 180) - 1;
+            }
+        } else {
+            if (max_y_down >= SCREEN_HEIGHT || ((int) tank->y / BOX_WIDTH < (int) max_y_down / BOX_WIDTH &&
+                                                horizontal_walls[(int) tank->y / BOX_WIDTH + 1][(int) X / BOX_WIDTH])) {
+                (tank->y) += SPEED * sin(tank->angle * PI / 180) - 1;
+            }
+        }
     } else {
-        (*y)++;
+        if (!keys[SDLK_DOWN % 401] && (keys[SDLK_UP % 401] || keys[SDLK_RIGHT % 401] || keys[SDLK_LEFT % 401])) {
+            if (LENGTH * sin((tank->angle) * PI / 180) > TANK_RADIUS) {
+                max_y_down = tank->y + LENGTH * sin((tank->angle) * PI / 180);
+                X = tank->x + LENGTH * cos((tank->angle) * PI / 180);
+            }
+            if (max_y_down >= SCREEN_HEIGHT || ((int) tank->y / BOX_WIDTH < (int) max_y_down / BOX_WIDTH &&
+                                                horizontal_walls[(int) tank->y / BOX_WIDTH + 1][(int) X / BOX_WIDTH])) {
+                (tank->y) -= SPEED * sin(tank->angle * PI / 180) + 1;
+            }
+        } else {
+            if (max_y_up >= SCREEN_HEIGHT || ((int) tank->y / BOX_WIDTH > (int) max_y_up / BOX_WIDTH &&
+                                              horizontal_walls[(int) max_y_up / BOX_WIDTH + 1][(int) X / BOX_WIDTH])) {
+                (tank->y) += SPEED * sin(tank->angle * PI / 180) + 1;
+            }
+        }
+    }
+    if (tank->y <= TANK_RADIUS) {
+        (tank->y) += SPEED * sin(tank->angle * PI / 180) + 1;
     }
 }
 
-void tank_rotation(int *angle) {
-    *angle -= OMEGA * (keys[SDLK_LEFT % 401] - keys[SDLK_RIGHT % 401]);
-    if (*angle <= 360) {
-        *angle -= 360;
-    }
-    if (*angle >= -360) {
-        *angle += 360;
-    }
+void tank_rotation(TANK *tank) {
+    tank->angle -= (int) (OMEGA * (keys[SDLK_LEFT % 401] - keys[SDLK_RIGHT % 401]));
 }
 
-int move(double *x, double *y, int *angle) {
+int move(TANK *tank) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
@@ -85,14 +184,16 @@ int move(double *x, double *y, int *angle) {
                     shooting_flag = 0;
                 }
                 break;
+            default:
+                break;
         }
     }
     if (keys[SDLK_m % 401]) {
         if (!shooting_flag) {
-            make_shot(*x, *y, *angle);
+            make_shot(tank);
         }
         shooting_flag = 1;
     }
-    tank_motion(x, y, angle);
-    tank_rotation(angle);
+    tank_motion(tank);
+    tank_rotation(tank);
 }

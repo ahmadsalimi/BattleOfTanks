@@ -5,6 +5,8 @@
 #ifndef PROJECT_VIEW_H
 #define PROJECT_VIEW_H
 
+#include "Struct.h"
+
 void setting();
 
 void show_window();
@@ -13,15 +15,15 @@ void read_map();
 
 void draw_map();
 
-void draw_tank(const double *x, const double *y, const int *angle);
+void draw_tank(TANK *tank);
 
 void draw_shot();
 
-void drawing(double *x, double *y, int *angle);
+void drawing(TANK *tank);
 
 void Quit();
 
-void make_shot(double x, double y, int angle);
+void make_shot(TANK *tank);
 
 extern int max_boxes_x;
 extern int max_boxes_y;

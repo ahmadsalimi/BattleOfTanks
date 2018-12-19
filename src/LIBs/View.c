@@ -15,7 +15,7 @@
 SDL_Window *window;
 SDL_Renderer *renderer;
 
-struct SHOT shot[MAX_BALLS];
+SHOT shot[MAX_BALLS];
 
 int max_boxes_x = 0;
 int max_boxes_y = 0;
@@ -37,7 +37,7 @@ void show_window() {
 }
 
 void read_map() {
-    srand(time(NULL));
+    srand((Uint16) time(NULL));
     int r = rand() % 3;
     int i, j, n, x1, y1, x2, y2;
     char line[30];
@@ -68,56 +68,47 @@ void read_map() {
             max_boxes_y = y2;
         }
     }
-    for (i = 0; i <= max_boxes_y; i++) {
-        for (j = 0; j <= max_boxes_x; j++) {
-            printf("%d ", horizontal_walls[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-    for (i = 0; i <= max_boxes_y; i++) {
-        for (j = 0; j <= max_boxes_x; j++) {
-            printf("%d ", vertical_walls[i][j]);
-        }
-        printf("\n");
-    }
+
 }
 
 void draw_map() {
     for (int m = 0; m <= max_boxes_y; m++) {
         for (int n = 0; n <= max_boxes_x; n++) {
             if (horizontal_walls[m][n]) {
-                lineRGBA(renderer, n * BOX_WIDTH, m * BOX_WIDTH, (n + 1) * BOX_WIDTH, m * BOX_WIDTH, 0, 0, 0, 255);
+                lineRGBA(renderer, (Sint16) (n * BOX_WIDTH), (Sint16) (m * BOX_WIDTH), (Sint16) ((n + 1) * BOX_WIDTH),
+                         (Sint16) (m * BOX_WIDTH), 0, 0, 0, 255);
             }
             if (vertical_walls[m][n]) {
-                lineRGBA(renderer, n * BOX_WIDTH, m * BOX_WIDTH, n * BOX_WIDTH, (m + 1) * BOX_WIDTH, 0, 0, 0, 255);
+                lineRGBA(renderer, (Sint16) (n * BOX_WIDTH), (Sint16) (m * BOX_WIDTH), (Sint16) (n * BOX_WIDTH),
+                         (Sint16) ((m + 1) * BOX_WIDTH), 0, 0, 0, 255);
             }
         }
     }
 }
 
-void draw_tank(const double *x, const double *y, const int *angle) {
+void draw_tank(TANK *tank) {
     for (int i = -10; i <= 10; i++) {
-        lineRGBA(renderer, *x, *y, *x + LENGTH * cos((*angle + i / 2.0) * PI / 180),
-                 *y + LENGTH * sin((*angle + i / 2.0) * PI / 180), 0, 0, 0, 255);
+        lineRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y,
+                 (Sint16) (tank->x + LENGTH * cos((tank->angle + i / 2.0) * PI / 180)),
+                 (Sint16) (tank->y + LENGTH * sin((tank->angle + i / 2.0) * PI / 180)), 0, 0, 0, 255);
     }
-    filledCircleRGBA(renderer, *x, *y, TANK_RADIUS, 232, 170, 0, 255);
+    filledCircleRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y, (Sint16) (TANK_RADIUS), 232, 170, 0, 255);
 }
 
 void draw_shot() {
     for (int i = 0; i < MAX_BALLS; i++) {
         if (shot[i].time > 0) {
-            shoot(&shot[i].x, &shot[i].y, &shot[i].angle, &shot[i].time);
-            filledCircleRGBA(renderer, shot[i].x, shot[i].y, SHOT_RADIUS, 0, 0, 0, 255);
+            shoot(&shot[i]);
+            filledCircleRGBA(renderer, (Sint16) shot[i].x, (Sint16) shot[i].y, (Sint16) (SHOT_RADIUS), 0, 0, 0, 255);
         }
     }
 }
 
-void drawing(double *x, double *y, int *angle) {
+void drawing(TANK *tank) {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     draw_map();
-    draw_tank(x, y, angle);
+    draw_tank(tank);
     draw_shot();
     SDL_RenderPresent(renderer);
 }
@@ -128,13 +119,13 @@ void Quit() {
     SDL_Quit();
 }
 
-void make_shot(double x, double y, int angle) {
+void make_shot(TANK *tank) {
     for (int i = 0; i < MAX_BALLS; i++) {
         if (shot[i].time <= 0) {
             shot[i].time = LIFE_OF_SHOT;
-            shot[i].x = x + LENGTH * cos(angle * PI / 180);
-            shot[i].y = y + LENGTH * sin(angle * PI / 180);
-            shot[i].angle = angle;
+            shot[i].x = (int) (tank->x + (TANK_RADIUS + 2 * SHOT_RADIUS) * cos(tank->angle * PI / 180));
+            shot[i].y = (int) (tank->y + (TANK_RADIUS + 2 * SHOT_RADIUS) * sin(tank->angle * PI / 180));
+            shot[i].angle = tank->angle;
             break;
         }
     }

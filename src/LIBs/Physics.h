@@ -4,13 +4,15 @@
 
 #ifndef PROJECT_PHYSICS_H
 #define PROJECT_PHYSICS_H
+#include "Struct.h"
 
-void shoot(int *x, int *y, int *angle, int *time);
 
-void tank_motion(double *x, double *y, int *angle);
+void shoot(SHOT *shot);
 
-void tank_rotation(int *angle);
+void tank_motion(TANK *tank);
 
-int move(double *x, double *y, int *angle);
+void tank_rotation(TANK *tank);
+
+int move(TANK *tank);
 
 #endif //PROJECT_PHYSICS_H
