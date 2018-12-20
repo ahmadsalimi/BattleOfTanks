@@ -122,6 +122,33 @@ project/fast:
 	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
+src/LIBs/MapGenerate.obj: src/LIBs/MapGenerate.c.obj
+
+.PHONY : src/LIBs/MapGenerate.obj
+
+# target to build an object file
+src/LIBs/MapGenerate.c.obj:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/MapGenerate.c.obj
+.PHONY : src/LIBs/MapGenerate.c.obj
+
+src/LIBs/MapGenerate.i: src/LIBs/MapGenerate.c.i
+
+.PHONY : src/LIBs/MapGenerate.i
+
+# target to preprocess a source file
+src/LIBs/MapGenerate.c.i:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/MapGenerate.c.i
+.PHONY : src/LIBs/MapGenerate.c.i
+
+src/LIBs/MapGenerate.s: src/LIBs/MapGenerate.c.s
+
+.PHONY : src/LIBs/MapGenerate.s
+
+# target to generate assembly for a file
+src/LIBs/MapGenerate.c.s:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/MapGenerate.c.s
+.PHONY : src/LIBs/MapGenerate.c.s
+
 src/LIBs/Physics.obj: src/LIBs/Physics.c.obj
 
 .PHONY : src/LIBs/Physics.obj
@@ -212,6 +239,9 @@ help:
 	@echo ... project
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... src/LIBs/MapGenerate.obj
+	@echo ... src/LIBs/MapGenerate.i
+	@echo ... src/LIBs/MapGenerate.s
 	@echo ... src/LIBs/Physics.obj
 	@echo ... src/LIBs/Physics.i
 	@echo ... src/LIBs/Physics.s

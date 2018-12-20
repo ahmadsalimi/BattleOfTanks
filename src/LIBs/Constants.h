@@ -9,8 +9,12 @@
 
 #define FPS 70
 #define BOX_WIDTH 90
-#define SCREEN_WIDTH max_boxes_x * BOX_WIDTH + 1
-#define SCREEN_HEIGHT max_boxes_y * BOX_WIDTH + 1
+#define SCREEN_WIDTH (max_boxes_x + 1) * BOX_WIDTH + 1
+#define SCREEN_HEIGHT (max_boxes_y + 1) * BOX_WIDTH + 1
+#define START_MAP_X BOX_WIDTH
+#define START_MAP_Y BOX_WIDTH
+#define FINISH_MAP_X START_MAP_X + BOX_WIDTH * (max_boxes_x - 1)
+#define FINISH_MAP_Y START_MAP_Y + BOX_WIDTH * (max_boxes_x - 1)
 #define SPEED (double) BOX_WIDTH / FPS * 2.5
 #define OMEGA SPEED * 1.7
 #define PI 3.141592653589

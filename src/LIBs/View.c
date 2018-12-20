@@ -11,19 +11,17 @@
 #include "Physics.h"
 #include "Struct.h"
 #include "Constants.h"
+#include "MapGenerate.h"
 
 SDL_Window *window;
 SDL_Renderer *renderer;
 
 SHOT shot[MAX_BALLS];
 
-int max_boxes_x = 0;
-int max_boxes_y = 0;
-int vertical_walls[10][10];
-int horizontal_walls[10][10];
 
 void setting() {
-    read_map();
+    srand((unsigned int) time(NULL));
+    generate_map();
     for (int i = 0; i < MAX_BALLS; i++) {
         shot[i].time = 0;
     }
@@ -31,56 +29,21 @@ void setting() {
 
 void show_window() {
     SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("AlterTank", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT,
-                              SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("AlterTank", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-void read_map() {
-    srand((Uint16) time(NULL));
-    int r = rand() % 3;
-    int i, j, n, x1, y1, x2, y2;
-    char line[30];
-    FILE *gmaps;
-    gmaps = fopen("C:\\Users\\nik\\Documents\\GitHub\\97106013\\src\\LIBs\\Generated_Maps\\gmaps.txt", "r");
-    for (j = 0; j < r;) {
-        fgets(line, 30, gmaps);
-        if (line[0] == 10) {
-            j++;
-        }
-    }
-    fscanf(gmaps, "%d", &n);
-    for (int k = 0; k < n; k++) {
-        fscanf(gmaps, "%d %d %d %d", &x1, &y1, &x2, &y2);
-        if (x1 == x2) {
-            for (j = y1; j < y2; j++) {
-                vertical_walls[j][x1] = 1;
-            }
-        } else {
-            for (i = x1; i < x2; i++) {
-                horizontal_walls[y1][i] = 1;
-            }
-        }
-        if (x2 > max_boxes_x) {
-            max_boxes_x = x2;
-        }
-        if (y2 > max_boxes_y) {
-            max_boxes_y = y2;
-        }
-    }
-
-}
 
 void draw_map() {
-    for (int m = 0; m <= max_boxes_y; m++) {
-        for (int n = 0; n <= max_boxes_x; n++) {
+    for (int n = 0; n <= max_boxes_x; n++) {
+        for (int m = 0; m <= max_boxes_y; m++) {
             if (horizontal_walls[m][n]) {
-                lineRGBA(renderer, (Sint16) (n * BOX_WIDTH), (Sint16) (m * BOX_WIDTH), (Sint16) ((n + 1) * BOX_WIDTH),
-                         (Sint16) (m * BOX_WIDTH), 0, 0, 0, 255);
+                lineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 1) * BOX_WIDTH), (Sint16) ((n + 2) * BOX_WIDTH),
+                         (Sint16) ((m + 1) * BOX_WIDTH), 0, 0, 0, 255);
             }
             if (vertical_walls[m][n]) {
-                lineRGBA(renderer, (Sint16) (n * BOX_WIDTH), (Sint16) (m * BOX_WIDTH), (Sint16) (n * BOX_WIDTH),
-                         (Sint16) ((m + 1) * BOX_WIDTH), 0, 0, 0, 255);
+                lineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 1) * BOX_WIDTH), (Sint16) ((n + 1) * BOX_WIDTH),
+                         (Sint16) ((m + 2) * BOX_WIDTH), 0, 0, 0, 255);
             }
         }
     }

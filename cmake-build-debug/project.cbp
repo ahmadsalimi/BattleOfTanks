@@ -83,6 +83,12 @@
 		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Constants.h">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.c">
 			<Option target="project"/>
 		</Unit>

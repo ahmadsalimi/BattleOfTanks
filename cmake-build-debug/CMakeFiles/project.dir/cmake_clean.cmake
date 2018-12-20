@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/project.dir/src/LIBs/MapGenerate.c.obj"
   "CMakeFiles/project.dir/src/LIBs/Physics.c.obj"
   "CMakeFiles/project.dir/src/LIBs/View.c.obj"
   "CMakeFiles/project.dir/src/main.c.obj"

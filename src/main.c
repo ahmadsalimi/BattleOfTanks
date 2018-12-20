@@ -6,6 +6,7 @@
 #include "LIBs/Struct.h"
 #include "LIBs/Physics.h"
 #include "LIBs/Constants.h"
+#include "LIBs/MapGenerate.h"
 
 
 #ifdef main
@@ -16,7 +17,7 @@ int main(int argc, char *argv[]) {
     setting();
     show_window();
     int start_ticks = SDL_GetTicks();
-    TANK tank1 = {1, 100, 100, 0};
+    TANK tank1 = {1, rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH * 3 / 2), rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH * 3 / 2), rand() % 360};
     while (1) {
         if (!move(&tank1)) break;
         drawing(&tank1);
