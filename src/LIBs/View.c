@@ -1,6 +1,3 @@
-//
-// Created by nik on 12/15/2018.
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -33,29 +30,26 @@ void show_window() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-
 void draw_map() {
     for (int n = 0; n <= max_boxes_x; n++) {
         for (int m = 0; m <= max_boxes_y; m++) {
             if (horizontal_walls[m][n]) {
-                lineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 1) * BOX_WIDTH), (Sint16) ((n + 2) * BOX_WIDTH),
-                         (Sint16) ((m + 1) * BOX_WIDTH), 0, 0, 0, 255);
+                thickLineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH - 1), (Sint16) ((m + 1) * BOX_WIDTH), (Sint16) ((n + 2) * BOX_WIDTH + 1), (Sint16) ((m + 1) * BOX_WIDTH), 3, 100, 100, 100, 255);
             }
             if (vertical_walls[m][n]) {
-                lineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 1) * BOX_WIDTH), (Sint16) ((n + 1) * BOX_WIDTH),
-                         (Sint16) ((m + 2) * BOX_WIDTH), 0, 0, 0, 255);
+                thickLineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 1) * BOX_WIDTH - 1), (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 2) * BOX_WIDTH + 1), 3, 100, 100, 100, 255);
             }
         }
     }
 }
 
 void draw_tank(TANK *tank) {
-    for (int i = -10; i <= 10; i++) {
-        lineRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y,
-                 (Sint16) (tank->x + LENGTH * cos((tank->angle + i / 2.0) * PI / 180)),
-                 (Sint16) (tank->y + LENGTH * sin((tank->angle + i / 2.0) * PI / 180)), 0, 0, 0, 255);
+    filledCircleRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y, (Sint16) (TANK_RADIUS), 104, 56, 29, 255);
+    thickLineRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y, (Sint16) (tank->x + LENGTH * cos((tank->angle) * PI / 180)), (Sint16) (tank->y + LENGTH * sin((tank->angle) * PI / 180)), 4, 70, 70, 70, 255);
+    filledCircleRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y, (Sint16) (TANK_RADIUS / 2), 198, 198, 198, 255);
+    for (int i = -3; i < 3; i++) {
+        filledCircleRGBA(renderer, (Sint16) (tank->x + cos((tank->angle + 30 + i * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (tank->y + sin((tank->angle + 30 + i * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (TANK_RADIUS / 8), 198, 198, 198, 255);
     }
-    filledCircleRGBA(renderer, (Sint16) tank->x, (Sint16) tank->y, (Sint16) (TANK_RADIUS), 232, 170, 0, 255);
 }
 
 void draw_shot() {
@@ -86,8 +80,8 @@ void make_shot(TANK *tank) {
     for (int i = 0; i < MAX_BALLS; i++) {
         if (shot[i].time <= 0) {
             shot[i].time = LIFE_OF_SHOT;
-            shot[i].x = (int) (tank->x + (TANK_RADIUS + 2 * SHOT_RADIUS) * cos(tank->angle * PI / 180));
-            shot[i].y = (int) (tank->y + (TANK_RADIUS + 2 * SHOT_RADIUS) * sin(tank->angle * PI / 180));
+            shot[i].x = (int) (tank->x);
+            shot[i].y = (int) (tank->y);
             shot[i].angle = tank->angle;
             break;
         }

@@ -1,6 +1,3 @@
-//
-// Created by nik on 12/15/2018.
-//
 #include "View.h"
 
 #ifndef PROJECT_CONSTANTS_H
@@ -15,13 +12,13 @@
 #define START_MAP_Y BOX_WIDTH
 #define FINISH_MAP_X START_MAP_X + BOX_WIDTH * (max_boxes_x - 1)
 #define FINISH_MAP_Y START_MAP_Y + BOX_WIDTH * (max_boxes_x - 1)
-#define SPEED (double) BOX_WIDTH / FPS * 2.5
+#define SPEED (double) FPS * 3 / BOX_WIDTH
 #define OMEGA SPEED * 1.7
 #define PI 3.141592653589
 #define TANK_RADIUS (double) BOX_WIDTH * 0.2
 #define SHOT_RADIUS (double) BOX_WIDTH * 0.04
 #define LENGTH (double) BOX_WIDTH * 0.28
-#define MAX_BALLS 5
+#define MAX_BALLS 5000
 #define LIFE_OF_SHOT 5 * FPS
 
 

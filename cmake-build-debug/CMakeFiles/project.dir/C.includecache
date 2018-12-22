@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+../sdl2/sdl2-gfx-include/SDL2_gfxPrimitives.h
+math.h
+-
+SDL.h
+../sdl2/sdl2-gfx-include/SDL.h
+
 ../sdl2/sdl2-include/SDL.h
 SDL_main.h
 ../sdl2/sdl2-include/SDL_main.h
@@ -589,8 +595,6 @@ View.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
-Struct.h
-C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.h
 Struct.h
@@ -598,27 +602,31 @@ C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 
-C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
-Struct.h
-C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
-
-C:/Users/nik/Documents/GitHub/97106013/src/main.c
+C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.c
 stdio.h
 -
 stdlib.h
 -
 math.h
 -
+time.h
+-
 SDL.h
 -
-LIBs/View.h
+SDL2_gfxPrimitives.h
+-
+View.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
-LIBs/Struct.h
-C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
-LIBs/Physics.h
+Physics.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.h
-LIBs/Constants.h
+Struct.h
+C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
+Constants.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Constants.h
-LIBs/MapGenerate.h
+MapGenerate.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
+
+C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
+Struct.h
+C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 

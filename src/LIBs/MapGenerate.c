@@ -1,6 +1,3 @@
-//
-// Created by nik on 12/20/2018.
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -98,7 +95,6 @@ void render_walls() {
     //check if map has single cells to remove some walls.
     for (int i = 0; i < max_boxes_y - 1; i++) {
         for (int j = 0; j < max_boxes_x - 1; j++) {
-            printf("%d ", cells_connection[i][j]);
             if (!cells_connection[i][j]) {
                 int a = rand() % 2, b = rand() % 2;
                 if (horizontal_walls[i + a][j] && i + a < max_boxes_y - 1 && j < max_boxes_x) {
@@ -109,12 +105,9 @@ void render_walls() {
                 }
             }
         }
-        printf("\n");
-
     }
-    printf("\n");
 
-    int counter = max_boxes_x * max_boxes_y / 9;
+    int counter = max_boxes_x * max_boxes_y / 12;
     while (counter) {
         int h_or_v = rand() % 2;
         if (h_or_v) {
@@ -132,19 +125,6 @@ void render_walls() {
                 continue;
             }
         }
-    }
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            printf("%d ", horizontal_walls[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            printf("%d ", vertical_walls[i][j]);
-        }
-        printf("\n");
     }
 }
 

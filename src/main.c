@@ -8,7 +8,6 @@
 #include "LIBs/Constants.h"
 #include "LIBs/MapGenerate.h"
 
-
 #ifdef main
 #undef main
 #endif /*main*/
@@ -19,7 +18,7 @@ int main(int argc, char *argv[]) {
     int start_ticks = SDL_GetTicks();
     TANK tank1 = {1, rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH * 3 / 2), rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH * 3 / 2), rand() % 360};
     while (1) {
-        if (!move(&tank1)) break;
+        if (!events(&tank1)) break;
         drawing(&tank1);
         while (SDL_GetTicks() - start_ticks < 1000 / FPS);
     }

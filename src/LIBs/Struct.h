@@ -1,7 +1,3 @@
-//
-// Created by nik on 12/15/2018.
-//
-
 #ifndef PROJECT_STRUCT_H
 #define PROJECT_STRUCT_H
 
@@ -14,12 +10,12 @@ typedef struct {
 
 typedef struct {
     int time;
-    int x;
-    int y;
+    double x;
+    double y;
     int angle;
 } SHOT;
 
-typedef struct POINT {
+typedef struct {
     int x;
     int y;
 } POINT;

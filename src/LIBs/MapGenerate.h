@@ -1,17 +1,5 @@
-//
-// Created by nik on 12/20/2018.
-//
-
 #ifndef PROJECT_MAPGENERATE_H
 #define PROJECT_MAPGENERATE_H
-
-#include "Struct.h"
-
-void initialize();
-
-MAP *connect_cells(MAP *n);
-
-void render_walls();
 
 int generate_map();
 
