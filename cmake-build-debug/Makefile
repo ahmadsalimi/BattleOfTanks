@@ -122,6 +122,33 @@ project/fast:
 	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
+src/LIBs/Logic.obj: src/LIBs/Logic.c.obj
+
+.PHONY : src/LIBs/Logic.obj
+
+# target to build an object file
+src/LIBs/Logic.c.obj:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Logic.c.obj
+.PHONY : src/LIBs/Logic.c.obj
+
+src/LIBs/Logic.i: src/LIBs/Logic.c.i
+
+.PHONY : src/LIBs/Logic.i
+
+# target to preprocess a source file
+src/LIBs/Logic.c.i:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Logic.c.i
+.PHONY : src/LIBs/Logic.c.i
+
+src/LIBs/Logic.s: src/LIBs/Logic.c.s
+
+.PHONY : src/LIBs/Logic.s
+
+# target to generate assembly for a file
+src/LIBs/Logic.c.s:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Logic.c.s
+.PHONY : src/LIBs/Logic.c.s
+
 src/LIBs/MapGenerate.obj: src/LIBs/MapGenerate.c.obj
 
 .PHONY : src/LIBs/MapGenerate.obj
@@ -239,6 +266,9 @@ help:
 	@echo ... project
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... src/LIBs/Logic.obj
+	@echo ... src/LIBs/Logic.i
+	@echo ... src/LIBs/Logic.s
 	@echo ... src/LIBs/MapGenerate.obj
 	@echo ... src/LIBs/MapGenerate.i
 	@echo ... src/LIBs/MapGenerate.s

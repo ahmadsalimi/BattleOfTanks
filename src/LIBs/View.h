@@ -3,17 +3,18 @@
 
 #include "Struct.h"
 
+
 void setting();
 
 void show_window();
 
-void drawing(PLAYERS *game);
+void drawing(PLAYERS *players);
 
 void Quit();
 
-void make_shot(PLAYERS *game, int i);
+void make_shot(PLAYERS *players, int i);
 
-extern PLAYERS game;
+extern PLAYERS players;
 
 #endif //PROJECT_VIEW_H
 

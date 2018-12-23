@@ -1,8 +1,9 @@
 #include "Constants.h"
 
 #ifndef PROJECT_STRUCT_H
-
 #define PROJECT_STRUCT_H
+
+
 
 typedef struct {
     int time;
