@@ -6,6 +6,6 @@
 
 void shoot(SHOT *shot);
 
-int events(TANK *tank);
+int events(PLAYERS *game);
 
 #endif //PROJECT_PHYSICS_H
