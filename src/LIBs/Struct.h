@@ -3,8 +3,6 @@
 #ifndef PROJECT_STRUCT_H
 #define PROJECT_STRUCT_H
 
-
-
 typedef struct {
     int time;
     double x;
@@ -21,6 +19,7 @@ typedef struct {
     int shooting_key;
     int directions[4]; //up, down, right, left
     SHOT shot[MAX_BALLS];
+    int score;
 } TANK;
 
 typedef struct {
@@ -37,6 +36,7 @@ typedef struct {
 
 typedef struct {
     int number;
+    int lives;
     TANK tank[3];
 } PLAYERS;
 

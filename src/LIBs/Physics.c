@@ -50,8 +50,6 @@ void reflect_shot(SHOT *shot) {
             }
         }
     }
-
-
 }
 
 void shoot(SHOT *shot) {
@@ -70,7 +68,8 @@ void wall_heads(PLAYERS *players, int i) {
             {((int) (players->tank[i].x - START_MAP_X) / BOX_WIDTH + 1) * BOX_WIDTH, ((int) (players->tank[i].y - START_MAP_Y) / BOX_WIDTH) * BOX_WIDTH}
     };
     for (int j = 0; j < 4; j++) {
-        if (pow(box[j].x - (players->tank[i].x - START_MAP_X), 2) + pow(box[j].y - (players->tank[i].y - START_MAP_Y), 2) <= TANK_RADIUS * TANK_RADIUS || (pow(box[j].x - ((players->tank[i].x - START_MAP_X) + LENGTH * cos(players->tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players->tank[i].y - START_MAP_Y) + LENGTH * sin(players->tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS) / 8 || (pow(box[j].x - ((players->tank[i].x - START_MAP_X) + TANK_RADIUS * cos(players->tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players->tank[i].y - START_MAP_Y) + TANK_RADIUS * sin(players->tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS)) {
+        if (pow(box[j].x - (players->tank[i].x - START_MAP_X), 2) + pow(box[j].y - (players->tank[i].y - START_MAP_Y), 2) <= TANK_RADIUS * TANK_RADIUS || (pow(box[j].x - ((players->tank[i].x - START_MAP_X) + LENGTH * cos(players->tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players->tank[i].y - START_MAP_Y) + LENGTH * sin(players->tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS) / 8 ||
+            (pow(box[j].x - ((players->tank[i].x - START_MAP_X) + TANK_RADIUS * cos(players->tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players->tank[i].y - START_MAP_Y) + TANK_RADIUS * sin(players->tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS)) {
             if ((box[j].x + 1 > BOX_WIDTH && horizontal_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH - 1]) ^ (horizontal_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH]) && !((box[j].y > BOX_WIDTH && vertical_walls[box[j].y / BOX_WIDTH - 1][box[j].x / BOX_WIDTH]) && (vertical_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH]))) {
 
                 players->tank[i].x -= SPEED * cos(players->tank[i].angle * PI / 180) * (keys[players->tank[i].directions[0] % 401] - keys[players->tank[i].directions[1] % 401]) + horizontal_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH] - horizontal_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH - 1];

@@ -10,6 +10,7 @@
 #include "Constants.h"
 #include "MapGenerate.h"
 
+
 SDL_Window *window;
 SDL_Renderer *renderer;
 
@@ -19,27 +20,46 @@ void setting() {
     srand((unsigned int) time(NULL));
     generate_map();
     players.number = 3;
-    for (int i = 0; i < players.number; i++){
+    players.lives = players.number;
+    for (int i = 0; i < players.number; i++) {
         players.tank[i].life = 1;
         players.tank[i].x = START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2);
         players.tank[i].y = START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2);
+        if ((i == 1 && players.tank[i - 1].x == players.tank[i].x && players.tank[i - 1].y == players.tank[i].y) || (i == 2 && ((players.tank[i - 1].x == players.tank[i].x && players.tank[i - 1].y == players.tank[i].y) || (players.tank[i - 2].x == players.tank[i].x && players.tank[i - 2].y == players.tank[i].y)))) {
+            i--;
+        }
         players.tank[i].angle = rand() % 360;
         for (int j = 0; j < MAX_BALLS; j++) {
             players.tank[i].shot[j].time = 0;
         }
     }
     // PLAYER 0
-    players.tank[0].RGBA_color[0] = 239; players.tank[0].RGBA_color[1] = 0; players.tank[0].RGBA_color[2] = 0; //red
+    players.tank[0].RGBA_color[0] = 239;
+    players.tank[0].RGBA_color[1] = 0;
+    players.tank[0].RGBA_color[2] = 0; //red
     players.tank[0].shooting_key = SDLK_m;
-    players.tank[0].directions[0] = SDLK_UP; players.tank[0].directions[1] = SDLK_DOWN; players.tank[0].directions[2] = SDLK_RIGHT; players.tank[0].directions[3] = SDLK_LEFT; //up, down, right, left
+    players.tank[0].directions[0] = SDLK_UP;
+    players.tank[0].directions[1] = SDLK_DOWN;
+    players.tank[0].directions[2] = SDLK_RIGHT;
+    players.tank[0].directions[3] = SDLK_LEFT; //up, down, right, left
     // PLAYER 1
-    players.tank[1].RGBA_color[0] = 0; players.tank[1].RGBA_color[1] = 132; players.tank[1].RGBA_color[2] = 0; //green
+    players.tank[1].RGBA_color[0] = 0;
+    players.tank[1].RGBA_color[1] = 132;
+    players.tank[1].RGBA_color[2] = 0; //green
     players.tank[1].shooting_key = SDLK_q;
-    players.tank[1].directions[0] = SDLK_e; players.tank[1].directions[1] = SDLK_d; players.tank[1].directions[2] = SDLK_f; players.tank[1].directions[3] = SDLK_s; //up, down, right, left
+    players.tank[1].directions[0] = SDLK_e;
+    players.tank[1].directions[1] = SDLK_d;
+    players.tank[1].directions[2] = SDLK_f;
+    players.tank[1].directions[3] = SDLK_s; //up, down, right, left
     // PLAYER 2
-    players.tank[2].RGBA_color[0] = 0; players.tank[2].RGBA_color[1] = 84; players.tank[2].RGBA_color[2] = 204; //blue
+    players.tank[2].RGBA_color[0] = 0;
+    players.tank[2].RGBA_color[1] = 84;
+    players.tank[2].RGBA_color[2] = 204; //blue
     players.tank[2].shooting_key = SDLK_y;
-    players.tank[2].directions[0] = SDLK_i; players.tank[2].directions[1] = SDLK_k; players.tank[2].directions[2] = SDLK_l; players.tank[2].directions[3] = SDLK_j; //up, down, right, left
+    players.tank[2].directions[0] = SDLK_i;
+    players.tank[2].directions[1] = SDLK_k;
+    players.tank[2].directions[2] = SDLK_l;
+    players.tank[2].directions[3] = SDLK_j; //up, down, right, left
 }
 
 void show_window() {
@@ -62,8 +82,8 @@ void draw_map() {
 }
 
 void draw_tank(PLAYERS *players) {
-    for(int i = 0; i < players->number; i++){
-        if(players->tank[i].life){
+    for (int i = 0; i < players->number; i++) {
+        if (players->tank[i].life) {
             filledCircleRGBA(renderer, (Sint16) players->tank[i].x, (Sint16) players->tank[i].y, (Sint16) (TANK_RADIUS), (Uint8) players->tank[i].RGBA_color[0], (Uint8) players->tank[i].RGBA_color[1], (Uint8) players->tank[i].RGBA_color[2], 255);
             thickLineRGBA(renderer, (Sint16) players->tank[i].x, (Sint16) players->tank[i].y, (Sint16) (players->tank[i].x + LENGTH * cos((players->tank[i].angle) * PI / 180)), (Sint16) (players->tank[i].y + LENGTH * sin((players->tank[i].angle) * PI / 180)), 4, 70, 70, 70, 255);
             filledCircleRGBA(renderer, (Sint16) players->tank[i].x, (Sint16) players->tank[i].y, (Sint16) (TANK_RADIUS / 2), 232, 232, 232, 255);
@@ -76,7 +96,7 @@ void draw_tank(PLAYERS *players) {
 
 void draw_shot(PLAYERS *players) {
     for (int i = 0; i < players->number; i++) {
-        for (int j = 0; j < MAX_BALLS; j++){
+        for (int j = 0; j < MAX_BALLS; j++) {
             if (players->tank[i].shot[j].time > 0) {
                 shoot(&(players->tank[i].shot[j]));
                 filledCircleRGBA(renderer, (Sint16) players->tank[i].shot[j].x, (Sint16) players->tank[i].shot[j].y, (Sint16) (SHOT_RADIUS), 0, 0, 0, 255);

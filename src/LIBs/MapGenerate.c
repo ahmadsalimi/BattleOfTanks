@@ -10,13 +10,14 @@ int max_boxes_x;
 int max_boxes_y;
 int vertical_walls[10][10];
 int horizontal_walls[10][10];
-int cells_connection[8][9] = {1};
+int cells_connection[10][10] = {1};
 
 void initialize() {
     MAP *n;
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
             n = &cells[i][j];
+            n->parent = NULL;
             if (i * j % 2) {
                 n->x = i;
                 n->y = j;
@@ -27,6 +28,14 @@ void initialize() {
             }
         }
     }
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            vertical_walls[i][j] = 0;
+            horizontal_walls[i][j] = 0;
+            cells_connection[i][j] = 0;
+        }
+    }
+    cells_connection[0][0] = 1;
 }
 
 MAP *connect_cells(MAP *n) {

@@ -5,4 +5,6 @@
 
 void death_check(PLAYERS *players);
 
+void set_score();
+
 #endif //PROJECT_LOGIC_H
