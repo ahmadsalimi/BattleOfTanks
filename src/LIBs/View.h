@@ -8,11 +8,13 @@ void setting();
 
 void show_window();
 
-void drawing(PLAYERS *players);
+void read_images();
+
+void drawing();
 
 void Quit();
 
-void make_shot(PLAYERS *players, int i);
+void make_shot(int i);
 
 extern PLAYERS players;
 

@@ -595,6 +595,8 @@ View.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
+stdbool.h
+-
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.h
 Struct.h
@@ -603,6 +605,10 @@ C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h
 Constants.h
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Constants.h
+stdbool.h
+-
+SDL.h
+-
 
 C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.c
 stdio.h

@@ -3,7 +3,7 @@
 
 #include "Struct.h"
 
-void death_check(PLAYERS *players);
+void death_check();
 
 void set_score();
 

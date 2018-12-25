@@ -8,9 +8,9 @@ MAP cells[17][19];
 int width, height;
 int max_boxes_x;
 int max_boxes_y;
-int vertical_walls[10][10];
-int horizontal_walls[10][10];
-int cells_connection[10][10] = {1};
+bool vertical_walls[10][10];
+bool horizontal_walls[10][10];
+bool cells_connection[10][10] = {1};
 
 void initialize() {
     MAP *n;
@@ -116,7 +116,7 @@ void render_walls() {
         }
     }
 
-    int counter = max_boxes_x * max_boxes_y / 12;
+    int counter = max_boxes_x * max_boxes_y / 9;
     while (counter) {
         int h_or_v = rand() % 2;
         if (h_or_v) {

@@ -13,6 +13,7 @@
 
 SDL_Window *window;
 SDL_Renderer *renderer;
+IMAGE player_points[3];
 
 PLAYERS players;
 
@@ -37,7 +38,7 @@ void setting() {
     players.tank[0].RGBA_color[0] = 239;
     players.tank[0].RGBA_color[1] = 0;
     players.tank[0].RGBA_color[2] = 0; //red
-    players.tank[0].shooting_key = SDLK_m;
+    players.tank[0].shooting_key = SDLK_SPACE;
     players.tank[0].directions[0] = SDLK_UP;
     players.tank[0].directions[1] = SDLK_DOWN;
     players.tank[0].directions[2] = SDLK_RIGHT;
@@ -68,65 +69,99 @@ void show_window() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
+void read_images(){
+    for (int i = 0; i < 3; i++){
+        char filename[15];
+        sprintf(filename, "player-%d.bmp", i + 1);
+        player_points[i].surface = SDL_LoadBMP(filename);
+        if (player_points[i].surface == NULL){
+            SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+        }
+        player_points[i].texture = SDL_CreateTextureFromSurface(renderer, player_points[i].surface);
+        if (player_points[i].texture == NULL){
+            SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
+        }
+        SDL_QueryTexture(player_points[i].texture, NULL, NULL, &player_points[i].rect.w, &player_points[i].rect.h);
+        player_points[i].rect.h /= 6;
+        player_points[i].rect.w /= 6;
+        player_points[i].rect.x = 200 + i * 250;
+        player_points[i].rect.y = SCREEN_HEIGHT - player_points[i].rect.h * 4 / 3; //750;
+    }
+}
+
+void show_players_points(){
+    for (int i = 0; i < players.number; i++){
+        SDL_RenderCopy(renderer, player_points[i].texture, NULL, &player_points[i].rect);
+        char point[4];
+        sprintf(point, "%d", players.tank[i].score);
+        stringRGBA(renderer, (Sint16) (player_points[i].rect.x + player_points[i].rect.w + 10), (Sint16) (player_points[i].rect.y + player_points[i].rect.h / 2), point, 0, 0, 0, 255);
+    }
+}
+
 void draw_map() {
     for (int n = 0; n <= max_boxes_x; n++) {
         for (int m = 0; m <= max_boxes_y; m++) {
             if (horizontal_walls[m][n]) {
-                thickLineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH - 1), (Sint16) ((m + 1) * BOX_WIDTH), (Sint16) ((n + 2) * BOX_WIDTH + 1), (Sint16) ((m + 1) * BOX_WIDTH), 3, 111, 63, 46, 255);
+                thickLineRGBA(renderer, (Sint16) (START_MAP_X + n * BOX_WIDTH - 1), (Sint16) (START_MAP_Y + m * BOX_WIDTH), (Sint16) (START_MAP_X + (n + 1) * BOX_WIDTH + 1), (Sint16) (START_MAP_Y + m * BOX_WIDTH), 3, 111, 63, 46, 255);
             }
             if (vertical_walls[m][n]) {
-                thickLineRGBA(renderer, (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 1) * BOX_WIDTH - 1), (Sint16) ((n + 1) * BOX_WIDTH), (Sint16) ((m + 2) * BOX_WIDTH + 1), 3, 111, 63, 46, 255);
+                thickLineRGBA(renderer, (Sint16) (START_MAP_X + n * BOX_WIDTH), (Sint16) (START_MAP_Y + m * BOX_WIDTH - 1), (Sint16) (START_MAP_X + n * BOX_WIDTH), (Sint16) (START_MAP_Y + (m + 1) * BOX_WIDTH - 1), 3, 111, 63, 46, 255);
             }
         }
     }
 }
 
-void draw_tank(PLAYERS *players) {
-    for (int i = 0; i < players->number; i++) {
-        if (players->tank[i].life) {
-            filledCircleRGBA(renderer, (Sint16) players->tank[i].x, (Sint16) players->tank[i].y, (Sint16) (TANK_RADIUS), (Uint8) players->tank[i].RGBA_color[0], (Uint8) players->tank[i].RGBA_color[1], (Uint8) players->tank[i].RGBA_color[2], 255);
-            thickLineRGBA(renderer, (Sint16) players->tank[i].x, (Sint16) players->tank[i].y, (Sint16) (players->tank[i].x + LENGTH * cos((players->tank[i].angle) * PI / 180)), (Sint16) (players->tank[i].y + LENGTH * sin((players->tank[i].angle) * PI / 180)), 4, 70, 70, 70, 255);
-            filledCircleRGBA(renderer, (Sint16) players->tank[i].x, (Sint16) players->tank[i].y, (Sint16) (TANK_RADIUS / 2), 232, 232, 232, 255);
+void draw_tank() {
+    for (int i = 0; i < players.number; i++) {
+        if (players.tank[i].life) {
+            filledCircleRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (TANK_RADIUS), (Uint8) players.tank[i].RGBA_color[0], (Uint8) players.tank[i].RGBA_color[1], (Uint8) players.tank[i].RGBA_color[2], 255);
+            thickLineRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (players.tank[i].x + LENGTH * cos((players.tank[i].angle) * PI / 180)), (Sint16) (players.tank[i].y + LENGTH * sin((players.tank[i].angle) * PI / 180)), 4, 70, 70, 70, 255);
+            filledCircleRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (TANK_RADIUS / 2), 232, 232, 232, 255);
             for (int j = -3; j < 3; j++) {
-                filledCircleRGBA(renderer, (Sint16) (players->tank[i].x + cos((players->tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (players->tank[i].y + sin((players->tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (TANK_RADIUS / 8), 232, 232, 232, 255);
+                filledCircleRGBA(renderer, (Sint16) (players.tank[i].x + cos((players.tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (players.tank[i].y + sin((players.tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (TANK_RADIUS / 8), 232, 232, 232, 255);
             }
         }
     }
 }
 
-void draw_shot(PLAYERS *players) {
-    for (int i = 0; i < players->number; i++) {
+void draw_shot() {
+    for (int i = 0; i < players.number; i++) {
         for (int j = 0; j < MAX_BALLS; j++) {
-            if (players->tank[i].shot[j].time > 0) {
-                shoot(&(players->tank[i].shot[j]));
-                filledCircleRGBA(renderer, (Sint16) players->tank[i].shot[j].x, (Sint16) players->tank[i].shot[j].y, (Sint16) (SHOT_RADIUS), 0, 0, 0, 255);
+            if (players.tank[i].shot[j].time > 0) {
+                shoot(&(players.tank[i].shot[j]));
+                filledCircleRGBA(renderer, (Sint16) players.tank[i].shot[j].x, (Sint16) players.tank[i].shot[j].y, (Sint16) (SHOT_RADIUS), 0, 0, 0, 255);
             }
         }
     }
 }
 
-void drawing(PLAYERS *players) {
+void drawing() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     draw_map();
-    draw_shot(players);
-    draw_tank(players);
+    draw_shot();
+    draw_tank();
+    show_players_points();
     SDL_RenderPresent(renderer);
 }
 
 void Quit() {
+    for(int i = 0; i < 3; i++){
+        SDL_DestroyTexture(player_points[i].texture);
+        SDL_FreeSurface(player_points[i].surface);
+    }
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
 
-void make_shot(PLAYERS *players, int i) {
+void make_shot(int i) {
     for (int j = 0; j < MAX_BALLS; j++) {
-        if (players->tank[i].shot[j].time <= 0) {
-            players->tank[i].shot[j].time = LIFE_OF_SHOT;
-            players->tank[i].shot[j].x = players->tank[i].x + (TANK_RADIUS + SHOT_RADIUS) * cos(players->tank[i].angle * PI / 180);
-            players->tank[i].shot[j].y = players->tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players->tank[i].angle * PI / 180);;
-            players->tank[i].shot[j].angle = players->tank[i].angle;
+        if (players.tank[i].shot[j].time <= 0) {
+            players.tank[i].shot[j].time = LIFE_OF_SHOT;
+            players.tank[i].shot[j].x = players.tank[i].x + (TANK_RADIUS + SHOT_RADIUS) * cos(players.tank[i].angle * PI / 180);
+            players.tank[i].shot[j].y = players.tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players.tank[i].angle * PI / 180);;
+            players.tank[i].shot[j].angle = players.tank[i].angle;
             break;
         }
     }

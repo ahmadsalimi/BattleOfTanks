@@ -1,4 +1,6 @@
 #include "Constants.h"
+#include <stdbool.h>
+#include <SDL.h>
 
 #ifndef PROJECT_STRUCT_H
 #define PROJECT_STRUCT_H
@@ -11,7 +13,7 @@ typedef struct {
 } SHOT;
 
 typedef struct {
-    int life;
+    bool life;
     double x;
     double y;
     int angle;
@@ -23,14 +25,14 @@ typedef struct {
 } TANK;
 
 typedef struct {
-    int x;
-    int y;
+    short int x;
+    short int y;
 } POINT;
 
 typedef struct {
     int x, y;
     void *parent;
-    int wall;
+    bool wall;
     int dirs; //Directions that still haven't been explored
 } MAP;
 
@@ -39,5 +41,11 @@ typedef struct {
     int lives;
     TANK tank[3];
 } PLAYERS;
+
+typedef struct {
+    SDL_Surface *surface;
+    SDL_Texture *texture;
+    SDL_Rect rect;
+} IMAGE;
 
 #endif //PROJECT_STRUCT_H
