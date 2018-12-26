@@ -20,7 +20,7 @@
 #define SHOT_RADIUS (double) BOX_WIDTH * 0.04
 #define LENGTH (double) BOX_WIDTH * 0.28
 #define MAX_BALLS 5
-#define LIFE_OF_SHOT 5 * FPS
+#define LIFE_OF_SHOT 8 * FPS
 
 
 #endif //PROJECT_CONSTANTS_H

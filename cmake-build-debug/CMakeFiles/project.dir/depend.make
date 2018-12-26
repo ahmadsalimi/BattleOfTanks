@@ -302,8 +302,6 @@ CMakeFiles/project.dir/src/main.c.obj: ../sdl2/sdl2-include/SDL_video.h
 CMakeFiles/project.dir/src/main.c.obj: ../sdl2/sdl2-include/begin_code.h
 CMakeFiles/project.dir/src/main.c.obj: ../sdl2/sdl2-include/close_code.h
 CMakeFiles/project.dir/src/main.c.obj: ../src/LIBs/Constants.h
-CMakeFiles/project.dir/src/main.c.obj: ../src/LIBs/Logic.h
-CMakeFiles/project.dir/src/main.c.obj: ../src/LIBs/MapGenerate.h
 CMakeFiles/project.dir/src/main.c.obj: ../src/LIBs/Physics.h
 CMakeFiles/project.dir/src/main.c.obj: ../src/LIBs/Play.h
 CMakeFiles/project.dir/src/main.c.obj: ../src/LIBs/Struct.h

@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
-#include <SDL.h>
 #include <stdbool.h>
 #include "Physics.h"
 #include "View.h"

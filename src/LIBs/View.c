@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 #include <time.h>
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
@@ -19,6 +17,7 @@ IMAGE logo;
 IMAGE multiplayer[2];
 IMAGE multiplayer_hover[2];
 IMAGE key_images[3];
+SDL_Surface *icon;
 PLAYERS players;
 Sint8 multiplayer_state;
 
@@ -70,10 +69,19 @@ void setting() {
     }
 }
 
+void load_icon(){
+    icon = SDL_LoadBMP("icon.bmp");
+    if (icon == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+    }
+}
+
 void show_window() {
     SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow("Battle of Tanks", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    load_icon();
+    SDL_SetWindowIcon(window, icon);
 }
 
 void read_images() {
@@ -191,6 +199,9 @@ void show_starting_menu() {
         }
         SDL_RenderPresent(renderer);
     }
+    if (players.number == 2){
+        player_points[1].rect.x = player_points[2].rect.x;
+    }
 }
 
 void waiting_for_start() {
@@ -305,7 +316,7 @@ void Quit() {
 void make_shot(int i) {
     for (int j = 0; j < MAX_BALLS; j++) {
         if (players.tank[i].shot[j].time <= 0) {
-            players.tank[i].shot[j].time = (Sint8) (LIFE_OF_SHOT);
+            players.tank[i].shot[j].time = LIFE_OF_SHOT;
             players.tank[i].shot[j].x = players.tank[i].x + (TANK_RADIUS + SHOT_RADIUS) * cos(players.tank[i].angle * PI / 180);
             players.tank[i].shot[j].y = players.tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players.tank[i].angle * PI / 180);;
             players.tank[i].shot[j].angle = players.tank[i].angle;

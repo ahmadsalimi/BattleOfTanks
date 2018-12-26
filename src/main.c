@@ -1,16 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <SDL.h>
-#include <stdbool.h>
 #include "LIBs/View.h"
-#include "LIBs/Struct.h"
 #include "LIBs/Physics.h"
-#include "LIBs/Constants.h"
-#include "LIBs/MapGenerate.h"
-#include "LIBs/Logic.h"
 #include "LIBs/Play.h"
-
 
 #ifdef main
 #undef main

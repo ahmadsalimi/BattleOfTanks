@@ -1,10 +1,3 @@
-//
-// Created by nik on 12/26/2018.
-//
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 #include <SDL.h>
 #include <stdbool.h>
 #include "Play.h"

@@ -6,7 +6,7 @@
 #define PROJECT_STRUCT_H
 
 typedef struct {
-    Sint8 time;
+    int time;
     double x;
     double y;
     Sint16 angle;
