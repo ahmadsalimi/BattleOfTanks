@@ -6,40 +6,41 @@
 #define PROJECT_STRUCT_H
 
 typedef struct {
-    int time;
+    Sint8 time;
     double x;
     double y;
-    int angle;
+    Sint16 angle;
 } SHOT;
 
 typedef struct {
     bool life;
     double x;
     double y;
-    int angle;
-    int RGBA_color[3]; // RGB
+    Sint16 angle;
+    Sint16 RGBA_color[3]; // RGB
     int shooting_key;
     int directions[4]; //up, down, right, left
     SHOT shot[MAX_BALLS];
-    int score;
+    Sint16 score;
 } TANK;
 
 typedef struct {
-    short int x;
-    short int y;
+    Sint16 x;
+    Sint16 y;
 } POINT;
 
 typedef struct {
-    int x, y;
+    Sint8 x, y;
     void *parent;
     bool wall;
-    int dirs; //Directions that still haven't been explored
+    Sint8 dirs; //Directions that still haven't been explored
 } MAP;
 
 typedef struct {
-    int number;
-    int lives;
+    Sint8 number;
+    Sint8 lives;
     TANK tank[3];
+    Sint8 state;
 } PLAYERS;
 
 typedef struct {

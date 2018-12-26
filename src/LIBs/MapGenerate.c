@@ -5,17 +5,17 @@
 #include "Struct.h"
 
 MAP cells[17][19];
-int width, height;
-int max_boxes_x;
-int max_boxes_y;
+Sint8 width, height;
+Sint8 max_boxes_x;
+Sint8 max_boxes_y;
 bool vertical_walls[10][10];
 bool horizontal_walls[10][10];
 bool cells_connection[10][10] = {1};
 
 void initialize() {
     MAP *n;
-    for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
+    for (Sint8 i = 0; i < width; i++) {
+        for (Sint8 j = 0; j < height; j++) {
             n = &cells[i][j];
             n->parent = NULL;
             if (i * j % 2) {
@@ -28,8 +28,8 @@ void initialize() {
             }
         }
     }
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    for (Sint8 i = 0; i < 10; i++) {
+        for (Sint8 j = 0; j < 10; j++) {
             vertical_walls[i][j] = 0;
             horizontal_walls[i][j] = 0;
             cells_connection[i][j] = 0;
@@ -139,10 +139,10 @@ void render_walls() {
 
 int generate_map() {
     MAP *start, *last;
-    height = (5 + rand() % 3) * 2 + 1;
-    width = (7 + rand() % 3) * 2 + 1;
-    max_boxes_y = height / 2 + 1;
-    max_boxes_x = width / 2 + 1;
+    height = (Sint8) ((5 + rand() % 3) * 2 + 1);
+    width = (Sint8) ((7 + rand() % 3) * 2 + 1);
+    max_boxes_y = (Sint8) (height / 2 + 1);
+    max_boxes_x = (Sint8) (width / 2 + 1);
     initialize();
     start = &cells[1][1];
     start->parent = start;

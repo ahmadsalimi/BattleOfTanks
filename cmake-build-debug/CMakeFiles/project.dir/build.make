@@ -98,10 +98,24 @@ CMakeFiles/project.dir/src/LIBs/Physics.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/src/LIBs/Physics.c.s"
 	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\nik\Documents\GitHub\97106013\src\LIBs\Physics.c -o CMakeFiles\project.dir\src\LIBs\Physics.c.s
 
+CMakeFiles/project.dir/src/LIBs/Play.c.obj: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/src/LIBs/Play.c.obj: CMakeFiles/project.dir/includes_C.rsp
+CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/Play.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/project.dir/src/LIBs/Play.c.obj"
+	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\LIBs\Play.c.obj   -c C:\Users\nik\Documents\GitHub\97106013\src\LIBs\Play.c
+
+CMakeFiles/project.dir/src/LIBs/Play.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/src/LIBs/Play.c.i"
+	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\nik\Documents\GitHub\97106013\src\LIBs\Play.c > CMakeFiles\project.dir\src\LIBs\Play.c.i
+
+CMakeFiles/project.dir/src/LIBs/Play.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/src/LIBs/Play.c.s"
+	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\nik\Documents\GitHub\97106013\src\LIBs\Play.c -o CMakeFiles\project.dir\src\LIBs\Play.c.s
+
 CMakeFiles/project.dir/src/LIBs/View.c.obj: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/View.c.obj: CMakeFiles/project.dir/includes_C.rsp
 CMakeFiles/project.dir/src/LIBs/View.c.obj: ../src/LIBs/View.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/project.dir/src/LIBs/View.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/project.dir/src/LIBs/View.c.obj"
 	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\LIBs\View.c.obj   -c C:\Users\nik\Documents\GitHub\97106013\src\LIBs\View.c
 
 CMakeFiles/project.dir/src/LIBs/View.c.i: cmake_force
@@ -115,7 +129,7 @@ CMakeFiles/project.dir/src/LIBs/View.c.s: cmake_force
 CMakeFiles/project.dir/src/main.c.obj: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/main.c.obj: CMakeFiles/project.dir/includes_C.rsp
 CMakeFiles/project.dir/src/main.c.obj: ../src/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/project.dir/src/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/project.dir/src/main.c.obj"
 	C:\msys32\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\project.dir\src\main.c.obj   -c C:\Users\nik\Documents\GitHub\97106013\src\main.c
 
 CMakeFiles/project.dir/src/main.c.i: cmake_force
@@ -131,6 +145,7 @@ project_OBJECTS = \
 "CMakeFiles/project.dir/src/LIBs/Logic.c.obj" \
 "CMakeFiles/project.dir/src/LIBs/MapGenerate.c.obj" \
 "CMakeFiles/project.dir/src/LIBs/Physics.c.obj" \
+"CMakeFiles/project.dir/src/LIBs/Play.c.obj" \
 "CMakeFiles/project.dir/src/LIBs/View.c.obj" \
 "CMakeFiles/project.dir/src/main.c.obj"
 
@@ -140,6 +155,7 @@ project_EXTERNAL_OBJECTS =
 project.exe: CMakeFiles/project.dir/src/LIBs/Logic.c.obj
 project.exe: CMakeFiles/project.dir/src/LIBs/MapGenerate.c.obj
 project.exe: CMakeFiles/project.dir/src/LIBs/Physics.c.obj
+project.exe: CMakeFiles/project.dir/src/LIBs/Play.c.obj
 project.exe: CMakeFiles/project.dir/src/LIBs/View.c.obj
 project.exe: CMakeFiles/project.dir/src/main.c.obj
 project.exe: CMakeFiles/project.dir/build.make
@@ -149,7 +165,7 @@ project.exe: ../sdl2/sdl2-gfx-lib/libsdl-gfx.a
 project.exe: CMakeFiles/project.dir/linklibs.rsp
 project.exe: CMakeFiles/project.dir/objects1.rsp
 project.exe: CMakeFiles/project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable project.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\nik\Documents\GitHub\97106013\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable project.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\project.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

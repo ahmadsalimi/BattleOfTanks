@@ -203,6 +203,33 @@ src/LIBs/Physics.c.s:
 	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Physics.c.s
 .PHONY : src/LIBs/Physics.c.s
 
+src/LIBs/Play.obj: src/LIBs/Play.c.obj
+
+.PHONY : src/LIBs/Play.obj
+
+# target to build an object file
+src/LIBs/Play.c.obj:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Play.c.obj
+.PHONY : src/LIBs/Play.c.obj
+
+src/LIBs/Play.i: src/LIBs/Play.c.i
+
+.PHONY : src/LIBs/Play.i
+
+# target to preprocess a source file
+src/LIBs/Play.c.i:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Play.c.i
+.PHONY : src/LIBs/Play.c.i
+
+src/LIBs/Play.s: src/LIBs/Play.c.s
+
+.PHONY : src/LIBs/Play.s
+
+# target to generate assembly for a file
+src/LIBs/Play.c.s:
+	$(MAKE) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/src/LIBs/Play.c.s
+.PHONY : src/LIBs/Play.c.s
+
 src/LIBs/View.obj: src/LIBs/View.c.obj
 
 .PHONY : src/LIBs/View.obj
@@ -275,6 +302,9 @@ help:
 	@echo ... src/LIBs/Physics.obj
 	@echo ... src/LIBs/Physics.i
 	@echo ... src/LIBs/Physics.s
+	@echo ... src/LIBs/Play.obj
+	@echo ... src/LIBs/Play.i
+	@echo ... src/LIBs/Play.s
 	@echo ... src/LIBs/View.obj
 	@echo ... src/LIBs/View.i
 	@echo ... src/LIBs/View.s

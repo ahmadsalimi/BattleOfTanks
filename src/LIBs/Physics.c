@@ -24,11 +24,11 @@ void reflect_shot(SHOT *shot) {
             {((int) (shot->x - START_MAP_X) / BOX_WIDTH + 1) * BOX_WIDTH, ((int) (shot->y - START_MAP_Y) / BOX_WIDTH) * BOX_WIDTH}
     };
     if (shot->x >= FINISH_MAP_X - SHOT_RADIUS || ((int) ((shot->x - START_MAP_X) / BOX_WIDTH) < (int) (((shot->x - START_MAP_X) + 2 * SPEED * cos((shot->angle) * PI / 180) + SHOT_RADIUS) / BOX_WIDTH) && vertical_walls[box[3].y / BOX_WIDTH][box[3].x / BOX_WIDTH])) {
-        shot->angle = 180 - shot->angle;
+        shot->angle = (Sint16) (180 - shot->angle);
         (shot->x)--;
         flag = 1;
     } else if (shot->x <= START_MAP_X + SHOT_RADIUS || ((int) ((shot->x - START_MAP_X) / BOX_WIDTH) > (int) (((shot->x - START_MAP_X) + 2 * SPEED * cos((shot->angle) * PI / 180) - SHOT_RADIUS) / BOX_WIDTH) && vertical_walls[box[3].y / BOX_WIDTH][box[3].x / BOX_WIDTH - 1])) {
-        shot->angle = 180 - shot->angle;
+        shot->angle = (Sint16) (180 - shot->angle);
         (shot->x)++;
         flag = 1;
     }
@@ -45,10 +45,10 @@ void reflect_shot(SHOT *shot) {
         for (int i = 0; i < 4; i++) {
             if (pow(box[i].x - (shot->x - START_MAP_X), 2) + pow(box[i].y - (shot->y - START_MAP_Y), 2) <= pow(SHOT_RADIUS + 1, 2) + 16) {
                 if (cos(shot->angle * PI / 180) * sin(shot->angle * PI / 180) > 0 && box[i].y + 1 > BOX_WIDTH && box[i].x + 1 > BOX_WIDTH && (((horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH - 1]) && (vertical_walls[box[i].y / BOX_WIDTH - 1][box[i].x / BOX_WIDTH])) || ((horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH]) && (vertical_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH])))) { // _| or |`` walls
-                    shot->angle = (shot->angle + 180) % 360;
+                    shot->angle = (Sint16) ((shot->angle + 180) % 360);
                 }
                 if (cos(shot->angle * PI / 180) * sin(shot->angle * PI / 180) < 0 && box[i].y + 1 > BOX_WIDTH && box[i].x + 1 > BOX_WIDTH && (((horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH - 1]) && (vertical_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH])) || ((horizontal_walls[box[i].y / BOX_WIDTH][box[i].x / BOX_WIDTH]) && (vertical_walls[box[i].y / BOX_WIDTH - 1][box[i].x / BOX_WIDTH])))) { // |_ or ``| walls
-                    shot->angle = (shot->angle + 180) % 360;
+                    shot->angle = (Sint16) ((shot->angle + 180) % 360);
                 }
             }
         }
@@ -182,10 +182,36 @@ int get_keys() {
     }
 }
 
+int menu_events() {
+    if (get_keys() == -1) {
+        return -1;
+    }
+    if (keys[SDLK_RIGHT % 401] && multiplayer_state == 2){
+        multiplayer_state = 3;
+    }
+    if (keys[SDLK_LEFT % 401] && multiplayer_state == 3){
+        multiplayer_state = 2;
+    }
+    if (keys[SDLK_RETURN % 401]) {
+        players.number = multiplayer_state;
+        players.state = 1;
+        keys[SDLK_RETURN % 401] = 0;
+    }
+}
+
+int waiting_events() {
+    if (get_keys() == -1) {
+        return -1;
+    }
+    if (keys[SDLK_RETURN % 401]) {
+        players.state = 2;
+    }
+}
+
 int events() {
     for (int i = 0; i < players.number; i++) {
         if (get_keys() == -1) {
-            return 0;
+            return -1;
         }
         if (players.tank[i].life && keys[players.tank[i].shooting_key % 401]) {
             if (!shooting_flag[i]) {

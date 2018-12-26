@@ -9,18 +9,52 @@
 #include "Struct.h"
 #include "Constants.h"
 #include "MapGenerate.h"
+#include "Play.h"
 
 
 SDL_Window *window;
 SDL_Renderer *renderer;
 IMAGE player_points[3];
-
+IMAGE logo;
+IMAGE multiplayer[2];
+IMAGE multiplayer_hover[2];
+IMAGE key_images[3];
 PLAYERS players;
+Sint8 multiplayer_state;
+
+void tank_presetting(){
+    // PLAYER 0
+    players.tank[0].RGBA_color[0] = 239;
+    players.tank[0].RGBA_color[1] = 0;
+    players.tank[0].RGBA_color[2] = 0; //red
+    players.tank[0].shooting_key = SDLK_RCTRL; //shoot; Right ctrl
+    players.tank[0].directions[0] = SDLK_UP; //up;
+    players.tank[0].directions[1] = SDLK_DOWN; //down;
+    players.tank[0].directions[2] = SDLK_RIGHT; //right;
+    players.tank[0].directions[3] = SDLK_LEFT; //left;
+    // PLAYER 1
+    players.tank[1].RGBA_color[0] = 0;
+    players.tank[1].RGBA_color[1] = 132;
+    players.tank[1].RGBA_color[2] = 0; //green
+    players.tank[1].shooting_key = SDLK_q; //shoot;
+    players.tank[1].directions[0] = SDLK_e; //up;
+    players.tank[1].directions[1] = SDLK_d; //down;
+    players.tank[1].directions[2] = SDLK_f; //right;
+    players.tank[1].directions[3] = SDLK_s; //left;
+    // PLAYER 2
+    players.tank[2].RGBA_color[0] = 0;
+    players.tank[2].RGBA_color[1] = 84;
+    players.tank[2].RGBA_color[2] = 204; //blue
+    players.tank[2].shooting_key = SDLK_y; //shoot;
+    players.tank[2].directions[0] = SDLK_i; //up;
+    players.tank[2].directions[1] = SDLK_k; //down;
+    players.tank[2].directions[2] = SDLK_l; //right;
+    players.tank[2].directions[3] = SDLK_j; //left;
+}
 
 void setting() {
     srand((unsigned int) time(NULL));
     generate_map();
-    players.number = 3;
     players.lives = players.number;
     for (int i = 0; i < players.number; i++) {
         players.tank[i].life = 1;
@@ -29,68 +63,166 @@ void setting() {
         if ((i == 1 && players.tank[i - 1].x == players.tank[i].x && players.tank[i - 1].y == players.tank[i].y) || (i == 2 && ((players.tank[i - 1].x == players.tank[i].x && players.tank[i - 1].y == players.tank[i].y) || (players.tank[i - 2].x == players.tank[i].x && players.tank[i - 2].y == players.tank[i].y)))) {
             i--;
         }
-        players.tank[i].angle = rand() % 360;
+        players.tank[i].angle = (Sint16) (rand() % 360);
         for (int j = 0; j < MAX_BALLS; j++) {
             players.tank[i].shot[j].time = 0;
         }
     }
-    // PLAYER 0
-    players.tank[0].RGBA_color[0] = 239;
-    players.tank[0].RGBA_color[1] = 0;
-    players.tank[0].RGBA_color[2] = 0; //red
-    players.tank[0].shooting_key = SDLK_SPACE;
-    players.tank[0].directions[0] = SDLK_UP;
-    players.tank[0].directions[1] = SDLK_DOWN;
-    players.tank[0].directions[2] = SDLK_RIGHT;
-    players.tank[0].directions[3] = SDLK_LEFT; //up, down, right, left
-    // PLAYER 1
-    players.tank[1].RGBA_color[0] = 0;
-    players.tank[1].RGBA_color[1] = 132;
-    players.tank[1].RGBA_color[2] = 0; //green
-    players.tank[1].shooting_key = SDLK_q;
-    players.tank[1].directions[0] = SDLK_e;
-    players.tank[1].directions[1] = SDLK_d;
-    players.tank[1].directions[2] = SDLK_f;
-    players.tank[1].directions[3] = SDLK_s; //up, down, right, left
-    // PLAYER 2
-    players.tank[2].RGBA_color[0] = 0;
-    players.tank[2].RGBA_color[1] = 84;
-    players.tank[2].RGBA_color[2] = 204; //blue
-    players.tank[2].shooting_key = SDLK_y;
-    players.tank[2].directions[0] = SDLK_i;
-    players.tank[2].directions[1] = SDLK_k;
-    players.tank[2].directions[2] = SDLK_l;
-    players.tank[2].directions[3] = SDLK_j; //up, down, right, left
 }
 
 void show_window() {
     SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("AlterTank", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("Battle of Tanks", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-void read_images(){
-    for (int i = 0; i < 3; i++){
+void read_images() {
+    // read scoreboard images
+    for (int i = 0; i < 3; i++) {
         char filename[15];
         sprintf(filename, "player-%d.bmp", i + 1);
         player_points[i].surface = SDL_LoadBMP(filename);
-        if (player_points[i].surface == NULL){
+        if (player_points[i].surface == NULL) {
             SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
         }
         player_points[i].texture = SDL_CreateTextureFromSurface(renderer, player_points[i].surface);
-        if (player_points[i].texture == NULL){
+        if (player_points[i].texture == NULL) {
             SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
         }
         SDL_QueryTexture(player_points[i].texture, NULL, NULL, &player_points[i].rect.w, &player_points[i].rect.h);
-        player_points[i].rect.h /= 6;
         player_points[i].rect.w /= 6;
+        player_points[i].rect.h /= 6;
         player_points[i].rect.x = 200 + i * 250;
-        player_points[i].rect.y = SCREEN_HEIGHT - player_points[i].rect.h * 4 / 3; //750;
+        player_points[i].rect.y = SCREEN_HEIGHT - player_points[i].rect.h * 4 / 3;
+    }
+    //read logo image
+    logo.surface = SDL_LoadBMP("logo.bmp");
+    if (logo.surface == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+    }
+    logo.texture = SDL_CreateTextureFromSurface(renderer, logo.surface);
+    if (logo.texture == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
+    }
+    SDL_QueryTexture(logo.texture, NULL, NULL, &logo.rect.w, &logo.rect.h);
+    logo.rect.w = logo.rect.w * 2 / 3;
+    logo.rect.h = logo.rect.h * 2 / 3;
+    logo.rect.x = (SCREEN_WIDTH - logo.rect.w) / 2;
+    logo.rect.y = (SCREEN_HEIGHT - 2 * logo.rect.h) / 2;
+    //read multiplayer buttons
+    //2 player
+    multiplayer[0].surface = SDL_LoadBMP("2.bmp");
+    multiplayer_hover[0].surface = SDL_LoadBMP("2h.bmp");
+    if (multiplayer[0].surface == NULL || multiplayer_hover[0].surface == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+    }
+    multiplayer[0].texture = SDL_CreateTextureFromSurface(renderer, multiplayer[0].surface);
+    multiplayer_hover[0].texture = SDL_CreateTextureFromSurface(renderer, multiplayer_hover[0].surface);
+    if (multiplayer[0].texture == NULL || multiplayer_hover[0].texture == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
+    }
+    SDL_QueryTexture(multiplayer[0].texture, NULL, NULL, &multiplayer[0].rect.w, &multiplayer[0].rect.h);
+    SDL_QueryTexture(multiplayer_hover[0].texture, NULL, NULL, &multiplayer_hover[0].rect.w, &multiplayer_hover[0].rect.h);
+    multiplayer[0].rect.w = multiplayer[0].rect.w / 5;
+    multiplayer[0].rect.h = multiplayer[0].rect.h / 5;
+    multiplayer[0].rect.x = SCREEN_WIDTH / 2 - multiplayer[0].rect.w - 20;
+    multiplayer[0].rect.y = SCREEN_HEIGHT / 2 + 30;
+    multiplayer_hover[0].rect.w = multiplayer_hover[0].rect.w * 9 / 40;
+    multiplayer_hover[0].rect.h = multiplayer_hover[0].rect.h * 9 / 40;
+    multiplayer_hover[0].rect.x = SCREEN_WIDTH / 2 - multiplayer_hover[0].rect.w - 20;
+    multiplayer_hover[0].rect.y = SCREEN_HEIGHT / 2 + 30;
+    //3 player
+    multiplayer[1].surface = SDL_LoadBMP("3.bmp");
+    multiplayer_hover[1].surface = SDL_LoadBMP("3h.bmp");
+    if (multiplayer[1].surface == NULL || multiplayer_hover[1].surface == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+    }
+    multiplayer[1].texture = SDL_CreateTextureFromSurface(renderer, multiplayer[1].surface);
+    multiplayer_hover[1].texture = SDL_CreateTextureFromSurface(renderer, multiplayer_hover[1].surface);
+    if (multiplayer[1].texture == NULL || multiplayer_hover[1].texture == NULL) {
+        SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
+    }
+    SDL_QueryTexture(multiplayer[1].texture, NULL, NULL, &multiplayer[1].rect.w, &multiplayer[1].rect.h);
+    SDL_QueryTexture(multiplayer_hover[1].texture, NULL, NULL, &multiplayer_hover[1].rect.w, &multiplayer_hover[1].rect.h);
+    multiplayer[1].rect.w = multiplayer[1].rect.w / 5;
+    multiplayer[1].rect.h = multiplayer[1].rect.h / 5;
+    multiplayer[1].rect.x = SCREEN_WIDTH / 2 + 20;
+    multiplayer[1].rect.y = SCREEN_HEIGHT / 2 + 30;
+    multiplayer_hover[1].rect.w = multiplayer_hover[1].rect.w * 9 / 40;
+    multiplayer_hover[1].rect.h = multiplayer_hover[1].rect.h * 9 / 40;
+    multiplayer_hover[1].rect.x = SCREEN_WIDTH / 2 + 20;
+    multiplayer_hover[1].rect.y = SCREEN_HEIGHT / 2 + 30;
+    // key images
+    for (int i = 0; i < 3; i++){
+        char filename[15] = {0};
+        sprintf(filename, "%dkey.bmp", i + 1);
+        key_images[i].surface = SDL_LoadBMP(filename);
+        if (key_images[i].surface == NULL) {
+            SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+        }
+        key_images[i].texture = SDL_CreateTextureFromSurface(renderer, key_images[i].surface);
+        if (key_images[i].texture == NULL) {
+            SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
+        }
+        SDL_QueryTexture(key_images[i].texture, NULL, NULL, &key_images[i].rect.w, &key_images[i].rect.h);
+        key_images[i].rect.w = key_images[i].rect.w * 2 / 3;
+        key_images[i].rect.h = key_images[i].rect.h * 2 / 3;
+        key_images[i].rect.x = (SCREEN_WIDTH - key_images[i].rect.w) / 2 + (i - 1) * (key_images[i].rect.w + 20);
+        key_images[i].rect.y = (SCREEN_HEIGHT - key_images[i].rect.h) / 2;
     }
 }
 
-void show_players_points(){
-    for (int i = 0; i < players.number; i++){
+void show_starting_menu() {
+    multiplayer_state = 2;
+    while (players.state == 0) {
+        if (menu_events() == -1) {
+            flag = 0;
+            break;
+        }
+        SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
+        SDL_RenderClear(renderer);
+        SDL_RenderCopy(renderer, logo.texture, NULL, &logo.rect);
+        if (multiplayer_state == 2) {
+            SDL_RenderCopy(renderer, multiplayer[1].texture, NULL, &multiplayer[1].rect);
+            SDL_RenderCopy(renderer, multiplayer_hover[0].texture, NULL, &multiplayer_hover[0].rect);
+        } else if (multiplayer_state == 3) {
+            SDL_RenderCopy(renderer, multiplayer[0].texture, NULL, &multiplayer[0].rect);
+            SDL_RenderCopy(renderer, multiplayer_hover[1].texture, NULL, &multiplayer_hover[1].rect);
+        }
+        SDL_RenderPresent(renderer);
+    }
+}
+
+void waiting_for_start() {
+    int angle[3] = {rand() % 360, rand() % 360, rand() % 360};
+    if (players.number == 2){
+        key_images[0].rect.x = (SCREEN_WIDTH) / 2 - (key_images[0].rect.w + 20);
+        key_images[1].rect.x = (SCREEN_WIDTH) / 2 + 20;
+    }
+    while (players.state == 1) {
+        if (waiting_events() == -1) {
+            flag = 0;
+            break;
+        }
+        SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
+        SDL_RenderClear(renderer);
+        stringRGBA(renderer, SCREEN_WIDTH / 2 - 130, (Sint16) (key_images[0].rect.y - 20), "Press ENTER to start the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
+        for (int i = 0; i < players.number; i++){
+            SDL_RenderCopy(renderer, key_images[i].texture, NULL, &key_images[i].rect);
+            filledCircleRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60), (Sint16) (TANK_RADIUS * 2), (Uint8) players.tank[i].RGBA_color[0], (Uint8) players.tank[i].RGBA_color[1], (Uint8) players.tank[i].RGBA_color[2], 255);
+            thickLineRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60), (Sint16) ((key_images[i].rect.x + key_images[i].rect.w / 2) + LENGTH * 2 * cos(angle[i] * PI / 180)), (Sint16) ((key_images[i].rect.y + key_images[i].rect.h + 60) + LENGTH * 2 * sin(angle[i] * PI / 180)), 4, 70, 70, 70, 255);
+            filledCircleRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60), (Sint16) (TANK_RADIUS), 232, 232, 232, 255);
+            for (int j = -3; j < 3; j++) {
+                filledCircleRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2 + cos((angle[i] + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60 + sin((angle[i] + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 2), (Sint16) (TANK_RADIUS / 4), 232, 232, 232, 255);
+            }
+        }
+        SDL_RenderPresent(renderer);
+    }
+    destroy_starting();
+}
+
+void show_players_points() {
+    for (int i = 0; i < players.number; i++) {
         SDL_RenderCopy(renderer, player_points[i].texture, NULL, &player_points[i].rect);
         char point[4];
         sprintf(point, "%d", players.tank[i].score);
@@ -145,8 +277,23 @@ void drawing() {
     SDL_RenderPresent(renderer);
 }
 
+void destroy_starting(){
+    SDL_DestroyTexture(logo.texture);
+    SDL_FreeSurface(logo.surface);
+    for (int i = 0; i < 2; i++) {
+        SDL_DestroyTexture(multiplayer[i].texture);
+        SDL_FreeSurface(multiplayer[i].surface);
+        SDL_DestroyTexture(multiplayer_hover[i].texture);
+        SDL_FreeSurface(multiplayer_hover[i].surface);
+    }
+    for (int i = 0; i < 3; i++) {
+        SDL_DestroyTexture(key_images[i].texture);
+        SDL_FreeSurface(key_images[i].surface);
+    }
+}
+
 void Quit() {
-    for(int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         SDL_DestroyTexture(player_points[i].texture);
         SDL_FreeSurface(player_points[i].surface);
     }
@@ -158,7 +305,7 @@ void Quit() {
 void make_shot(int i) {
     for (int j = 0; j < MAX_BALLS; j++) {
         if (players.tank[i].shot[j].time <= 0) {
-            players.tank[i].shot[j].time = LIFE_OF_SHOT;
+            players.tank[i].shot[j].time = (Sint8) (LIFE_OF_SHOT);
             players.tank[i].shot[j].x = players.tank[i].x + (TANK_RADIUS + SHOT_RADIUS) * cos(players.tank[i].angle * PI / 180);
             players.tank[i].shot[j].y = players.tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players.tank[i].angle * PI / 180);;
             players.tank[i].shot[j].angle = players.tank[i].angle;
