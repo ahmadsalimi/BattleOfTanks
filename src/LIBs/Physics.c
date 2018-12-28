@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "Physics.h"
 #include "View.h"
 #include "Constants.h"
@@ -11,6 +12,10 @@ int keys[401];
 bool shooting_flag[3] = {0};
 
 SDL_Event event;
+
+double absolute(double x) {
+    return x > 0 ? x : -x;
+}
 
 void reflect_shot(SHOT *shot) {
     bool flag = 0;
@@ -69,12 +74,21 @@ void wall_heads(int i) {
     };
     for (int j = 0; j < 4; j++) {
         if (pow(box[j].x - (players.tank[i].x - START_MAP_X), 2) + pow(box[j].y - (players.tank[i].y - START_MAP_Y), 2) <= TANK_RADIUS * TANK_RADIUS || (pow(box[j].x - ((players.tank[i].x - START_MAP_X) + LENGTH * cos(players.tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players.tank[i].y - START_MAP_Y) + LENGTH * sin(players.tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS) / 8 || (pow(box[j].x - ((players.tank[i].x - START_MAP_X) + TANK_RADIUS * cos(players.tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players.tank[i].y - START_MAP_Y) + TANK_RADIUS * sin(players.tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS)) {
-            if ((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) ^ (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && !((box[j].y > 0 && vertical_walls[box[j].y / BOX_WIDTH - 1][box[j].x / BOX_WIDTH]) && (vertical_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH]))) {
+            if ((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) ^ (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && !((box[j].y > 0 && vertical_walls[box[j].y / BOX_WIDTH - 1][box[j].x / BOX_WIDTH]) && (vertical_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH]))) { // if there are one of horizontal walls and at least one of vertical walls
                 players.tank[i].x -= SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) + horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH] - horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1];
                 players.tank[i].y -= SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1;
-            } else if ((box[j].y > 0 && vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH]) ^ (vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && !((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) && (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]))) {
+                if (players.tank[i].y - START_MAP_Y < box[j].y) {
+                    players.tank[i].y -= 2 * absolute(SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1);
+                }
+            } else if ((box[j].y > 0 && vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH]) ^ (vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && !((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) && (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]))) {// if there are one of vertical walls and at least one of horizontal walls
                 players.tank[i].x -= SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1;
                 players.tank[i].y -= SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) + vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH] - vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH];
+                if (players.tank[i].x - START_MAP_X < box[j].x) {
+                    players.tank[i].x -= 2 * absolute(SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1);
+                }
+            } else if ((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) ^ (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && (box[j].y > 0 && vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH]) ^ (vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH])) {//if there are one of horizontal and one of vertical walls
+                players.tank[i].x += (absolute(SPEED * cos(players.tank[i].angle * PI / 180)) + 1) * (players.tank[i].x - START_MAP_X > box[j].x - players.tank[i].x - START_MAP_X < box[j].x);
+                players.tank[i].y += (absolute(SPEED * sin(players.tank[i].angle * PI / 180)) + 1) * (players.tank[i].y - START_MAP_Y > box[j].y - players.tank[i].y - START_MAP_Y < box[j].y);
             }
         }
     }
@@ -149,8 +163,8 @@ void tank_motion(int i) {
     //moving
     players.tank[i].x += SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]);
     players.tank[i].y += SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]);
-    wall_heads(i); //checking confluence between tank and wall heads
     wall_confluence(i);
+    wall_heads(i); //checking confluence between tank and wall heads
 }
 
 void tank_rotation(int i) {
@@ -183,10 +197,10 @@ int menu_events() {
     if (get_keys() == -1) {
         return -1;
     }
-    if (keys[SDLK_RIGHT % 401] && multiplayer_state == 2){
+    if (keys[SDLK_RIGHT % 401] && multiplayer_state == 2) {
         multiplayer_state = 3;
     }
-    if (keys[SDLK_LEFT % 401] && multiplayer_state == 3){
+    if (keys[SDLK_LEFT % 401] && multiplayer_state == 3) {
         multiplayer_state = 2;
     }
     if (keys[SDLK_RETURN % 401]) {

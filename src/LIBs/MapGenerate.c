@@ -134,7 +134,7 @@ void render_walls() {
     }
 }
 
-int generate_map() {
+void generate_map() {
     MAP *start, *last;
     height = (Sint8) ((5 + rand() % 3) * 2 + 1);
     width = (Sint8) ((7 + rand() % 3) * 2 + 1);

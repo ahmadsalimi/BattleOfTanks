@@ -3,7 +3,7 @@
 #ifndef PROJECT_MAPGENERATE_H
 #define PROJECT_MAPGENERATE_H
 
-int generate_map();
+void generate_map();
 
 extern Sint8 max_boxes_x;
 extern Sint8 max_boxes_y;
