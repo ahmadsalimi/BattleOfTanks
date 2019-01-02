@@ -3,9 +3,7 @@
 
 #include "Struct.h"
 
-void tank_presetting();
 
-void setting();
 
 void show_window();
 
@@ -20,8 +18,6 @@ void drawing();
 void Quit();
 
 void destroy_starting();
-
-void make_shot(int i);
 
 extern PLAYERS players;
 extern Sint8 multiplayer_state;

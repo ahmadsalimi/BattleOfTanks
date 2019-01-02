@@ -3,7 +3,6 @@
 
 #include "Struct.h"
 
-
 void shoot(SHOT *shot);
 
 int menu_events();

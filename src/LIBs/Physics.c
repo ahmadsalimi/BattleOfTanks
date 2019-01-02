@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "Struct.h"
 #include "MapGenerate.h"
+#include "Play.h"
 
 
 int keys[401];

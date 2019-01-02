@@ -149,6 +149,7 @@ CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Constants.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/MapGenerate.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Physics.c
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Physics.h
+CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Play.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/Struct.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.obj: ../src/LIBs/View.h
 
@@ -198,6 +199,7 @@ CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../sdl2/sdl2-include/begin_code.h
 CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../sdl2/sdl2-include/close_code.h
 CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/Constants.h
 CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/Logic.h
+CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/MapGenerate.h
 CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/Physics.h
 CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/Play.c
 CMakeFiles/project.dir/src/LIBs/Play.c.obj: ../src/LIBs/Play.h
