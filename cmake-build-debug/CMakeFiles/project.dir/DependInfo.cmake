@@ -4,19 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Logic.c" "C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Logic.c.obj"
-  "C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.c" "C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/MapGenerate.c.obj"
-  "C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.c" "C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Physics.c.obj"
-  "C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Play.c" "C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Play.c.obj"
-  "C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.c" "C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/View.c.obj"
-  "C:/Users/nik/Documents/GitHub/97106013/src/main.c" "C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/main.c.obj"
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Logic.c.o"
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o"
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Physics.c.o"
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Play.c.o"
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/View.c.o"
+  "/home/ahmad/Documents/GitHub/97106013/src/main.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "../sdl2/sdl2-include"
-  "../sdl2/sdl2-gfx-include"
+  "/usr/include/SDL2"
   )
 
 # Targets to which this target links.

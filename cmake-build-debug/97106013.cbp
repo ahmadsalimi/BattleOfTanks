@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="97106013"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="97106013">
+				<Option output="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/97106013" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/sdl2"/>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include"/>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include"/>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/src/LIBs"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 97106013"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="97106013/fast">
+				<Option output="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/97106013" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/sdl2"/>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include"/>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include"/>
+					<Add directory="/home/ahmad/Documents/GitHub/97106013/src/LIBs"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 97106013/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/CMakeLists.txt">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include/SDL2_framerate.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include/SDL2_gfxPrimitives.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include/SDL2_gfxPrimitives_font.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include/SDL2_imageFilter.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-include/SDL2_rotozoom.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-gfx-lib/libsdl-gfx.a">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_assert.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_atomic.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_audio.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_bits.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_blendmode.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_clipboard.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_config.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_cpuinfo.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_egl.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_endian.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_error.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_events.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_filesystem.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_gamecontroller.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_gesture.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_haptic.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_hints.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_joystick.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_keyboard.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_keycode.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_loadso.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_log.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_main.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_messagebox.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_mouse.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_mutex.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_name.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengl.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengl_glext.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengles.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengles2.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengles2_gl2.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengles2_gl2ext.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengles2_gl2platform.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_opengles2_khrplatform.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_pixels.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_platform.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_power.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_quit.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_rect.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_render.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_revision.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_rwops.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_scancode.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_shape.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_stdinc.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_surface.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_system.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_syswm.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_assert.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_common.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_compare.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_crc32.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_font.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_fuzzer.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_harness.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_images.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_log.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_md5.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_memory.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_test_random.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_thread.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_timer.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_touch.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_types.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_version.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_video.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/SDL_vulkan.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/begin_code.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-include/close_code.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-lib/libSDL2.a">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/sdl2/sdl2-lib/libSDL2main.a">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.c">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/Thumbs.db">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/main.c">
+			<Option target="97106013"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

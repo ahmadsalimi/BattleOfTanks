@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/97106013.dir/src/LIBs/Logic.c.o CMakeFiles/97106013.dir/src/LIBs/MapGenerate.c.o CMakeFiles/97106013.dir/src/LIBs/Physics.c.o CMakeFiles/97106013.dir/src/LIBs/Play.c.o CMakeFiles/97106013.dir/src/LIBs/View.c.o CMakeFiles/97106013.dir/src/main.c.o  -o 97106013 

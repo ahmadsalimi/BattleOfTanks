@@ -8,118 +8,124 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="project">
-				<Option output="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/project.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/nik/Documents/GitHub/97106013/sdl2/sdl2-include"/>
-					<Add directory="C:/Users/nik/Documents/GitHub/97106013/sdl2/sdl2-gfx-include"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/include"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/../../../../include"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/include-fixed"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 project"/>
-					<CompileFile command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="project/fast">
-				<Option output="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/project.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/nik/Documents/GitHub/97106013/sdl2/sdl2-include"/>
-					<Add directory="C:/Users/nik/Documents/GitHub/97106013/sdl2/sdl2-gfx-include"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/include"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/../../../../include"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/include-fixed"/>
-					<Add directory="C:/msys32/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.2.1/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 project/fast"/>
-					<CompileFile command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys32/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/nik/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="project">
+				<Option output="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 project"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="project/fast">
+				<Option output="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 project/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ahmad/Documents/GitHub/97106013/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Constants.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Logic.c">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Logic.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.c">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/MapGenerate.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.c">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Physics.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Play.c">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Play.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/Struct.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.c">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/LIBs/View.h">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/src/main.c">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/main.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/nik/Documents/GitHub/97106013/CMakeLists.txt">
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

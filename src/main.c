@@ -2,9 +2,6 @@
 #include "LIBs/Physics.h"
 #include "LIBs/Play.h"
 
-#ifdef main
-#undef main
-#endif /*main*/
 
 int main(int argc, char *argv[]) {
     players.state = 0;
