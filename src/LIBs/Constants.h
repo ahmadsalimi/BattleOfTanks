@@ -4,8 +4,8 @@
 #define PROJECT_CONSTANTS_H
 
 
-#define FPS 70
-#define BOX_WIDTH 90
+#define FPS 60
+#define BOX_WIDTH 100
 #define SCREEN_WIDTH 11 * BOX_WIDTH
 #define SCREEN_HEIGHT 9 * BOX_WIDTH
 #define START_MAP_X (SCREEN_WIDTH - BOX_WIDTH * (max_boxes_x - 1)) / 2

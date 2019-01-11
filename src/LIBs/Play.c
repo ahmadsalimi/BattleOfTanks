@@ -75,8 +75,8 @@ void play_game() {
     while (flag) {
         int one_left_delay = 0, one_left_counter = 0;
         setting();
-        int start_ticks = SDL_GetTicks();
         while (players.lives >= 1) {
+            int start_ticks = SDL_GetTicks();
             if (events() == -1) {
                 flag = 0;
                 break;

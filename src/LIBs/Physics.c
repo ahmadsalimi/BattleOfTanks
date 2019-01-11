@@ -169,7 +169,7 @@ void tank_motion(int i) {
 }
 
 void tank_rotation(int i) {
-    players.tank[i].angle -= (int) (OMEGA * (keys[players.tank[i].directions[3] % 401] - keys[players.tank[i].directions[2] % 401])) % 360;
+    players.tank[i].angle -= (OMEGA * (keys[players.tank[i].directions[3] % 401] - keys[players.tank[i].directions[2] % 401]));
 }
 
 int get_keys() {

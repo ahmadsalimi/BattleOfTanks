@@ -16,7 +16,7 @@ typedef struct {
     bool life;
     double x;
     double y;
-    Sint16 angle;
+    double angle;
     Sint16 RGBA_color[3]; // RGB
     int shooting_key;
     int directions[4]; //up, down, right, left
