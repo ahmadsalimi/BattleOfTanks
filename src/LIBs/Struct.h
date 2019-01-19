@@ -49,4 +49,10 @@ typedef struct {
     SDL_Rect rect;
 } IMAGE;
 
+extern PLAYERS players;
+Sint8 menu_state;
+Sint8 menu_button_state;
+bool menu_playtime;
+extern Sint8 multiplayer_state;
+
 #endif //PROJECT_STRUCT_H

@@ -17,10 +17,7 @@ void drawing();
 
 void Quit();
 
-void destroy_starting();
 
-extern PLAYERS players;
-extern Sint8 multiplayer_state;
 
 #endif //PROJECT_VIEW_H
 

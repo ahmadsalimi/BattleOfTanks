@@ -72,10 +72,12 @@ void make_shot(int i) {
 }
 
 void play_game() {
-    while (flag) {
+    while (flag && players.state == 2) {
         int one_left_delay = 0, one_left_counter = 0;
-        setting();
-        while (players.lives >= 1) {
+        if (players.lives <= 1) {
+            setting();
+        }
+        while (players.lives >= 1 && players.state == 2) {
             int start_ticks = SDL_GetTicks();
             if (events() == -1) {
                 flag = 0;
@@ -92,7 +94,9 @@ void play_game() {
             }
             while (SDL_GetTicks() - start_ticks < 1000 / FPS);
         }
-        set_score();
+        if (players.lives <= 1) {
+            set_score();
+        }
         if (flag && !players.lives) SDL_Delay(3000);
     }
 }

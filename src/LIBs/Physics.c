@@ -9,7 +9,7 @@
 #include "Play.h"
 
 
-int keys[401];
+int keys[501];
 bool shooting_flag[3] = {0};
 
 SDL_Event event;
@@ -76,16 +76,16 @@ void wall_heads(int i) {
     for (int j = 0; j < 4; j++) {
         if (pow(box[j].x - (players.tank[i].x - START_MAP_X), 2) + pow(box[j].y - (players.tank[i].y - START_MAP_Y), 2) <= TANK_RADIUS * TANK_RADIUS || (pow(box[j].x - ((players.tank[i].x - START_MAP_X) + LENGTH * cos(players.tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players.tank[i].y - START_MAP_Y) + LENGTH * sin(players.tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS) / 8 || (pow(box[j].x - ((players.tank[i].x - START_MAP_X) + TANK_RADIUS * cos(players.tank[i].angle * PI / 180)), 2) + pow(box[j].y - ((players.tank[i].y - START_MAP_Y) + TANK_RADIUS * sin(players.tank[i].angle * PI / 180)), 2)) <= (LENGTH - TANK_RADIUS) * (LENGTH - TANK_RADIUS)) {
             if ((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) ^ (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && !((box[j].y > 0 && vertical_walls[box[j].y / BOX_WIDTH - 1][box[j].x / BOX_WIDTH]) && (vertical_walls[box[j].y / BOX_WIDTH][box[j].x / BOX_WIDTH]))) { // if there are one of horizontal walls and at least one of vertical walls
-                players.tank[i].x -= SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) + horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH] - horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1];
-                players.tank[i].y -= SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1;
+                players.tank[i].x -= SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]) + horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH] - horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1];
+                players.tank[i].y -= SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]) - 1;
                 if (players.tank[i].y - START_MAP_Y < box[j].y) {
-                    players.tank[i].y -= 2 * absolute(SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1);
+                    players.tank[i].y -= 2 * absolute(SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]) - 1);
                 }
             } else if ((box[j].y > 0 && vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH]) ^ (vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && !((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) && (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]))) {// if there are one of vertical walls and at least one of horizontal walls
-                players.tank[i].x -= SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1;
-                players.tank[i].y -= SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) + vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH] - vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH];
+                players.tank[i].x -= SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]) - 1;
+                players.tank[i].y -= SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]) + vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH] - vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH];
                 if (players.tank[i].x - START_MAP_X < box[j].x) {
-                    players.tank[i].x -= 2 * absolute(SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]) - 1);
+                    players.tank[i].x -= 2 * absolute(SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]) - 1);
                 }
             } else if ((box[j].x > 0 && horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH - 1]) ^ (horizontal_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH]) && (box[j].y > 0 && vertical_walls[(box[j].y + 1) / BOX_WIDTH - 1][(box[j].x + 1) / BOX_WIDTH]) ^ (vertical_walls[(box[j].y + 1) / BOX_WIDTH][(box[j].x + 1) / BOX_WIDTH])) {//if there are one of horizontal and one of vertical walls
                 players.tank[i].x += (absolute(SPEED * cos(players.tank[i].angle * PI / 180)) + 1) * (players.tank[i].x - START_MAP_X > box[j].x - players.tank[i].x - START_MAP_X < box[j].x);
@@ -99,7 +99,7 @@ void wall_confluence(int i) {
     //checking confluence for vertical walls
     double max_x_left = players.tank[i].x + TANK_RADIUS + 2, max_x_right = players.tank[i].x - TANK_RADIUS - 2, Y = players.tank[i].y;
     if (cos((players.tank[i].angle) * PI / 180) > 0) {
-        if (!keys[players.tank[i].directions[1] % 401] && (keys[players.tank[i].directions[0] % 401] || keys[players.tank[i].directions[2] % 401] || keys[players.tank[i].directions[3] % 401])) {
+        if (!keys[players.tank[i].directions[1] % 501] && (keys[players.tank[i].directions[0] % 501] || keys[players.tank[i].directions[2] % 501] || keys[players.tank[i].directions[3] % 501])) {
             if (LENGTH * cos((players.tank[i].angle) * PI / 180) > TANK_RADIUS) {
                 max_x_left = players.tank[i].x + LENGTH * cos((players.tank[i].angle) * PI / 180) + 2;
                 Y = players.tank[i].y + LENGTH * sin((players.tank[i].angle) * PI / 180);
@@ -113,7 +113,7 @@ void wall_confluence(int i) {
             }
         }
     } else {
-        if (!keys[players.tank[i].directions[1] % 401] && (keys[players.tank[i].directions[0] % 401] || keys[players.tank[i].directions[2] % 401] || keys[players.tank[i].directions[3] % 401])) {
+        if (!keys[players.tank[i].directions[1] % 501] && (keys[players.tank[i].directions[0] % 501] || keys[players.tank[i].directions[2] % 501] || keys[players.tank[i].directions[3] % 501])) {
             if (-LENGTH * cos((players.tank[i].angle) * PI / 180) > TANK_RADIUS) {
                 max_x_right = players.tank[i].x + LENGTH * cos((players.tank[i].angle) * PI / 180) - 2;
                 Y = players.tank[i].y + LENGTH * sin((players.tank[i].angle) * PI / 180);
@@ -130,7 +130,7 @@ void wall_confluence(int i) {
     //checking confluence for horizontal walls
     double max_y_up = players.tank[i].y - TANK_RADIUS - 2, max_y_down = players.tank[i].y + TANK_RADIUS + 2, X = players.tank[i].x;
     if (sin((players.tank[i].angle) * PI / 180) < 0) {
-        if (!keys[players.tank[i].directions[1] % 401] && (keys[players.tank[i].directions[0] % 401] || keys[players.tank[i].directions[2] % 401] || keys[players.tank[i].directions[3] % 401])) {
+        if (!keys[players.tank[i].directions[1] % 501] && (keys[players.tank[i].directions[0] % 501] || keys[players.tank[i].directions[2] % 501] || keys[players.tank[i].directions[3] % 501])) {
             if (-LENGTH * sin((players.tank[i].angle) * PI / 180) > TANK_RADIUS) {
                 max_y_up = players.tank[i].y + LENGTH * sin((players.tank[i].angle) * PI / 180) - 2;
                 X = players.tank[i].x + LENGTH * cos((players.tank[i].angle) * PI / 180);
@@ -144,7 +144,7 @@ void wall_confluence(int i) {
             }
         }
     } else {
-        if (!keys[players.tank[i].directions[1] % 401] && (keys[players.tank[i].directions[0] % 401] || keys[players.tank[i].directions[2] % 401] || keys[players.tank[i].directions[3] % 401])) {
+        if (!keys[players.tank[i].directions[1] % 501] && (keys[players.tank[i].directions[0] % 501] || keys[players.tank[i].directions[2] % 501] || keys[players.tank[i].directions[3] % 501])) {
             if (LENGTH * sin((players.tank[i].angle) * PI / 180) > TANK_RADIUS) {
                 max_y_down = players.tank[i].y + LENGTH * sin((players.tank[i].angle) * PI / 180) + 2;
                 X = players.tank[i].x + LENGTH * cos((players.tank[i].angle) * PI / 180);
@@ -162,14 +162,14 @@ void wall_confluence(int i) {
 
 void tank_motion(int i) {
     //moving
-    players.tank[i].x += SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]);
-    players.tank[i].y += SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 401] - keys[players.tank[i].directions[1] % 401]);
+    players.tank[i].x += SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]);
+    players.tank[i].y += SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]);
     wall_confluence(i);
     wall_heads(i); //checking confluence between tank and wall heads
 }
 
 void tank_rotation(int i) {
-    players.tank[i].angle -= (OMEGA * (keys[players.tank[i].directions[3] % 401] - keys[players.tank[i].directions[2] % 401]));
+    players.tank[i].angle -= (OMEGA * (keys[players.tank[i].directions[3] % 501] - keys[players.tank[i].directions[2] % 501]));
 }
 
 int get_keys() {
@@ -178,10 +178,10 @@ int get_keys() {
             case SDL_QUIT:
                 return -1;
             case SDL_KEYDOWN:
-                keys[event.key.keysym.sym % 401] = 1;
+                keys[event.key.keysym.sym % 501] = 1;
                 break;
             case SDL_KEYUP:
-                keys[event.key.keysym.sym % 401] = 0;
+                keys[event.key.keysym.sym % 501] = 0;
                 for (int i = 0; i < players.number; i++) {
                     if (event.key.keysym.sym == players.tank[i].shooting_key) {
                         shooting_flag[i] = 0;
@@ -198,25 +198,55 @@ int menu_events() {
     if (get_keys() == -1) {
         return -1;
     }
-    if (keys[SDLK_RIGHT % 401] && multiplayer_state == 2) {
-        multiplayer_state = 3;
+    if (menu_state == 0) {
+        if (keys[SDLK_ESCAPE % 501] && menu_playtime) {
+            players.state = 2;
+            keys[SDLK_ESCAPE % 501] = 0;
+        }
+        if (keys[SDLK_DOWN % 501] && menu_button_state != 2) {
+            menu_button_state++;
+            keys[SDLK_DOWN % 501] = 0;
+        }
+        if (keys[SDLK_UP % 501] && menu_button_state != 0) {
+            menu_button_state--;
+            keys[SDLK_UP % 501] = 0;
+        }
+        if (keys[SDLK_RETURN % 501]) {
+            if (menu_button_state == 0) { // New game
+                menu_state = 1;
+            }
+            else if (menu_button_state == 1) { // load
+                menu_state = 2;
+            } else { //exit
+                return -1;
+            }
+            keys[SDLK_RETURN % 501] = 0;
+        }
+        } else if (menu_state == 1) {
+        if (keys[SDLK_RIGHT % 501] && multiplayer_state == 2) {
+            multiplayer_state = 3;
+        }
+        if (keys[SDLK_LEFT % 501] && multiplayer_state == 3) {
+            multiplayer_state = 2;
+        }
+        if (keys[SDLK_RETURN % 501]) {
+            players.number = multiplayer_state;
+            players.state = 1;
+            keys[SDLK_RETURN % 501] = 0;
+        }
+    } else {
+
     }
-    if (keys[SDLK_LEFT % 401] && multiplayer_state == 3) {
-        multiplayer_state = 2;
-    }
-    if (keys[SDLK_RETURN % 401]) {
-        players.number = multiplayer_state;
-        players.state = 1;
-        keys[SDLK_RETURN % 401] = 0;
-    }
+
 }
 
 int waiting_events() {
     if (get_keys() == -1) {
         return -1;
     }
-    if (keys[SDLK_RETURN % 401]) {
+    if (keys[SDLK_RETURN % 501]) {
         players.state = 2;
+        keys[SDLK_RETURN % 501] = 0;
     }
 }
 
@@ -225,11 +255,16 @@ int events() {
         if (get_keys() == -1) {
             return -1;
         }
-        if (players.tank[i].life && keys[players.tank[i].shooting_key % 401]) {
+        if (players.tank[i].life && keys[players.tank[i].shooting_key % 501]) {
             if (!shooting_flag[i]) {
                 make_shot(i);
             }
             shooting_flag[i] = 1;
+        }
+        if (keys[SDLK_ESCAPE % 501]) {
+            players.state = 0;
+            menu_state = 0;
+            keys[SDLK_ESCAPE % 501] = 0;
         }
         tank_motion(i);
         tank_rotation(i);

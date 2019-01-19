@@ -16,11 +16,16 @@ IMAGE logo;
 IMAGE multiplayer[2];
 IMAGE multiplayer_hover[2];
 IMAGE key_images[3];
+IMAGE menu_images[3];
+IMAGE menu_images_hover[3];
 SDL_Surface *icon;
 PLAYERS players;
+Sint8 menu_state;
+Sint8 menu_button_state;
+bool menu_playtime;
 Sint8 multiplayer_state;
 
-void load_icon(){
+void load_icon() {
     icon = SDL_LoadBMP("icon.bmp");
     if (icon == NULL) {
         SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
@@ -68,6 +73,32 @@ void read_images() {
     logo.rect.h = logo.rect.h * 2 / 3;
     logo.rect.x = (SCREEN_WIDTH - logo.rect.w) / 2;
     logo.rect.y = (SCREEN_HEIGHT - 2 * logo.rect.h) / 2;
+    //read menu images
+    for (int i = 0; i < 3; ++i) {
+        char address[10], hover_address[10];
+        sprintf(address, "%d.bmp", i + 10);
+        sprintf(hover_address, "%d-hover.bmp", i + 10);
+        menu_images[i].surface = SDL_LoadBMP(address);
+        menu_images_hover[i].surface = SDL_LoadBMP(hover_address);
+        if (menu_images[i].surface == NULL || menu_images_hover[i].surface == NULL) {
+            SDL_ShowSimpleMessageBox(0, "Image init error", SDL_GetError(), window);
+        }
+        menu_images[i].texture = SDL_CreateTextureFromSurface(renderer, menu_images[i].surface);
+        menu_images_hover[i].texture = SDL_CreateTextureFromSurface(renderer, menu_images_hover[i].surface);
+        if (menu_images[i].texture == NULL || menu_images_hover[i].texture == NULL) {
+            SDL_ShowSimpleMessageBox(0, "Texture init error", SDL_GetError(), window);
+        }
+        SDL_QueryTexture(menu_images[i].texture, NULL, NULL, &menu_images[i].rect.w, &menu_images[i].rect.h);
+        SDL_QueryTexture(menu_images_hover[i].texture, NULL, NULL, &menu_images_hover[i].rect.w, &menu_images_hover[i].rect.h);
+        menu_images[i].rect.w = menu_images[i].rect.w / 5;
+        menu_images[i].rect.h = menu_images[i].rect.h / 5;
+        menu_images[i].rect.x = (SCREEN_WIDTH - menu_images[i].rect.w) / 2;
+        menu_images[i].rect.y = SCREEN_HEIGHT / 2 + 30 + (menu_images[i].rect.h + 10) * i;
+        menu_images_hover[i].rect.w = menu_images_hover[i].rect.w * 9 / 40;
+        menu_images_hover[i].rect.h = menu_images_hover[i].rect.h * 9 / 40;
+        menu_images_hover[i].rect.x = (SCREEN_WIDTH - menu_images_hover[i].rect.w) / 2;
+        menu_images_hover[i].rect.y = SCREEN_HEIGHT / 2 + 27 + (menu_images_hover[i].rect.h) * i;
+    }
     //read multiplayer buttons
     //2 player
     multiplayer[0].surface = SDL_LoadBMP("2.bmp");
@@ -112,7 +143,7 @@ void read_images() {
     multiplayer_hover[1].rect.x = SCREEN_WIDTH / 2 + 20;
     multiplayer_hover[1].rect.y = SCREEN_HEIGHT / 2 + 30;
     // key images
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         char filename[15] = {0};
         sprintf(filename, "%dkey.bmp", i + 1);
         key_images[i].surface = SDL_LoadBMP(filename);
@@ -131,6 +162,7 @@ void read_images() {
     }
 }
 
+
 void show_starting_menu() {
     multiplayer_state = 2;
     while (players.state == 0) {
@@ -138,26 +170,52 @@ void show_starting_menu() {
             flag = 0;
             break;
         }
-        SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
-        SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, logo.texture, NULL, &logo.rect);
-        if (multiplayer_state == 2) {
-            SDL_RenderCopy(renderer, multiplayer[1].texture, NULL, &multiplayer[1].rect);
-            SDL_RenderCopy(renderer, multiplayer_hover[0].texture, NULL, &multiplayer_hover[0].rect);
-        } else if (multiplayer_state == 3) {
-            SDL_RenderCopy(renderer, multiplayer[0].texture, NULL, &multiplayer[0].rect);
-            SDL_RenderCopy(renderer, multiplayer_hover[1].texture, NULL, &multiplayer_hover[1].rect);
+        if (menu_state == 0) {
+            SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
+            SDL_RenderClear(renderer);
+            SDL_RenderCopy(renderer, logo.texture, NULL, &logo.rect);
+            if (menu_playtime) {
+                stringRGBA(renderer, SCREEN_WIDTH / 2 - 130, (Sint16) (logo.rect.y - 20), "Press \"ESC\" to resume the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
+            }
+            if (menu_button_state == 0) { // New Game
+                SDL_RenderCopy(renderer, menu_images_hover[0].texture, NULL, &menu_images_hover[0].rect);
+                SDL_RenderCopy(renderer, menu_images[1].texture, NULL, &menu_images[1].rect);
+                SDL_RenderCopy(renderer, menu_images[2].texture, NULL, &menu_images[2].rect);
+            } else if (menu_button_state == 1) { // Load
+                SDL_RenderCopy(renderer, menu_images[0].texture, NULL, &menu_images[0].rect);
+                SDL_RenderCopy(renderer, menu_images_hover[1].texture, NULL, &menu_images_hover[1].rect);
+                SDL_RenderCopy(renderer, menu_images[2].texture, NULL, &menu_images[2].rect);
+            } else if (menu_button_state == 2) { // Exit
+                SDL_RenderCopy(renderer, menu_images[0].texture, NULL, &menu_images[0].rect);
+                SDL_RenderCopy(renderer, menu_images[1].texture, NULL, &menu_images[1].rect);
+                SDL_RenderCopy(renderer, menu_images_hover[2].texture, NULL, &menu_images_hover[2].rect);
+            }
+            SDL_RenderPresent(renderer);
+        } else if (menu_state == 1) { // New game
+            SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
+            SDL_RenderClear(renderer);
+            SDL_RenderCopy(renderer, logo.texture, NULL, &logo.rect);
+            if (multiplayer_state == 2) {
+                SDL_RenderCopy(renderer, multiplayer[1].texture, NULL, &multiplayer[1].rect);
+                SDL_RenderCopy(renderer, multiplayer_hover[0].texture, NULL, &multiplayer_hover[0].rect);
+            } else if (multiplayer_state == 3) {
+                SDL_RenderCopy(renderer, multiplayer[0].texture, NULL, &multiplayer[0].rect);
+                SDL_RenderCopy(renderer, multiplayer_hover[1].texture, NULL, &multiplayer_hover[1].rect);
+            }
+            SDL_RenderPresent(renderer);
+        } else { // Load
+
         }
-        SDL_RenderPresent(renderer);
     }
-    if (players.number == 2){
+    menu_playtime = 1;
+    if (players.number == 2) {
         player_points[1].rect.x = player_points[2].rect.x;
     }
 }
 
 void waiting_for_start() {
     int angle[3] = {rand() % 360, rand() % 360, rand() % 360};
-    if (players.number == 2){
+    if (players.number == 2) {
         key_images[0].rect.x = (SCREEN_WIDTH) / 2 - (key_images[0].rect.w + 20);
         key_images[1].rect.x = (SCREEN_WIDTH) / 2 + 20;
     }
@@ -169,7 +227,7 @@ void waiting_for_start() {
         SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
         SDL_RenderClear(renderer);
         stringRGBA(renderer, SCREEN_WIDTH / 2 - 130, (Sint16) (key_images[0].rect.y - 20), "Press ENTER to start the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
-        for (int i = 0; i < players.number; i++){
+        for (int i = 0; i < players.number; i++) {
             SDL_RenderCopy(renderer, key_images[i].texture, NULL, &key_images[i].rect);
             filledCircleRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60), (Sint16) (TANK_RADIUS * 2), (Uint8) players.tank[i].RGBA_color[0], (Uint8) players.tank[i].RGBA_color[1], (Uint8) players.tank[i].RGBA_color[2], 255);
             thickLineRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60), (Sint16) ((key_images[i].rect.x + key_images[i].rect.w / 2) + LENGTH * 2 * cos(angle[i] * PI / 180)), (Sint16) ((key_images[i].rect.y + key_images[i].rect.h + 60) + LENGTH * 2 * sin(angle[i] * PI / 180)), 4, 70, 70, 70, 255);
@@ -180,7 +238,6 @@ void waiting_for_start() {
         }
         SDL_RenderPresent(renderer);
     }
-    destroy_starting();
 }
 
 void show_players_points() {
@@ -239,7 +296,8 @@ void drawing() {
     SDL_RenderPresent(renderer);
 }
 
-void destroy_starting(){
+
+void Quit() {
     SDL_DestroyTexture(logo.texture);
     SDL_FreeSurface(logo.surface);
     for (int i = 0; i < 2; i++) {
@@ -252,9 +310,7 @@ void destroy_starting(){
         SDL_DestroyTexture(key_images[i].texture);
         SDL_FreeSurface(key_images[i].surface);
     }
-}
 
-void Quit() {
     for (int i = 0; i < 3; i++) {
         SDL_DestroyTexture(player_points[i].texture);
         SDL_FreeSurface(player_points[i].surface);

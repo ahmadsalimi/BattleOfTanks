@@ -8,9 +8,11 @@ int main(int argc, char *argv[]) {
     tank_presetting();
     show_window();
     read_images();
-    show_starting_menu();
-    waiting_for_start();
-    play_game();
+    while (flag) {
+        show_starting_menu();
+        waiting_for_start();
+        play_game();
+    }
     Quit();
     return 0;
 }

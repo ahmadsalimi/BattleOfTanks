@@ -326,7 +326,7 @@ GLAPI void APIENTRY glMultTransposeMatrixd (const GLdouble *m);
 #define GL_DEPTH_COMPONENT32              0x81A7
 #define GL_MIRRORED_REPEAT                0x8370
 #define GL_MAX_TEXTURE_LOD_BIAS           0x84FD
-#define GL_TEXTURE_LOD_BIAS               0x8501
+#define GL_TEXTURE_LOD_BIAS               0x8401
 #define GL_INCR_WRAP                      0x8507
 #define GL_DECR_WRAP                      0x8508
 #define GL_TEXTURE_DEPTH_SIZE             0x884A
@@ -7567,7 +7567,7 @@ GLAPI void APIENTRY glClearColorIuiEXT (GLuint red, GLuint green, GLuint blue, G
 #define GL_EXT_texture_lod_bias 1
 #define GL_MAX_TEXTURE_LOD_BIAS_EXT       0x84FD
 #define GL_TEXTURE_FILTER_CONTROL_EXT     0x8500
-#define GL_TEXTURE_LOD_BIAS_EXT           0x8501
+#define GL_TEXTURE_LOD_BIAS_EXT           0x8401
 #endif /* GL_EXT_texture_lod_bias */
 
 #ifndef GL_EXT_texture_mirror_clamp
