@@ -24,6 +24,7 @@ Sint8 menu_state;
 Sint8 menu_button_state;
 bool menu_playtime;
 Sint8 multiplayer_state;
+Sint16 finish_point = 1;
 
 void load_icon() {
     icon = SDL_LoadBMP("icon.bmp");
@@ -218,6 +219,12 @@ void waiting_for_start() {
     if (players.number == 2) {
         key_images[0].rect.x = (SCREEN_WIDTH) / 2 - (key_images[0].rect.w + 20);
         key_images[1].rect.x = (SCREEN_WIDTH) / 2 + 20;
+        player_points[1].rect.x = player_points[2].rect.x;
+    } else {
+        for (int i = 0; i < 3; i++) {
+            key_images[i].rect.x = (SCREEN_WIDTH - key_images[i].rect.w) / 2 + (i - 1) * (key_images[i].rect.w + 20);
+            player_points[i].rect.x = 200 + i * 250;
+        }
     }
     while (players.state == 1) {
         if (waiting_events() == -1) {
@@ -226,6 +233,9 @@ void waiting_for_start() {
         }
         SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
         SDL_RenderClear(renderer);
+        char finish[80];
+        sprintf(finish, "Please set the finish score of the game by keys \"up\" and \"down\": %d", finish_point);
+        stringRGBA(renderer, SCREEN_WIDTH / 2 - 260, (Sint16) (key_images[0].rect.y - 40), finish, 0, 0, 0, 255);
         stringRGBA(renderer, SCREEN_WIDTH / 2 - 130, (Sint16) (key_images[0].rect.y - 20), "Press ENTER to start the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
         for (int i = 0; i < players.number; i++) {
             SDL_RenderCopy(renderer, key_images[i].texture, NULL, &key_images[i].rect);
@@ -296,6 +306,49 @@ void drawing() {
     SDL_RenderPresent(renderer);
 }
 
+void show_winner() {
+    char colors[][6] = {"red", "green", "blue"};
+    int winner = 0, best_point = players.tank[0].score;
+    for (int i = 1; i < players.number; i++) {
+        if (players.tank[i].score > best_point) {
+            best_point = players.tank[i].score;
+            winner = i;
+        }
+    }
+    char winner_str[50];
+    sprintf(winner_str, "Game Over!! the winner is \"%s\".", colors[winner]);
+    stringRGBA(renderer, SCREEN_WIDTH / 2 - 140, (Sint16) (player_points[0].rect.y - 200), winner_str, 0, 0, 0, 255);
+}
+
+void show_game_over_points() {
+    for (int i = 0; i < players.number; i++) {
+        SDL_RenderCopy(renderer, player_points[i].texture, NULL, &player_points[i].rect);
+        char point[4];
+        sprintf(point, "%d", players.tank[i].score);
+        stringRGBA(renderer, (Sint16) (player_points[i].rect.x + player_points[i].rect.w + 10), (Sint16) (player_points[i].rect.y + player_points[i].rect.h / 2), point, 0, 0, 0, 255);
+    }
+}
+
+void game_over() {
+    for (int i = 0; i < 3; i++) {
+        player_points[i].rect.y = (SCREEN_HEIGHT - player_points[i].rect.h) / 2;
+    }
+
+    while (players.state == 3) {
+        if (game_over_events() == -1) {
+            flag = 0;
+            break;
+        }
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderClear(renderer);
+        show_winner();
+        show_game_over_points();
+        SDL_RenderPresent(renderer);
+    }
+    for (int i = 0; i < 3; i++) {
+        player_points[i].rect.y = SCREEN_HEIGHT - player_points[i].rect.h * 4 / 3;
+    }
+}
 
 void Quit() {
     SDL_DestroyTexture(logo.texture);

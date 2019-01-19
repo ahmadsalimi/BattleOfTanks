@@ -15,6 +15,8 @@ void waiting_for_start();
 
 void drawing();
 
+void game_over();
+
 void Quit();
 
 

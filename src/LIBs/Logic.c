@@ -23,5 +23,8 @@ void set_score() {
         if (players.tank[i].life) {
             (players.tank[i].score)++;
         }
+        if (players.tank[i].score >= finish_point) {
+            players.state = 3;
+        }
     }
 }

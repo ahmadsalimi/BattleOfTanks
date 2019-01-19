@@ -247,6 +247,30 @@ int waiting_events() {
     if (keys[SDLK_RETURN % 501]) {
         players.state = 2;
         keys[SDLK_RETURN % 501] = 0;
+        keys[SDLK_ESCAPE % 501] = 0;
+    }
+    if (keys[SDLK_UP % 501] && finish_point < 30000) {
+        finish_point++;
+        keys[SDLK_UP % 501] = 0;
+    }
+    if (keys[SDLK_DOWN % 501] && finish_point > 1) {
+        finish_point--;
+        keys[SDLK_DOWN % 501] = 0;
+    }
+}
+
+int game_over_events() {
+    if (get_keys() == -1) {
+        return -1;
+    }
+    if (keys[SDLK_ESCAPE % 501]) {
+        players.state = 0;
+        menu_state = 0;
+        menu_playtime = 0;
+        keys[SDLK_ESCAPE % 501] = 0;
+        for (int i = 0; i < 3; i++) {
+            players.tank[i].score = 0;
+        }
     }
 }
 

@@ -9,6 +9,8 @@ int menu_events();
 
 int waiting_events();
 
+int game_over_events();
+
 int events();
 
 #endif //PROJECT_PHYSICS_H

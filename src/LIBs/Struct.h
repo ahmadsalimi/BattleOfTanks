@@ -50,9 +50,10 @@ typedef struct {
 } IMAGE;
 
 extern PLAYERS players;
-Sint8 menu_state;
-Sint8 menu_button_state;
-bool menu_playtime;
+extern Sint8 menu_state;
+extern Sint8 menu_button_state;
+extern bool menu_playtime;
 extern Sint8 multiplayer_state;
+extern Sint16 finish_point;
 
 #endif //PROJECT_STRUCT_H

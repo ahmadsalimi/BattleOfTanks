@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
         show_starting_menu();
         waiting_for_start();
         play_game();
+        game_over();
     }
     Quit();
     return 0;
