@@ -307,8 +307,16 @@ void draw_power_box() {
     }
 }
 
+void show_laser_killing(i) {
+    if (players.tank[i].power.laser.kill_time > 0) {
+        thickLineRGBA(renderer, players.tank[i].power.laser.start.x, players.tank[i].power.laser.start.y, players.tank[i].power.laser.finish.x, players.tank[i].power.laser.finish.y, 3, 255, 42, 0, 255);
+        players.tank[i].power.laser.kill_time--;
+    }
+}
+
 void draw_tank_power() {
     for (Sint8 i = 0; i < players.number; i++) {
+        show_laser_killing(i);
         if (players.tank[i].shot_type == 1) { // laser
             players.tank[i].power.laser.target_counter = 0;
             players.tank[i].power.laser.targets[0] = -1;

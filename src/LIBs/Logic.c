@@ -24,6 +24,7 @@ void laser_kill(int i) {
         (players.lives)--;
     }
     players.tank[i].shot_type = 0;
+    players.tank[i].power.laser.kill_time = LASER_KILL_TIME;
     players.tank[i].power.laser.target_counter = 0;
     players.tank[i].power.laser.target = -1;
     players.tank[i].power.laser.time = 0;

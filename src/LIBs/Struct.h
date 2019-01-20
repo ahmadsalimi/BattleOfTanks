@@ -31,6 +31,8 @@ typedef struct {
     Sint16 time;
     Sint8 target_counter;
     Sint8 targets[2];
+    bool kill;
+    Sint8 kill_time;
 } LASER;
 
 typedef struct {

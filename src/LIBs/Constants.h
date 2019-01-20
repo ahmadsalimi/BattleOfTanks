@@ -24,6 +24,7 @@
 #define POWER_MAKE_TIME (15 * FPS)
 #define POWER_BOX_TIME (15 * FPS)
 #define POWER_TIME (8 * FPS)
+#define LASER_KILL_TIME (FPS / 5)
 
 
 #endif //PROJECT_CONSTANTS_H
