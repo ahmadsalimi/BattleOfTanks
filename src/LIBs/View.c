@@ -296,11 +296,102 @@ void draw_shot() {
     }
 }
 
+void draw_power_box() {
+    if (laser_box->enable) {
+        filledCircleRGBA(renderer, laser_box->center.x, laser_box->center.y, POWER_RADIUS, 230, 230, 230, 255);
+        thickLineRGBA(renderer, (Sint16) (laser_box->center.x - POWER_RADIUS * cos(-PI / 6)), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(-PI / 6)), (Sint16) (laser_box->center.x - POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
+        thickLineRGBA(renderer, (Sint16) (laser_box->center.x + POWER_RADIUS * cos(-PI / 6)), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(-PI / 6)), (Sint16) (laser_box->center.x + POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
+        thickLineRGBA(renderer, (Sint16) (laser_box->center.x - POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(PI / 3) / 2), (Sint16) (laser_box->center.x + POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
+        circleRGBA(renderer, laser_box->center.x, laser_box->center.y, POWER_RADIUS, 20, 20, 20, 255);
+        laser_box->time--;
+    }
+}
+
+void draw_tank_power() {
+    for (Sint8 i = 0; i < players.number; i++) {
+        if (players.tank[i].shot_type == 1) { // laser
+            players.tank[i].power.laser.target_counter = 0;
+            players.tank[i].power.laser.targets[0] = -1;
+            players.tank[i].power.laser.targets[1] = -1;
+            players.tank[i].power.laser.start.x = (Sint16) players.tank[i].x;
+            players.tank[i].power.laser.start.y = (Sint16) players.tank[i].y;
+            double a = -tan(players.tank[i].angle * PI / 180), b = 1.0, c = tan(players.tank[i].angle * PI / 180) * players.tank[i].x - players.tank[i].y;
+            for (Sint8 j = 0; j < players.number; j++) {
+                if (i != j && absolute(a * players.tank[j].x + b * players.tank[j].y + c) / sqrt(pow(a, 2) + pow(b, 2)) < TANK_RADIUS) {
+                    if (((sin(players.tank[i].angle * PI / 180) > 0 && players.tank[j].y + TANK_RADIUS > players.tank[i].y) || (sin(players.tank[i].angle * PI / 180) <= 0 && players.tank[j].y - TANK_RADIUS < players.tank[i].y)) && ((cos(players.tank[i].angle * PI / 180) > 0 && players.tank[j].x + TANK_RADIUS > players.tank[i].x) || (cos(players.tank[i].angle * PI / 180) <= 0 && players.tank[j].x - TANK_RADIUS < players.tank[i].x)))
+                        players.tank[i].power.laser.targets[players.tank[i].power.laser.target_counter++] = j;
+                }
+            }
+            if (players.tank[i].power.laser.target_counter == 0) { // wall
+                players.tank[i].power.laser.target = -1;
+                if (sin(players.tank[i].angle * PI / 180) >= 0 && cos(players.tank[i].angle * PI / 180) >= 0) {
+                    double end_x = -(b * FINISH_MAP_Y + c) / a, end_y = -(a * FINISH_MAP_X + c) / b;
+                    if (end_x < (double) FINISH_MAP_X) {
+                        players.tank[i].power.laser.finish.x = (Sint16) end_x;
+                        players.tank[i].power.laser.finish.y = (Sint16) (FINISH_MAP_Y);
+                    } else {
+                        players.tank[i].power.laser.finish.x = (Sint16) (FINISH_MAP_X);
+                        players.tank[i].power.laser.finish.y = (Sint16) end_y;
+                    }
+                } else if (sin(players.tank[i].angle * PI / 180) >= 0 && cos(players.tank[i].angle * PI / 180) < 0) {
+                    double end_x = -(b * FINISH_MAP_Y + c) / a, end_y = -(a * START_MAP_X + c) / b;
+                    if (end_x > (double) START_MAP_X) {
+                        players.tank[i].power.laser.finish.x = (Sint16) end_x;
+                        players.tank[i].power.laser.finish.y = (Sint16) (FINISH_MAP_Y);
+                    } else {
+                        players.tank[i].power.laser.finish.x = (Sint16) (START_MAP_X);
+                        players.tank[i].power.laser.finish.y = (Sint16) end_y;
+                    }
+                } else if (sin(players.tank[i].angle * PI / 180) < 0 && cos(players.tank[i].angle * PI / 180) >= 0) {
+                    double end_x = -(b * START_MAP_Y + c) / a, end_y = -(a * FINISH_MAP_X + c) / b;
+                    if (end_x < (double) FINISH_MAP_X) {
+                        players.tank[i].power.laser.finish.x = (Sint16) end_x;
+                        players.tank[i].power.laser.finish.y = (Sint16) (START_MAP_Y);
+                    } else {
+                        players.tank[i].power.laser.finish.x = (Sint16) (FINISH_MAP_X);
+                        players.tank[i].power.laser.finish.y = (Sint16) end_y;
+                    }
+                } else {
+                    double end_x = -(b * START_MAP_Y + c) / a, end_y = -(a * START_MAP_X + c) / b;
+                    if (end_x > (double) START_MAP_X) {
+                        players.tank[i].power.laser.finish.x = (Sint16) end_x;
+                        players.tank[i].power.laser.finish.y = (Sint16) (START_MAP_Y);
+                    } else {
+                        players.tank[i].power.laser.finish.x = (Sint16) (START_MAP_X);
+                        players.tank[i].power.laser.finish.y = (Sint16) end_y;
+                    }
+                }
+            } else if (players.tank[i].power.laser.target_counter == 1) {
+                double d = sqrt(pow(players.tank[i].x - players.tank[players.tank[i].power.laser.targets[0]].x, 2) + pow(players.tank[i].y - players.tank[players.tank[i].power.laser.targets[0]].y, 2));
+                players.tank[i].power.laser.finish.x = (Sint16) (players.tank[i].power.laser.start.x + d * cos(players.tank[i].angle * PI / 180));
+                players.tank[i].power.laser.finish.y = (Sint16) (players.tank[i].power.laser.start.y + d * sin(players.tank[i].angle * PI / 180));
+                players.tank[i].power.laser.target = players.tank[i].power.laser.targets[0];
+            } else if (players.tank[i].power.laser.target_counter == 2) {
+                double d0 = sqrt(pow(players.tank[i].x - players.tank[players.tank[i].power.laser.targets[0]].x, 2) + pow(players.tank[i].y - players.tank[players.tank[i].power.laser.targets[0]].y, 2));
+                double d1 = sqrt(pow(players.tank[i].x - players.tank[players.tank[i].power.laser.targets[1]].x, 2) + pow(players.tank[i].y - players.tank[players.tank[i].power.laser.targets[1]].y, 2));
+                if (d0 < d1) {
+                    players.tank[i].power.laser.finish.x = (Sint16) (players.tank[i].power.laser.start.x + d0 * cos(players.tank[i].angle * PI / 180));
+                    players.tank[i].power.laser.finish.y = (Sint16) (players.tank[i].power.laser.start.y + d0 * sin(players.tank[i].angle * PI / 180));
+                    players.tank[i].power.laser.target = players.tank[i].power.laser.targets[0];
+                } else {
+                    players.tank[i].power.laser.finish.x = (Sint16) (players.tank[i].power.laser.start.x + d1 * cos(players.tank[i].angle * PI / 180));
+                    players.tank[i].power.laser.finish.y = (Sint16) (players.tank[i].power.laser.start.y + d1 * sin(players.tank[i].angle * PI / 180));
+                    players.tank[i].power.laser.target = players.tank[i].power.laser.targets[1];
+                }
+            }
+            thickLineRGBA(renderer, players.tank[i].power.laser.start.x, players.tank[i].power.laser.start.y, players.tank[i].power.laser.finish.x, players.tank[i].power.laser.finish.y, 3, 101, 255, 101, 255);
+            players.tank[i].power.laser.time--;
+        }
+    }
+}
+
 void drawing() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     draw_map();
+    draw_power_box();
     draw_shot();
+    draw_tank_power();
     draw_tank();
     show_players_points();
     SDL_RenderPresent(renderer);

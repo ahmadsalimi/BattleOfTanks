@@ -7,6 +7,7 @@
 #include "Struct.h"
 #include "MapGenerate.h"
 #include "Play.h"
+#include "Logic.h"
 
 
 int keys[501];
@@ -172,6 +173,18 @@ void tank_rotation(int i) {
     players.tank[i].angle -= (OMEGA * (keys[players.tank[i].directions[3] % 501] - keys[players.tank[i].directions[2] % 501]));
 }
 
+void check_power(int i) {
+    if (laser_box->enable && !players.tank[i].shot_type) {
+        if (pow(players.tank[i].x - laser_box->center.x, 2) + pow(players.tank[i].y - laser_box->center.y, 2) < pow(TANK_RADIUS + POWER_RADIUS, 2)) {
+            players.tank[i].shot_type = 1;
+            players.tank[i].power.laser.enable = 1;
+            players.tank[i].power.laser.time = POWER_TIME;
+            laser_box->enable = 0;
+            laser_box->time = 0;
+        }
+    }
+}
+
 int get_keys() {
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
@@ -214,15 +227,14 @@ int menu_events() {
         if (keys[SDLK_RETURN % 501]) {
             if (menu_button_state == 0) { // New game
                 menu_state = 1;
-            }
-            else if (menu_button_state == 1) { // load
+            } else if (menu_button_state == 1) { // load
                 menu_state = 2;
             } else { //exit
                 return -1;
             }
             keys[SDLK_RETURN % 501] = 0;
         }
-        } else if (menu_state == 1) {
+    } else if (menu_state == 1) {
         if (keys[SDLK_RIGHT % 501] && multiplayer_state == 2) {
             multiplayer_state = 3;
         }
@@ -281,7 +293,11 @@ int events() {
         }
         if (players.tank[i].life && keys[players.tank[i].shooting_key % 501]) {
             if (!shooting_flag[i]) {
-                make_shot(i);
+                if (players.tank[i].shot_type == 0){
+                    make_shot(i);
+                } else if (players.tank[i].shot_type == 1) {
+                    laser_kill(i);
+                }
             }
             shooting_flag[i] = 1;
         }
@@ -292,5 +308,6 @@ int events() {
         }
         tank_motion(i);
         tank_rotation(i);
+        check_power(i);
     }
 }

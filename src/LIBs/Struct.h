@@ -13,6 +13,31 @@ typedef struct {
 } SHOT;
 
 typedef struct {
+    Sint16 x;
+    Sint16 y;
+} POINT;
+
+typedef struct {
+    bool enable;
+    Sint16 time;
+    POINT center;
+} LASER_BOX;
+
+typedef struct {
+    bool enable;
+    POINT start;
+    POINT finish;
+    Sint8 target;
+    Sint16 time;
+    Sint8 target_counter;
+    Sint8 targets[2];
+} LASER;
+
+typedef struct {
+    LASER laser;
+} POWER;
+
+typedef struct {
     bool life;
     double x;
     double y;
@@ -22,12 +47,10 @@ typedef struct {
     int directions[4]; //up, down, right, left
     SHOT shot[MAX_BALLS];
     Sint16 score;
+    Sint8 shot_type; // 0: normal, 1: laser
+    POWER power;
 } TANK;
 
-typedef struct {
-    Sint16 x;
-    Sint16 y;
-} POINT;
 
 typedef struct {
     Sint8 x, y;
@@ -50,6 +73,7 @@ typedef struct {
 } IMAGE;
 
 extern PLAYERS players;
+extern LASER_BOX *laser_box;
 extern Sint8 menu_state;
 extern Sint8 menu_button_state;
 extern bool menu_playtime;

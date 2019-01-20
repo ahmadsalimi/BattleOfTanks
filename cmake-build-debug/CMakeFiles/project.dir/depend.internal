@@ -56,7 +56,6 @@ CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h
@@ -103,6 +102,7 @@ CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o
  /usr/include/SDL2/close_code.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
+ /home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h

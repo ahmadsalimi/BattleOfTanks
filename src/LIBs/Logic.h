@@ -5,6 +5,8 @@
 
 void death_check();
 
+void laser_kill(int i);
+
 void set_score();
 
 #endif //PROJECT_LOGIC_H

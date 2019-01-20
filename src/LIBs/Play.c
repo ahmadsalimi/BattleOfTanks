@@ -10,8 +10,11 @@
 #include "MapGenerate.h"
 
 bool flag = 1;
+LASER_BOX *laser_box;
+int power_make_time = POWER_MAKE_TIME;
 
 void tank_presetting() {
+    laser_box = malloc(sizeof(LASER_BOX));
     // PLAYER 0
     players.tank[0].RGBA_color[0] = 239;
     players.tank[0].RGBA_color[1] = 0;
@@ -21,6 +24,7 @@ void tank_presetting() {
     players.tank[0].directions[1] = SDLK_DOWN; //down;
     players.tank[0].directions[2] = SDLK_RIGHT; //right;
     players.tank[0].directions[3] = SDLK_LEFT; //left;
+    players.tank[0].shot_type = 0;
     // PLAYER 1
     players.tank[1].RGBA_color[0] = 0;
     players.tank[1].RGBA_color[1] = 132;
@@ -30,6 +34,7 @@ void tank_presetting() {
     players.tank[1].directions[1] = SDLK_d; //down;
     players.tank[1].directions[2] = SDLK_f; //right;
     players.tank[1].directions[3] = SDLK_s; //left;
+    players.tank[1].shot_type = 0;
     // PLAYER 2
     players.tank[2].RGBA_color[0] = 0;
     players.tank[2].RGBA_color[1] = 84;
@@ -39,6 +44,7 @@ void tank_presetting() {
     players.tank[2].directions[1] = SDLK_k; //down;
     players.tank[2].directions[2] = SDLK_l; //right;
     players.tank[2].directions[3] = SDLK_j; //left;
+    players.tank[2].shot_type = 0;
 }
 
 void setting() {
@@ -57,6 +63,7 @@ void setting() {
             players.tank[i].shot[j].time = 0;
         }
     }
+    power_make_time = 15 * FPS;
 }
 
 void make_shot(int i) {
@@ -67,6 +74,18 @@ void make_shot(int i) {
             players.tank[i].shot[j].y = players.tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players.tank[i].angle * PI / 180);;
             players.tank[i].shot[j].angle = players.tank[i].angle;
             break;
+        }
+    }
+}
+
+void make_power() {
+    if (rand() % 4) {
+        int n = rand() % POWER_NUMBER;
+        if (n == 0) { //LASER
+            laser_box->enable = 1;
+            laser_box->time = POWER_BOX_TIME;
+            laser_box->center.x = (Sint16) (START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
+            laser_box->center.y = (Sint16) (START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
         }
     }
 }
@@ -84,6 +103,22 @@ void play_game() {
                 break;
             }
             death_check();
+            if ((power_make_time--) <= 0) {
+                power_make_time = POWER_MAKE_TIME;
+                make_power();
+            }
+            if (laser_box->enable && laser_box->time <= 0) {
+                laser_box->enable = 0;
+                laser_box->time = 0;
+            }
+            for (int i = 0; i < players.number; i++) {
+                if (players.tank[i].power.laser.time <= 0) {
+                    players.tank[i].power.laser.enable = false;
+                    players.tank[i].power.laser.time = 0;
+                    players.tank[i].power.laser.target = -1;
+                    players.tank[i].shot_type = 0;
+                }
+            }
             drawing();
             if (players.lives == 1 && !one_left_counter) {
                 one_left_delay = SDL_GetTicks();

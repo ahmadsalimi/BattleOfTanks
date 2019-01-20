@@ -18,6 +18,20 @@ void death_check() {
     }
 }
 
+void laser_kill(int i) {
+    if (players.tank[i].power.laser.target_counter) {
+        players.tank[players.tank[i].power.laser.target].life = 0;
+        (players.lives)--;
+    }
+    players.tank[i].shot_type = 0;
+    players.tank[i].power.laser.target_counter = 0;
+    players.tank[i].power.laser.target = -1;
+    players.tank[i].power.laser.time = 0;
+    players.tank[i].power.laser.enable = 0;
+    players.tank[i].power.laser.targets[0] = -1;
+    players.tank[i].power.laser.targets[1] = -1;
+}
+
 void set_score() {
     for (int i = 0; i < players.number; i++) {
         if (players.tank[i].life) {

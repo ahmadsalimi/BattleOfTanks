@@ -55,7 +55,6 @@ CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: ../src/LIBs/Constants.h
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: ../src/LIBs/MapGenerate.c
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: ../src/LIBs/MapGenerate.h
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: ../src/LIBs/Struct.h
-CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: ../src/LIBs/View.h
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: /usr/include/SDL2/SDL.h
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: /usr/include/SDL2/SDL_assert.h
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: /usr/include/SDL2/SDL_atomic.h
@@ -102,6 +101,7 @@ CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: /usr/include/SDL2/close_code.h
 
 CMakeFiles/project.dir/src/LIBs/Physics.c.o: ../src/LIBs/Constants.h
+CMakeFiles/project.dir/src/LIBs/Physics.c.o: ../src/LIBs/Logic.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.o: ../src/LIBs/MapGenerate.h
 CMakeFiles/project.dir/src/LIBs/Physics.c.o: ../src/LIBs/Physics.c
 CMakeFiles/project.dir/src/LIBs/Physics.c.o: ../src/LIBs/Physics.h

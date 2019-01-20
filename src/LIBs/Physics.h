@@ -3,6 +3,8 @@
 
 #include "Struct.h"
 
+double absolute(double x);
+
 void shoot(SHOT *shot);
 
 int menu_events();
