@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
     tank_presetting();
     show_window();
     read_images();
-    while (flag) {
+    while (not_closed) {
         show_starting_menu();
         waiting_for_start();
         play_game();

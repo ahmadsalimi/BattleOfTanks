@@ -11,6 +11,7 @@ void death_check() {
                 if (players.tank[j].shot[k].time > 0 && pow(players.tank[i].x - players.tank[j].shot[k].x, 2) + pow(players.tank[i].y - players.tank[j].shot[k].y, 2) < pow(TANK_RADIUS, 2)) {
                     players.tank[j].shot[k].time = 0;
                     players.tank[i].life = 0;
+                    players.tank[i].shot_type = 0;
                     (players.lives)--;
                 }
             }
@@ -21,6 +22,7 @@ void death_check() {
 void laser_kill(int i) {
     if (players.tank[i].power.laser.target_counter) {
         players.tank[players.tank[i].power.laser.target].life = 0;
+        players.tank[players.tank[i].power.laser.target].shot_type = 0;
         (players.lives)--;
     }
     players.tank[i].shot_type = 0;
@@ -31,6 +33,14 @@ void laser_kill(int i) {
     players.tank[i].power.laser.enable = 0;
     players.tank[i].power.laser.targets[0] = -1;
     players.tank[i].power.laser.targets[1] = -1;
+}
+
+void mine_kill(int i) {
+    players.tank[players.tank[i].power.mine.target].life = 0;
+    players.tank[players.tank[i].power.mine.target].shot_type = 0;
+    (players.lives)--;
+    players.tank[i].power.mine.mode = 3;
+    players.tank[i].power.mine.kill_time = MINE_KILL_TIME;
 }
 
 void set_score() {

@@ -11,6 +11,6 @@ void play_game();
 
 void make_shot(int i);
 
-extern bool flag;
+extern bool not_closed;
 
 #endif //PROJECT_PLAY_H

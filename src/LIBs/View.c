@@ -168,7 +168,7 @@ void show_starting_menu() {
     multiplayer_state = 2;
     while (players.state == 0) {
         if (menu_events() == -1) {
-            flag = 0;
+            not_closed = 0;
             break;
         }
         if (menu_state == 0) {
@@ -228,7 +228,7 @@ void waiting_for_start() {
     }
     while (players.state == 1) {
         if (waiting_events() == -1) {
-            flag = 0;
+            not_closed = 0;
             break;
         }
         SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
@@ -277,9 +277,16 @@ void draw_tank() {
         if (players.tank[i].life) {
             filledCircleRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (TANK_RADIUS), (Uint8) players.tank[i].RGBA_color[0], (Uint8) players.tank[i].RGBA_color[1], (Uint8) players.tank[i].RGBA_color[2], 255);
             thickLineRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (players.tank[i].x + LENGTH * cos((players.tank[i].angle) * PI / 180)), (Sint16) (players.tank[i].y + LENGTH * sin((players.tank[i].angle) * PI / 180)), 4, 70, 70, 70, 255);
-            filledCircleRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (TANK_RADIUS / 2), 232, 232, 232, 255);
-            for (int j = -3; j < 3; j++) {
-                filledCircleRGBA(renderer, (Sint16) (players.tank[i].x + cos((players.tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (players.tank[i].y + sin((players.tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (TANK_RADIUS / 8), 232, 232, 232, 255);
+            if (players.tank[i].shot_type != 2 || players.tank[i].power.mine.mode) {
+                filledCircleRGBA(renderer, (Sint16) players.tank[i].x, (Sint16) players.tank[i].y, (Sint16) (TANK_RADIUS / 2), 232, 232, 232, 255);
+                for (int j = -3; j < 3; j++) {
+                    filledCircleRGBA(renderer, (Sint16) (players.tank[i].x + cos((players.tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (players.tank[i].y + sin((players.tank[i].angle + 30 + j * 60) * PI / 180) * TANK_RADIUS * 3 / 4), (Sint16) (TANK_RADIUS / 8), 232, 232, 232, 255);
+                }
+            } else if (players.tank[i].shot_type == 2 && !players.tank[i].power.mine.mode) {
+                for (int j = 0; j < 6; j++) {
+                    thickLineRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (players.tank[i].power.mine.position.x + (TANK_RADIUS * 2 / 3) * cos(players.tank[i].angle * PI / 180 + 2 * j * PI / 6)), (Sint16) (players.tank[i].power.mine.position.y + (TANK_RADIUS * 2 / 3) * sin(players.tank[i].angle * PI / 180 + 2 * j * PI / 6)), 3, 232, 232, 232, 255);
+                }
+                filledCircleRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (TANK_RADIUS * 2 / 5), 232, 232, 232, 255);
             }
         }
     }
@@ -298,12 +305,21 @@ void draw_shot() {
 
 void draw_power_box() {
     if (laser_box->enable) {
-        filledCircleRGBA(renderer, laser_box->center.x, laser_box->center.y, POWER_RADIUS, 230, 230, 230, 255);
+        filledCircleRGBA(renderer, laser_box->center.x, laser_box->center.y, (Sint16) POWER_RADIUS, 230, 230, 230, 255);
         thickLineRGBA(renderer, (Sint16) (laser_box->center.x - POWER_RADIUS * cos(-PI / 6)), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(-PI / 6)), (Sint16) (laser_box->center.x - POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
         thickLineRGBA(renderer, (Sint16) (laser_box->center.x + POWER_RADIUS * cos(-PI / 6)), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(-PI / 6)), (Sint16) (laser_box->center.x + POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
         thickLineRGBA(renderer, (Sint16) (laser_box->center.x - POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(PI / 3) / 2), (Sint16) (laser_box->center.x + POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
-        circleRGBA(renderer, laser_box->center.x, laser_box->center.y, POWER_RADIUS, 20, 20, 20, 255);
+        circleRGBA(renderer, laser_box->center.x, laser_box->center.y, (Sint16) POWER_RADIUS, 20, 20, 20, 255);
         laser_box->time--;
+    }
+    if (mine_box->enable) {
+        filledCircleRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) POWER_RADIUS, 230, 230, 230, 255);
+        for (int i = 0; i < 6; i++) {
+            thickLineRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) (mine_box->center.x + (POWER_RADIUS * 2 / 3) * cos(2 * i * PI / 6)), (Sint16) (mine_box->center.y + (POWER_RADIUS * 2 / 3) * sin(2 * i * PI / 6)), 2, 255, 42, 0, 255);
+        }
+        filledCircleRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) (POWER_RADIUS * 2 / 5), 255, 42, 0, 255);
+        circleRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) POWER_RADIUS, 20, 20, 20, 255);
+        mine_box->time--;
     }
 }
 
@@ -325,7 +341,7 @@ void draw_tank_power() {
             players.tank[i].power.laser.start.y = (Sint16) players.tank[i].y;
             double a = -tan(players.tank[i].angle * PI / 180), b = 1.0, c = tan(players.tank[i].angle * PI / 180) * players.tank[i].x - players.tank[i].y;
             for (Sint8 j = 0; j < players.number; j++) {
-                if (i != j && absolute(a * players.tank[j].x + b * players.tank[j].y + c) / sqrt(pow(a, 2) + pow(b, 2)) < TANK_RADIUS) {
+                if (i != j && players.tank[j].life && absolute(a * players.tank[j].x + b * players.tank[j].y + c) / sqrt(pow(a, 2) + pow(b, 2)) < TANK_RADIUS) {
                     if (((sin(players.tank[i].angle * PI / 180) > 0 && players.tank[j].y + TANK_RADIUS > players.tank[i].y) || (sin(players.tank[i].angle * PI / 180) <= 0 && players.tank[j].y - TANK_RADIUS < players.tank[i].y)) && ((cos(players.tank[i].angle * PI / 180) > 0 && players.tank[j].x + TANK_RADIUS > players.tank[i].x) || (cos(players.tank[i].angle * PI / 180) <= 0 && players.tank[j].x - TANK_RADIUS < players.tank[i].x)))
                         players.tank[i].power.laser.targets[players.tank[i].power.laser.target_counter++] = j;
                 }
@@ -390,6 +406,61 @@ void draw_tank_power() {
             thickLineRGBA(renderer, players.tank[i].power.laser.start.x, players.tank[i].power.laser.start.y, players.tank[i].power.laser.finish.x, players.tank[i].power.laser.finish.y, 3, 101, 255, 101, 255);
             players.tank[i].power.laser.time--;
         }
+        if (players.tank[i].shot_type == 2) { // mine
+            if (players.tank[i].power.mine.mode == 0) { //carrying
+                players.tank[i].power.mine.position.x = (Sint16) players.tank[i].x;
+                players.tank[i].power.mine.position.y = (Sint16) players.tank[i].y;
+                players.tank[i].power.mine.carrying_time--;
+                if (!players.tank[i].power.mine.carrying_time) {
+                    players.tank[i].power.mine.enable = false;
+                    players.tank[i].power.mine.kill_time = 0;
+                    players.tank[i].power.mine.carrying_time = 0;
+                    players.tank[i].power.mine.mode = 0;
+                    players.tank[i].power.mine.hide_time = 0;
+                    players.tank[i].power.mine.show_time = 0;
+                    players.tank[i].power.mine.target = -1;
+                    players.tank[i].shot_type = 0;
+                }
+            } else if (players.tank[i].power.mine.mode == 1) { // laid out and showing
+                for (int j = 0; j < 6; j++) {
+                    thickLineRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (players.tank[i].power.mine.position.x + (POWER_RADIUS * 2 / 3) * cos(2 * j * PI / 6)), (Sint16) (players.tank[i].power.mine.position.y + (POWER_RADIUS * 2 / 3) * sin(2 * j * PI / 6)), 2, 0, 0, 0, (Uint8) (255 * ((double) players.tank[i].power.mine.show_time / MINE_SHOW_TIME)));
+                }
+                filledCircleRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (POWER_RADIUS * 2 / 5), 0, 0, 0, (Uint8) (255 * ((double) players.tank[i].power.mine.show_time / MINE_SHOW_TIME)));
+                players.tank[i].power.mine.show_time--;
+                if (!players.tank[i].power.mine.show_time) {
+                    players.tank[i].power.mine.mode = 2;
+                    players.tank[i].power.mine.hide_time = MINE_HIDE_TIME;
+                }
+            } else if (players.tank[i].power.mine.mode == 2) { // hide
+                players.tank[i].power.mine.hide_time--;
+                if (!players.tank[i].power.mine.hide_time) {
+                    players.tank[i].power.mine.enable = false;
+                    players.tank[i].power.mine.kill_time = 0;
+                    players.tank[i].power.mine.carrying_time = 0;
+                    players.tank[i].power.mine.mode = 0;
+                    players.tank[i].power.mine.hide_time = 0;
+                    players.tank[i].power.mine.show_time = 0;
+                    players.tank[i].power.mine.target = -1;
+                    players.tank[i].shot_type = 0;
+                }
+            } else { //kill
+                for (int j = 0; j < 6; j++) {
+                    thickLineRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (players.tank[i].power.mine.position.x + (POWER_RADIUS * 2 / 3) * cos(2 * j * PI / 6)), (Sint16) (players.tank[i].power.mine.position.y + (POWER_RADIUS * 2 / 3) * sin(2 * j * PI / 6)), 2, 0, 0, 0, 255);
+                }
+                filledCircleRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (POWER_RADIUS * 2 / 5), 0, 0, 0, 255);
+                players.tank[i].power.mine.kill_time--;
+                if (!players.tank[i].power.mine.kill_time) {
+                    players.tank[i].power.mine.enable = false;
+                    players.tank[i].power.mine.kill_time = 0;
+                    players.tank[i].power.mine.carrying_time = 0;
+                    players.tank[i].power.mine.mode = 0;
+                    players.tank[i].power.mine.hide_time = 0;
+                    players.tank[i].power.mine.show_time = 0;
+                    players.tank[i].power.mine.target = -1;
+                    players.tank[i].shot_type = 0;
+                }
+            }
+        }
     }
 }
 
@@ -435,7 +506,7 @@ void game_over() {
 
     while (players.state == 3) {
         if (game_over_events() == -1) {
-            flag = 0;
+            not_closed = 0;
             break;
         }
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);

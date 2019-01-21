@@ -161,12 +161,24 @@ void wall_confluence(int i) {
     }
 }
 
+void mine_confluence(int i) {
+    for (int j = 0; j < players.number; j++) {
+        if (i != j && players.tank[j].shot_type == 2 && players.tank[j].power.mine.mode) {
+            if (pow(players.tank[i].x - players.tank[j].power.mine.position.x, 2) + pow(players.tank[i].y - players.tank[j].power.mine.position.y, 2) < pow(TANK_RADIUS + POWER_RADIUS, 2)) {
+                players.tank[j].power.mine.target = (Sint8) i;
+                mine_kill(j);
+            }
+        }
+    }
+}
+
 void tank_motion(int i) {
     //moving
     players.tank[i].x += SPEED * cos(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]);
     players.tank[i].y += SPEED * sin(players.tank[i].angle * PI / 180) * (keys[players.tank[i].directions[0] % 501] - keys[players.tank[i].directions[1] % 501]);
     wall_confluence(i);
     wall_heads(i); //checking confluence between tank and wall heads
+    mine_confluence(i);
 }
 
 void tank_rotation(int i) {
@@ -181,6 +193,18 @@ void check_power(int i) {
             players.tank[i].power.laser.time = POWER_TIME;
             laser_box->enable = 0;
             laser_box->time = 0;
+        }
+    }
+    if (mine_box->enable && !players.tank[i].shot_type) {
+        if (pow(players.tank[i].x - mine_box->center.x, 2) + pow(players.tank[i].y - mine_box->center.y, 2) < pow(TANK_RADIUS + POWER_RADIUS, 2)) {
+            players.tank[i].shot_type = 2;
+            players.tank[i].power.mine.enable = 1;
+            players.tank[i].power.mine.carrying_time = POWER_TIME;
+            players.tank[i].power.mine.mode = 0;
+            players.tank[i].power.mine.position.x = (Sint16) players.tank[i].x;
+            players.tank[i].power.mine.position.y = (Sint16) players.tank[i].y;
+            mine_box->enable = 0;
+            mine_box->time = 0;
         }
     }
 }
@@ -244,6 +268,7 @@ int menu_events() {
         if (keys[SDLK_RETURN % 501]) {
             players.number = multiplayer_state;
             players.state = 1;
+            setting();
             keys[SDLK_RETURN % 501] = 0;
         }
     } else {
@@ -286,28 +311,38 @@ int game_over_events() {
     }
 }
 
+void leave_mine(int i) {
+    players.tank[i].power.mine.show_time = MINE_SHOW_TIME;
+    players.tank[i].power.mine.target = -1;
+    players.tank[i].power.mine.mode = 1;
+}
+
 int events() {
+    if (get_keys() == -1) {
+        return -1;
+    }
+    if (keys[SDLK_ESCAPE % 501]) {
+        players.state = 0;
+        menu_state = 0;
+        keys[SDLK_ESCAPE % 501] = 0;
+    }
     for (int i = 0; i < players.number; i++) {
-        if (get_keys() == -1) {
-            return -1;
-        }
-        if (players.tank[i].life && keys[players.tank[i].shooting_key % 501]) {
-            if (!shooting_flag[i]) {
-                if (players.tank[i].shot_type == 0){
-                    make_shot(i);
-                } else if (players.tank[i].shot_type == 1) {
-                    laser_kill(i);
+        if (players.tank[i].life) {
+            if (keys[players.tank[i].shooting_key % 501]) {
+                if (!shooting_flag[i]) {
+                    if (players.tank[i].shot_type == 0) {
+                        make_shot(i);
+                    } else if (players.tank[i].shot_type == 1) {
+                        laser_kill(i);
+                    } else if (players.tank[i].shot_type == 2) {
+                        leave_mine(i);
+                    }
                 }
+                shooting_flag[i] = 1;
             }
-            shooting_flag[i] = 1;
+            tank_motion(i);
+            tank_rotation(i);
+            check_power(i);
         }
-        if (keys[SDLK_ESCAPE % 501]) {
-            players.state = 0;
-            menu_state = 0;
-            keys[SDLK_ESCAPE % 501] = 0;
-        }
-        tank_motion(i);
-        tank_rotation(i);
-        check_power(i);
     }
 }

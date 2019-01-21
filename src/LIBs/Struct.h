@@ -36,7 +36,25 @@ typedef struct {
 } LASER;
 
 typedef struct {
+    bool enable;
+    Sint16 time;
+    POINT center;
+} MINE_BOX;
+
+typedef struct {
+    bool enable;
+    Sint8 mode; //0: carrying, 1: laid out and showing, 2: hide, 3: killing
+    POINT position;
+    Sint8 target;
+    Sint16 carrying_time;
+    Sint8 show_time;
+    Sint16 hide_time;
+    Sint8 kill_time;
+} MINE;
+
+typedef struct {
     LASER laser;
+    MINE mine;
 } POWER;
 
 typedef struct {
@@ -76,6 +94,7 @@ typedef struct {
 
 extern PLAYERS players;
 extern LASER_BOX *laser_box;
+extern MINE_BOX *mine_box;
 extern Sint8 menu_state;
 extern Sint8 menu_button_state;
 extern bool menu_playtime;
