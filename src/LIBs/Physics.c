@@ -64,7 +64,9 @@ void shoot(SHOT *shot) {
     shot->angle %= 360;
     shot->x = shot->x + SPEED_OF_SHOT * cos((shot->angle) * PI / 180);
     shot->y = shot->y + SPEED_OF_SHOT * sin((shot->angle) * PI / 180);
-    (shot->time)--;
+    if (!save_mode) {
+        (shot->time)--;
+    }
 }
 
 void wall_heads(int i) {
@@ -259,7 +261,12 @@ int menu_events() {
             }
             keys[SDLK_RETURN % 501] = 0;
         }
-    } else if (menu_state == 1) {
+    } else if (menu_state == 1) { //new game
+        if (keys[SDLK_ESCAPE % 501]) {
+            menu_state = 0;
+            menu_button_state = 0;
+            keys[SDLK_ESCAPE % 501] = 0;
+        }
         if (keys[SDLK_RIGHT % 501] && multiplayer_state == 2) {
             multiplayer_state = 3;
         }
@@ -272,10 +279,32 @@ int menu_events() {
             setting();
             keys[SDLK_RETURN % 501] = 0;
         }
-    } else {
-
+    } else { //menu state = 2, load
+        if (!(last_number - 1)) {
+            if (keys[SDLK_ESCAPE % 501]) {
+                menu_state = 0;
+                menu_button_state = 0;
+                keys[SDLK_ESCAPE % 501] = 0;
+            }
+        } else {
+            if (keys[SDLK_ESCAPE % 501]) {
+                menu_state = 0;
+                menu_button_state = 0;
+                keys[SDLK_ESCAPE % 501] = 0;
+            }
+            if (keys[SDLK_RETURN % 501]) { //load!
+                load(); // this function loads the selected number.
+                players.state = 2; // play the game
+                keys[SDLK_RETURN % 501] = 0;
+            } else if (keys[SDLK_UP % 501]  && load_number < last_number - 1) { // Increase load number
+                load_number++;
+                keys[SDLK_UP % 501] = 0;
+            } else if (keys[SDLK_DOWN % 501] && load_number > 1) { // Increase load number
+                load_number--;
+                keys[SDLK_DOWN % 501] = 0;
+            }
+        }
     }
-
 }
 
 int waiting_events() {
@@ -322,28 +351,40 @@ int events() {
     if (get_keys() == -1) {
         return -1;
     }
-    if (keys[SDLK_ESCAPE % 501]) {
-        players.state = 0;
-        menu_state = 0;
-        keys[SDLK_ESCAPE % 501] = 0;
-    }
-    for (int i = 0; i < players.number; i++) {
-        if (players.tank[i].life) {
-            if (keys[players.tank[i].shooting_key % 501]) {
-                if (!shooting_flag[i]) {
-                    if (players.tank[i].shot_type == 0) {
-                        make_shot(i);
-                    } else if (players.tank[i].shot_type == 1) {
-                        laser_kill(i);
-                    } else if (players.tank[i].shot_type == 2) {
-                        leave_mine(i);
+    if (!save_mode) {
+        if (keys[SDLK_ESCAPE % 501]) {
+            players.state = 0;
+            menu_state = 0;
+            keys[SDLK_ESCAPE % 501] = 0;
+        }
+        else if (keys[SDLK_LCTRL % 501] && keys[SDLK_s % 501]) { // saving mode!
+            save_mode = 1;
+        }
+        for (int i = 0; i < players.number; i++) {
+            if (players.tank[i].life) {
+                if (keys[players.tank[i].shooting_key % 501]) {
+                    if (!shooting_flag[i]) {
+                        if (players.tank[i].shot_type == 0) {
+                            make_shot(i);
+                        } else if (players.tank[i].shot_type == 1) {
+                            laser_kill(i);
+                        } else if (players.tank[i].shot_type == 2) {
+                            leave_mine(i);
+                        }
                     }
+                    shooting_flag[i] = 1;
                 }
-                shooting_flag[i] = 1;
+                tank_motion(i);
+                tank_rotation(i);
+                check_power(i);
             }
-            tank_motion(i);
-            tank_rotation(i);
-            check_power(i);
+        }
+    } else {
+        if (keys[SDLK_ESCAPE % 501]) { //back to the game
+            save_mode = 0;
+            keys[SDLK_ESCAPE % 501] = 0;
+        } else if (keys[SDLK_RETURN % 501]) { //save the game!!
+            save();
         }
     }
 }

@@ -2,7 +2,6 @@
 #include "LIBs/Physics.h"
 #include "LIBs/Play.h"
 
-
 int main(int argc, char *argv[]) {
     players.state = 0;
     tank_presetting();

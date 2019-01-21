@@ -9,9 +9,13 @@ void show_window();
 
 void read_images();
 
+void load();
+
 void show_starting_menu();
 
 void waiting_for_start();
+
+void save();
 
 void drawing();
 

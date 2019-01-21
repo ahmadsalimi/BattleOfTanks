@@ -25,6 +25,11 @@ Sint8 menu_button_state;
 bool menu_playtime;
 Sint8 multiplayer_state;
 Sint16 finish_point = 1;
+bool save_mode;
+bool file_checked;
+FILE *storage;
+int last_number;
+int load_number = 1;
 
 void load_icon() {
     icon = SDL_LoadBMP("icon.bmp");
@@ -163,6 +168,96 @@ void read_images() {
     }
 }
 
+void check_storage() {
+    storage = fopen("../storage.b", "r");
+    char line[10000];
+    last_number = 1;
+    fgets(line, 10000, storage);
+    while (1) {
+        int num = 0;
+        fscanf(storage, "%d", &num);
+        if (num) {
+            fgets(line, 10000, storage);
+        } else {
+            break;
+        }
+        last_number++;
+    }
+    file_checked = 1;
+    fclose(storage);
+}
+
+int x, y;
+
+void load() {
+    srand(SDL_GetTicks());
+    storage = fopen("../storage.b", "r");
+    char line[10000];
+    fgets(line, 10000, storage);
+    int num = 0;
+    while (num != load_number) {
+        fscanf(storage, "%d ", &num);
+        if (num == load_number) {
+            fscanf(storage, "%d %d ", &(players.number), &(players.lives));
+            for (int i = 0; i < players.number; i++) {
+                fscanf(storage, "%d %lf %lf %lf %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d ", &players.tank[i].life, &players.tank[i].x, &players.tank[i].y, &players.tank[i].angle, &players.tank[i].score, &players.tank[i].shot_type, &players.tank[i].power.laser.enable, &players.tank[i].power.laser.start.x, &players.tank[i].power.laser.start.y, &players.tank[i].power.laser.finish.x, &players.tank[i].power.laser.finish.y, &players.tank[i].power.laser.target, &players.tank[i].power.laser.time, &players.tank[i].power.laser.target_counter, &players.tank[i].power.laser.targets[0], &players.tank[i].power.laser.targets[1], &players.tank[i].power.laser.kill, &players.tank[i].power.laser.kill_time, &players.tank[i].power.mine.enable, &players.tank[i].power.mine.mode, &players.tank[i].power.mine.position.x, &players.tank[i].power.mine.position.y, &players.tank[i].power.mine.target, &players.tank[i].power.mine.carrying_time, &players.tank[i].power.mine.show_time,
+                       &players.tank[i].power.mine.hide_time, &players.tank[i].power.mine.kill_time);
+                for (int j = 0; j < MAX_BALLS; j++) {
+                    fscanf(storage, "%d %lf %lf %d ", &players.tank[i].shot[j].time, &players.tank[i].shot[j].x, &players.tank[i].shot[j].y, &players.tank[i].shot[j].angle);
+                }
+            }
+            fscanf(storage, "%d %d ", &x, &y);
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    fscanf(storage, "%d ", &horizontal_walls[i][j]);
+                }
+            }
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    fscanf(storage, "%d ", &vertical_walls[i][j]);
+                }
+            }
+            fscanf(storage, "%d %d %d %d %d %d %d %d %d %d %d ", &laser_box->enable, &laser_box->time, &laser_box->center.x, &laser_box->center.y, &mine_box->enable, &mine_box->time, &mine_box->center.x, &mine_box->center.y, &power_make_time, &play_time, &finish_point);
+            break;
+        }
+        if (num) {
+            fgets(line, 10000, storage);
+        } else {
+            break;
+        }
+    }
+    fclose(storage);
+    max_boxes_x = (Sint8) x;
+    max_boxes_y = (Sint8) y;
+}
+
+void save() {
+    storage = fopen("../storage.b", "a");
+    fprintf(storage, "\n%d %d %d ", last_number, players.number, players.lives);
+    for (int i = 0; i < players.number; i++) {
+        fprintf(storage, "%d %lf %lf %lf %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d ", players.tank[i].life, players.tank[i].x, players.tank[i].y, players.tank[i].angle, players.tank[i].score, players.tank[i].shot_type, players.tank[i].power.laser.enable, players.tank[i].power.laser.start.x, players.tank[i].power.laser.start.y, players.tank[i].power.laser.finish.x, players.tank[i].power.laser.finish.y, players.tank[i].power.laser.target, players.tank[i].power.laser.time, players.tank[i].power.laser.target_counter, players.tank[i].power.laser.targets[0], players.tank[i].power.laser.targets[1], players.tank[i].power.laser.kill, players.tank[i].power.laser.kill_time, players.tank[i].power.mine.enable, players.tank[i].power.mine.mode, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, players.tank[i].power.mine.target, players.tank[i].power.mine.carrying_time, players.tank[i].power.mine.show_time, players.tank[i].power.mine.hide_time,
+                players.tank[i].power.mine.kill_time);
+        for (int j = 0; j < MAX_BALLS; j++) {
+            fprintf(storage, "%d %lf %lf %d ", players.tank[i].shot[j].time, players.tank[i].shot[j].x, players.tank[i].shot[j].y, players.tank[i].shot[j].angle);
+        }
+    }
+    fprintf(storage, "%d %d ", max_boxes_x, max_boxes_y);
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            fprintf(storage, "%d ", horizontal_walls[i][j]);
+        }
+    }
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            fprintf(storage, "%d ", vertical_walls[i][j]);
+        }
+    }
+    fprintf(storage, "%d %d %d %d %d %d %d %d %d %d %d ", laser_box->enable, laser_box->time, laser_box->center.x, laser_box->center.y, mine_box->enable, mine_box->time, mine_box->center.x, mine_box->center.y, power_make_time, play_time, finish_point);
+    save_mode = 0;
+    last_number++;
+    fclose(storage);
+    file_checked = 0;
+}
 
 void show_starting_menu() {
     multiplayer_state = 2;
@@ -204,8 +299,22 @@ void show_starting_menu() {
                 SDL_RenderCopy(renderer, multiplayer_hover[1].texture, NULL, &multiplayer_hover[1].rect);
             }
             SDL_RenderPresent(renderer);
-        } else { // Load
-
+        } else { // menu state = 2, Load
+            SDL_SetRenderDrawColor(renderer, 255, 236, 213, 255);
+            SDL_RenderClear(renderer);
+            SDL_RenderCopy(renderer, logo.texture, NULL, &logo.rect);
+            if (!file_checked) {
+                check_storage();
+            }
+            if (!(last_number - 1)) {
+                stringRGBA(renderer, SCREEN_WIDTH / 2 - 140, (Sint16) (logo.rect.y + logo.rect.h + 20), "There is no saved game! Press \"ESC\".", 0, 0, 0, 255);
+            } else {
+                char loading_str[50];
+                sprintf(loading_str, "Set the number of saved game you want to play: %d.", load_number);
+                stringRGBA(renderer, SCREEN_WIDTH / 2 - 185, (Sint16) (logo.rect.y + logo.rect.h + 20), loading_str, 0, 0, 0, 255);
+                stringRGBA(renderer, SCREEN_WIDTH / 2 - 255, (Sint16) (logo.rect.y + logo.rect.h + 40), "Change the number using keys \"up\" or \"down\". Press \"ENTER\" to load.", 0, 0, 0, 255);
+            }
+            SDL_RenderPresent(renderer);
         }
     }
     menu_playtime = 1;
@@ -296,7 +405,9 @@ void draw_shot() {
     for (int i = 0; i < players.number; i++) {
         for (int j = 0; j < MAX_BALLS; j++) {
             if (players.tank[i].shot[j].time > 0) {
-                shoot(&(players.tank[i].shot[j]));
+                if (!save_mode) {
+                    shoot(&(players.tank[i].shot[j]));
+                }
                 filledCircleRGBA(renderer, (Sint16) players.tank[i].shot[j].x, (Sint16) players.tank[i].shot[j].y, (Sint16) (SHOT_RADIUS), 0, 0, 0, 255);
             }
         }
@@ -310,7 +421,9 @@ void draw_power_box() {
         thickLineRGBA(renderer, (Sint16) (laser_box->center.x + POWER_RADIUS * cos(-PI / 6)), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(-PI / 6)), (Sint16) (laser_box->center.x + POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
         thickLineRGBA(renderer, (Sint16) (laser_box->center.x - POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y - POWER_RADIUS * sin(PI / 3) / 2), (Sint16) (laser_box->center.x + POWER_RADIUS * cos(PI / 3) / 2), (Sint16) (laser_box->center.y + POWER_RADIUS * sin(PI / 3) / 2), 4, 255, 42, 0, 255);
         circleRGBA(renderer, laser_box->center.x, laser_box->center.y, (Sint16) POWER_RADIUS, 20, 20, 20, 255);
-        laser_box->time--;
+        if (!save_mode) {
+            laser_box->time--;
+        }
     }
     if (mine_box->enable) {
         filledCircleRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) POWER_RADIUS, 230, 230, 230, 255);
@@ -319,14 +432,18 @@ void draw_power_box() {
         }
         filledCircleRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) (POWER_RADIUS * 2 / 5), 255, 42, 0, 255);
         circleRGBA(renderer, mine_box->center.x, mine_box->center.y, (Sint16) POWER_RADIUS, 20, 20, 20, 255);
-        mine_box->time--;
+        if (!save_mode) {
+            mine_box->time--;
+        }
     }
 }
 
 void show_laser_killing(i) {
     if (players.tank[i].power.laser.kill_time > 0) {
         thickLineRGBA(renderer, players.tank[i].power.laser.start.x, players.tank[i].power.laser.start.y, players.tank[i].power.laser.finish.x, players.tank[i].power.laser.finish.y, 3, 255, 42, 0, 255);
-        players.tank[i].power.laser.kill_time--;
+        if (!save_mode) {
+            players.tank[i].power.laser.kill_time--;
+        }
     }
 }
 
@@ -404,13 +521,17 @@ void draw_tank_power() {
                 }
             }
             thickLineRGBA(renderer, players.tank[i].power.laser.start.x, players.tank[i].power.laser.start.y, players.tank[i].power.laser.finish.x, players.tank[i].power.laser.finish.y, 3, 101, 255, 101, 255);
-            players.tank[i].power.laser.time--;
+            if (!save_mode) {
+                players.tank[i].power.laser.time--;
+            }
         }
         if (players.tank[i].shot_type == 2) { // mine
             if (players.tank[i].power.mine.mode == 0) { //carrying
                 players.tank[i].power.mine.position.x = (Sint16) players.tank[i].x;
                 players.tank[i].power.mine.position.y = (Sint16) players.tank[i].y;
-                players.tank[i].power.mine.carrying_time--;
+                if (!save_mode) {
+                    players.tank[i].power.mine.carrying_time--;
+                }
                 if (!players.tank[i].power.mine.carrying_time) {
                     players.tank[i].power.mine.enable = false;
                     players.tank[i].power.mine.kill_time = 0;
@@ -426,13 +547,17 @@ void draw_tank_power() {
                     thickLineRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (players.tank[i].power.mine.position.x + (POWER_RADIUS * 2 / 3) * cos(2 * j * PI / 6)), (Sint16) (players.tank[i].power.mine.position.y + (POWER_RADIUS * 2 / 3) * sin(2 * j * PI / 6)), 2, 0, 0, 0, (Uint8) (255 * ((double) players.tank[i].power.mine.show_time / MINE_SHOW_TIME)));
                 }
                 filledCircleRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (POWER_RADIUS * 2 / 5), 0, 0, 0, (Uint8) (255 * ((double) players.tank[i].power.mine.show_time / MINE_SHOW_TIME)));
-                players.tank[i].power.mine.show_time--;
+                if (!save_mode) {
+                    players.tank[i].power.mine.show_time--;
+                }
                 if (!players.tank[i].power.mine.show_time) {
                     players.tank[i].power.mine.mode = 2;
                     players.tank[i].power.mine.hide_time = MINE_HIDE_TIME;
                 }
             } else if (players.tank[i].power.mine.mode == 2) { // hide
-                players.tank[i].power.mine.hide_time--;
+                if (!save_mode) {
+                    players.tank[i].power.mine.hide_time--;
+                }
                 if (!players.tank[i].power.mine.hide_time) {
                     players.tank[i].power.mine.enable = false;
                     players.tank[i].power.mine.kill_time = 0;
@@ -448,7 +573,9 @@ void draw_tank_power() {
                     thickLineRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (players.tank[i].power.mine.position.x + (POWER_RADIUS * 2 / 3) * cos(2 * j * PI / 6)), (Sint16) (players.tank[i].power.mine.position.y + (POWER_RADIUS * 2 / 3) * sin(2 * j * PI / 6)), 2, 0, 0, 0, 255);
                 }
                 filledCircleRGBA(renderer, players.tank[i].power.mine.position.x, players.tank[i].power.mine.position.y, (Sint16) (POWER_RADIUS * 2 / 5), 0, 0, 0, 255);
-                players.tank[i].power.mine.kill_time--;
+                if (!save_mode) {
+                    players.tank[i].power.mine.kill_time--;
+                }
                 if (!players.tank[i].power.mine.kill_time) {
                     players.tank[i].power.mine.enable = false;
                     players.tank[i].power.mine.kill_time = 0;
@@ -477,6 +604,25 @@ void show_time(int i) {
     }
 }
 
+void show_finish_score() {
+    char finish[20];
+    sprintf(finish, "Finish score: %d", finish_point);
+    stringRGBA(renderer, (Sint16) (START_MAP_X + 10), (Sint16) (FINISH_MAP_Y + 10), finish, 0, 0, 0, 255);
+}
+
+void show_save_tool() {
+    if (!save_mode) {
+        stringRGBA(renderer, (Sint16) (START_MAP_X + 20), (Sint16) (START_MAP_Y - 20), "Press \"Left CTRL + S\" to save this game!", 0, 0, 0, 255);
+    } else if (save_mode) {
+        if (!file_checked) {
+            check_storage();
+        }
+        char number[100];
+        sprintf(number, "Save number will be %d. Press \"ESC\" to back to the game... Press \"ENTER\" to confirm saving.", last_number);
+        stringRGBA(renderer, (Sint16) (START_MAP_X + 20), (Sint16) (START_MAP_Y - 20), number, 0, 0, 0, 255);
+    }
+}
+
 void drawing() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
@@ -487,6 +633,8 @@ void drawing() {
     draw_tank();
     show_players_points();
     show_time(0);
+    show_finish_score();
+    show_save_tool();
     SDL_RenderPresent(renderer);
 }
 

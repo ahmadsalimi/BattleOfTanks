@@ -48,7 +48,7 @@ void tank_presetting() {
 }
 
 void setting() {
-    srand((unsigned int) time(NULL));
+    srand(SDL_GetTicks());
     generate_map();
     players.lives = players.number;
     for (int i = 0; i < players.number; i++) {
@@ -99,6 +99,8 @@ void make_power() {
 }
 
 void play_game() {
+    load_number = 1;
+    menu_button_state = 0;
     while (not_closed && players.state == 2) {
         int one_left_delay = 0, one_left_counter = 0;
         if (players.lives <= 1) {
@@ -111,7 +113,10 @@ void play_game() {
                 break;
             }
             death_check();
-            if ((power_make_time--) <= 0) {
+            if (!save_mode) {
+                power_make_time--;
+            }
+            if (power_make_time <= 0) {
                 power_make_time = POWER_MAKE_TIME;
                 make_power();
             }
@@ -145,14 +150,18 @@ void play_game() {
                 break;
             }
             while (SDL_GetTicks() - start_ticks < 1000 / FPS);
-            play_time++;
+            if (!save_mode) {
+                play_time++;
+            }
         }
         if (players.lives <= 1) {
             set_score();
         }
         if (not_closed && !players.lives) {
             SDL_Delay(3000);
-            play_time += 3 * FPS;
+            if (!save_mode) {
+                play_time += 3 * FPS;
+            }
         }
     }
 }
