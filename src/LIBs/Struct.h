@@ -100,5 +100,6 @@ extern Sint8 menu_button_state;
 extern bool menu_playtime;
 extern Sint8 multiplayer_state;
 extern Sint16 finish_point;
+extern int play_time;
 
 #endif //PROJECT_STRUCT_H

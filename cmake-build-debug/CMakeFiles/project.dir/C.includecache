@@ -8,10 +8,6 @@
 
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
 
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h
-Struct.h
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
-
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
 stdbool.h
 -
@@ -22,39 +18,37 @@ SDL.h
 Struct.h
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
 
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c
-SDL.h
--
+/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
 stdbool.h
 -
-time.h
+
+/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
+Constants.h
+/home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
+stdbool.h
 -
-math.h
+SDL.h
 -
-Play.h
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
+
+/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c
+stdio.h
+-
+SDL.h
+-
+SDL2_gfxPrimitives.h
+-
 View.h
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
 Physics.h
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h
-Logic.h
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h
+Struct.h
+/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
 Constants.h
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
 MapGenerate.h
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
-
+Play.h
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
-stdbool.h
--
-
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
-Constants.h
-/home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
-stdbool.h
--
-SDL.h
--
 
 /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
 Struct.h
@@ -121,6 +115,12 @@ begin_code.h
 /usr/include/SDL2/begin_code.h
 close_code.h
 /usr/include/SDL2/close_code.h
+
+/usr/include/SDL2/SDL2_gfxPrimitives.h
+math.h
+-
+SDL.h
+/usr/include/SDL2/SDL.h
 
 /usr/include/SDL2/SDL_assert.h
 SDL_config.h

@@ -464,6 +464,19 @@ void draw_tank_power() {
     }
 }
 
+void show_time(int i) {
+    int h = (play_time / FPS) / 3600;
+    int m = (play_time / FPS) / 60 - 60 * h;
+    int s = (play_time / FPS) - 3600 * h - 60 * m;
+    char time[10];
+    sprintf(time, "%02d:%02d:%02d", h, m, s);
+    if (!i) {
+        stringRGBA(renderer, (Sint16) (FINISH_MAP_X + 10), (Sint16) (START_MAP_Y + 10), time, 0, 0, 0, 255);
+    } else {
+        stringRGBA(renderer, (Sint16) (SCREEN_WIDTH / 2 - 30), (Sint16) (player_points[0].rect.y - 180), time, 0, 0, 0, 255);
+    }
+}
+
 void drawing() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
@@ -473,6 +486,7 @@ void drawing() {
     draw_tank_power();
     draw_tank();
     show_players_points();
+    show_time(0);
     SDL_RenderPresent(renderer);
 }
 
@@ -512,6 +526,7 @@ void game_over() {
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
         show_winner();
+        show_time(1);
         show_game_over_points();
         SDL_RenderPresent(renderer);
     }

@@ -251,6 +251,7 @@ int menu_events() {
         if (keys[SDLK_RETURN % 501]) {
             if (menu_button_state == 0) { // New game
                 menu_state = 1;
+                play_time = 0;
             } else if (menu_button_state == 1) { // load
                 menu_state = 2;
             } else { //exit

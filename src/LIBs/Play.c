@@ -13,6 +13,7 @@ bool not_closed = 1;
 LASER_BOX *laser_box;
 MINE_BOX *mine_box;
 int power_make_time = POWER_MAKE_TIME;
+int play_time;
 
 void tank_presetting() {
     laser_box = malloc(sizeof(LASER_BOX));
@@ -144,10 +145,14 @@ void play_game() {
                 break;
             }
             while (SDL_GetTicks() - start_ticks < 1000 / FPS);
+            play_time++;
         }
         if (players.lives <= 1) {
             set_score();
         }
-        if (not_closed && !players.lives) SDL_Delay(3000);
+        if (not_closed && !players.lives) {
+            SDL_Delay(3000);
+            play_time += 3 * FPS;
+        }
     }
 }
