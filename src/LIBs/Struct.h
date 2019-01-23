@@ -92,6 +92,10 @@ typedef struct {
     SDL_Rect rect;
 } IMAGE;
 
+typedef enum {
+    BACKGROUND, CLICK, TOGGLE, EXPLOSION, FINISH, OPENING, GAME_OVER, LASER_SHOOT, MINING, POWER_ACHIEVE, POWER_APPEAR, REGENERATION, SHOOT
+} SOUNDS;
+
 extern PLAYERS players;
 extern LASER_BOX *laser_box;
 extern MINE_BOX *mine_box;
@@ -105,5 +109,6 @@ extern int play_time;
 extern bool save_mode;
 extern int last_number;
 extern int load_number;
+extern int keys[501];
 
 #endif //PROJECT_STRUCT_H

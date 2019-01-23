@@ -86,6 +86,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h">
 			<Option target="project"/>
 		</Unit>

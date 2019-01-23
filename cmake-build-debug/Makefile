@@ -123,6 +123,33 @@ project/fast:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
+src/LIBs/Audio.o: src/LIBs/Audio.c.o
+
+.PHONY : src/LIBs/Audio.o
+
+# target to build an object file
+src/LIBs/Audio.c.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Audio.c.o
+.PHONY : src/LIBs/Audio.c.o
+
+src/LIBs/Audio.i: src/LIBs/Audio.c.i
+
+.PHONY : src/LIBs/Audio.i
+
+# target to preprocess a source file
+src/LIBs/Audio.c.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Audio.c.i
+.PHONY : src/LIBs/Audio.c.i
+
+src/LIBs/Audio.s: src/LIBs/Audio.c.s
+
+.PHONY : src/LIBs/Audio.s
+
+# target to generate assembly for a file
+src/LIBs/Audio.c.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Audio.c.s
+.PHONY : src/LIBs/Audio.c.s
+
 src/LIBs/Logic.o: src/LIBs/Logic.c.o
 
 .PHONY : src/LIBs/Logic.o
@@ -294,6 +321,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... project"
 	@echo "... edit_cache"
+	@echo "... src/LIBs/Audio.o"
+	@echo "... src/LIBs/Audio.i"
+	@echo "... src/LIBs/Audio.s"
 	@echo "... src/LIBs/Logic.o"
 	@echo "... src/LIBs/Logic.i"
 	@echo "... src/LIBs/Logic.s"

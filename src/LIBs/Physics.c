@@ -8,6 +8,7 @@
 #include "MapGenerate.h"
 #include "Play.h"
 #include "Logic.h"
+#include "Audio.h"
 
 
 int keys[501];
@@ -190,6 +191,7 @@ void tank_rotation(int i) {
 void check_power(int i) {
     if (laser_box->enable && !players.tank[i].shot_type) {
         if (pow(players.tank[i].x - laser_box->center.x, 2) + pow(players.tank[i].y - laser_box->center.y, 2) < pow(TANK_RADIUS + POWER_RADIUS, 2)) {
+            play_sound(POWER_ACHIEVE);
             players.tank[i].shot_type = 1;
             players.tank[i].power.laser.enable = 1;
             players.tank[i].power.laser.time = POWER_TIME;
@@ -199,6 +201,7 @@ void check_power(int i) {
     }
     if (mine_box->enable && !players.tank[i].shot_type) {
         if (pow(players.tank[i].x - mine_box->center.x, 2) + pow(players.tank[i].y - mine_box->center.y, 2) < pow(TANK_RADIUS + POWER_RADIUS, 2)) {
+            play_sound(POWER_ACHIEVE);
             players.tank[i].shot_type = 2;
             players.tank[i].power.mine.enable = 1;
             players.tank[i].power.mine.carrying_time = POWER_TIME;
@@ -239,67 +242,83 @@ int menu_events() {
     }
     if (menu_state == 0) {
         if (keys[SDLK_ESCAPE % 501] && menu_playtime) {
+            play_sound(CLICK);
             players.state = 2;
             keys[SDLK_ESCAPE % 501] = 0;
         }
         if (keys[SDLK_DOWN % 501] && menu_button_state != 2) {
+            play_sound(TOGGLE);
             menu_button_state++;
             keys[SDLK_DOWN % 501] = 0;
         }
         if (keys[SDLK_UP % 501] && menu_button_state != 0) {
+            play_sound(TOGGLE);
             menu_button_state--;
             keys[SDLK_UP % 501] = 0;
         }
         if (keys[SDLK_RETURN % 501]) {
+            play_sound(CLICK);
             if (menu_button_state == 0) { // New game
                 menu_state = 1;
                 play_time = 0;
+                keys[SDLK_RETURN % 501] = 0;
             } else if (menu_button_state == 1) { // load
                 menu_state = 2;
+                keys[SDLK_RETURN % 501] = 0;
             } else { //exit
+                keys[SDLK_RETURN % 501] = 0;
                 return -1;
             }
-            keys[SDLK_RETURN % 501] = 0;
         }
     } else if (menu_state == 1) { //new game
         if (keys[SDLK_ESCAPE % 501]) {
+            play_sound(CLICK);
             menu_state = 0;
             menu_button_state = 0;
             keys[SDLK_ESCAPE % 501] = 0;
         }
         if (keys[SDLK_RIGHT % 501] && multiplayer_state == 2) {
+            play_sound(TOGGLE);
             multiplayer_state = 3;
         }
         if (keys[SDLK_LEFT % 501] && multiplayer_state == 3) {
+            play_sound(TOGGLE);
             multiplayer_state = 2;
         }
         if (keys[SDLK_RETURN % 501]) {
+            play_sound(CLICK);
             players.number = multiplayer_state;
             players.state = 1;
+            finish_point = 1;
             setting();
             keys[SDLK_RETURN % 501] = 0;
         }
     } else { //menu state = 2, load
         if (!(last_number - 1)) {
             if (keys[SDLK_ESCAPE % 501]) {
+                play_sound(CLICK);
                 menu_state = 0;
                 menu_button_state = 0;
                 keys[SDLK_ESCAPE % 501] = 0;
             }
         } else {
             if (keys[SDLK_ESCAPE % 501]) {
+                play_sound(CLICK);
                 menu_state = 0;
                 menu_button_state = 0;
                 keys[SDLK_ESCAPE % 501] = 0;
             }
             if (keys[SDLK_RETURN % 501]) { //load!
+                play_sound(CLICK);
                 load(); // this function loads the selected number.
                 players.state = 2; // play the game
                 keys[SDLK_RETURN % 501] = 0;
             } else if (keys[SDLK_UP % 501]  && load_number < last_number - 1) { // Increase load number
+                play_sound(TOGGLE);
                 load_number++;
                 keys[SDLK_UP % 501] = 0;
             } else if (keys[SDLK_DOWN % 501] && load_number > 1) { // Increase load number
+                play_sound(TOGGLE);
                 load_number--;
                 keys[SDLK_DOWN % 501] = 0;
             }
@@ -312,15 +331,18 @@ int waiting_events() {
         return -1;
     }
     if (keys[SDLK_RETURN % 501]) {
+        play_sound(CLICK);
         players.state = 2;
         keys[SDLK_RETURN % 501] = 0;
         keys[SDLK_ESCAPE % 501] = 0;
     }
     if (keys[SDLK_UP % 501] && finish_point < 30000) {
+        play_sound(TOGGLE);
         finish_point++;
         keys[SDLK_UP % 501] = 0;
     }
     if (keys[SDLK_DOWN % 501] && finish_point > 1) {
+        play_sound(TOGGLE);
         finish_point--;
         keys[SDLK_DOWN % 501] = 0;
     }
@@ -331,6 +353,7 @@ int game_over_events() {
         return -1;
     }
     if (keys[SDLK_ESCAPE % 501]) {
+        play_sound(CLICK);
         players.state = 0;
         menu_state = 0;
         menu_playtime = 0;
@@ -353,22 +376,26 @@ int events() {
     }
     if (!save_mode) {
         if (keys[SDLK_ESCAPE % 501]) {
+            play_sound(CLICK);
             players.state = 0;
             menu_state = 0;
             keys[SDLK_ESCAPE % 501] = 0;
         }
         else if (keys[SDLK_LCTRL % 501] && keys[SDLK_s % 501]) { // saving mode!
+            play_sound(CLICK);
             save_mode = 1;
         }
         for (int i = 0; i < players.number; i++) {
             if (players.tank[i].life) {
                 if (keys[players.tank[i].shooting_key % 501]) {
                     if (!shooting_flag[i]) {
-                        if (players.tank[i].shot_type == 0) {
+                        if (players.tank[i].shot_type == 0 || (players.tank[i].power.mine.enable && players.tank[i].power.mine.mode)) {
                             make_shot(i);
                         } else if (players.tank[i].shot_type == 1) {
+                            play_sound(LASER_SHOOT);
                             laser_kill(i);
-                        } else if (players.tank[i].shot_type == 2) {
+                        } else if (players.tank[i].shot_type == 2 && !players.tank[i].power.mine.mode) {
+                            play_sound(MINING);
                             leave_mine(i);
                         }
                     }
@@ -381,9 +408,11 @@ int events() {
         }
     } else {
         if (keys[SDLK_ESCAPE % 501]) { //back to the game
+            play_sound(CLICK);
             save_mode = 0;
             keys[SDLK_ESCAPE % 501] = 0;
         } else if (keys[SDLK_RETURN % 501]) { //save the game!!
+            play_sound(CLICK);
             save();
         }
     }

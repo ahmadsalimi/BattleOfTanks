@@ -8,6 +8,7 @@
 #include "Logic.h"
 #include "Constants.h"
 #include "MapGenerate.h"
+#include "Audio.h"
 
 bool not_closed = 1;
 LASER_BOX *laser_box;
@@ -72,6 +73,7 @@ void setting() {
 void make_shot(int i) {
     for (int j = 0; j < MAX_BALLS; j++) {
         if (players.tank[i].shot[j].time <= 0) {
+            play_sound(SHOOT);
             players.tank[i].shot[j].time = LIFE_OF_SHOT;
             players.tank[i].shot[j].x = players.tank[i].x + (TANK_RADIUS + SHOT_RADIUS) * cos(players.tank[i].angle * PI / 180);
             players.tank[i].shot[j].y = players.tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players.tank[i].angle * PI / 180);;
@@ -83,6 +85,7 @@ void make_shot(int i) {
 
 void make_power() {
     if (rand() % 3) {
+        play_sound(POWER_APPEAR);
         int n = rand() % POWER_NUMBER;
         if (n == 0) { //LASER
             laser_box->enable = 1;
@@ -104,9 +107,13 @@ void play_game() {
     while (not_closed && players.state == 2) {
         int one_left_delay = 0, one_left_counter = 0;
         if (players.lives <= 1) {
+            play_sound(REGENERATION);
             setting();
         }
+        keys[SDLK_ESCAPE % 501] = 0;
         while (players.lives >= 1 && players.state == 2) {
+            handle_sounds();
+            play_sound(BACKGROUND);
             int start_ticks = SDL_GetTicks();
             if (events() == -1) {
                 not_closed = 0;

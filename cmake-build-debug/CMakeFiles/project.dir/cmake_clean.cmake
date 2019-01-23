@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/project.dir/src/LIBs/Audio.c.o"
   "CMakeFiles/project.dir/src/LIBs/Logic.c.o"
   "CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o"
   "CMakeFiles/project.dir/src/LIBs/Physics.c.o"

@@ -7,6 +7,7 @@
 #include "Constants.h"
 #include "MapGenerate.h"
 #include "Play.h"
+#include "Audio.h"
 
 
 SDL_Window *window;
@@ -39,7 +40,7 @@ void load_icon() {
 }
 
 void show_window() {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     window = SDL_CreateWindow("Battle of Tanks", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     load_icon();
@@ -260,8 +261,10 @@ void save() {
 }
 
 void show_starting_menu() {
+    pause_background();
     multiplayer_state = 2;
     while (players.state == 0) {
+        handle_sounds();
         if (menu_events() == -1) {
             not_closed = 0;
             break;
@@ -336,6 +339,7 @@ void waiting_for_start() {
         }
     }
     while (players.state == 1) {
+        handle_sounds();
         if (waiting_events() == -1) {
             not_closed = 0;
             break;

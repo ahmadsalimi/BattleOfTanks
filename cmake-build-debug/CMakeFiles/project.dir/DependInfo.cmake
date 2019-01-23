@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Audio.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Logic.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Physics.c.o"

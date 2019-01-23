@@ -57,9 +57,22 @@ include CMakeFiles/project.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/project.dir/flags.make
 
+CMakeFiles/project.dir/src/LIBs/Audio.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/src/LIBs/Audio.c.o: ../src/LIBs/Audio.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/project.dir/src/LIBs/Audio.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/LIBs/Audio.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.c
+
+CMakeFiles/project.dir/src/LIBs/Audio.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/src/LIBs/Audio.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.c > CMakeFiles/project.dir/src/LIBs/Audio.c.i
+
+CMakeFiles/project.dir/src/LIBs/Audio.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/src/LIBs/Audio.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.c -o CMakeFiles/project.dir/src/LIBs/Audio.c.s
+
 CMakeFiles/project.dir/src/LIBs/Logic.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/Logic.c.o: ../src/LIBs/Logic.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/project.dir/src/LIBs/Logic.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project.dir/src/LIBs/Logic.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/LIBs/Logic.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.c
 
 CMakeFiles/project.dir/src/LIBs/Logic.c.i: cmake_force
@@ -72,7 +85,7 @@ CMakeFiles/project.dir/src/LIBs/Logic.c.s: cmake_force
 
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o: ../src/LIBs/MapGenerate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c
 
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/project.dir/src/LIBs/MapGenerate.c.s: cmake_force
 
 CMakeFiles/project.dir/src/LIBs/Physics.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/Physics.c.o: ../src/LIBs/Physics.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/project.dir/src/LIBs/Physics.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/project.dir/src/LIBs/Physics.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/LIBs/Physics.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c
 
 CMakeFiles/project.dir/src/LIBs/Physics.c.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/project.dir/src/LIBs/Physics.c.s: cmake_force
 
 CMakeFiles/project.dir/src/LIBs/Play.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/Play.c.o: ../src/LIBs/Play.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/project.dir/src/LIBs/Play.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/project.dir/src/LIBs/Play.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/LIBs/Play.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c
 
 CMakeFiles/project.dir/src/LIBs/Play.c.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/project.dir/src/LIBs/Play.c.s: cmake_force
 
 CMakeFiles/project.dir/src/LIBs/View.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/LIBs/View.c.o: ../src/LIBs/View.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/project.dir/src/LIBs/View.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/project.dir/src/LIBs/View.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/LIBs/View.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c
 
 CMakeFiles/project.dir/src/LIBs/View.c.i: cmake_force
@@ -124,7 +137,7 @@ CMakeFiles/project.dir/src/LIBs/View.c.s: cmake_force
 
 CMakeFiles/project.dir/src/main.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/src/main.c.o: ../src/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/project.dir/src/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/project.dir/src/main.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/src/main.c.o   -c /home/ahmad/Documents/GitHub/97106013/src/main.c
 
 CMakeFiles/project.dir/src/main.c.i: cmake_force
@@ -137,6 +150,7 @@ CMakeFiles/project.dir/src/main.c.s: cmake_force
 
 # Object files for target project
 project_OBJECTS = \
+"CMakeFiles/project.dir/src/LIBs/Audio.c.o" \
 "CMakeFiles/project.dir/src/LIBs/Logic.c.o" \
 "CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o" \
 "CMakeFiles/project.dir/src/LIBs/Physics.c.o" \
@@ -147,6 +161,7 @@ project_OBJECTS = \
 # External object files for target project
 project_EXTERNAL_OBJECTS =
 
+project: CMakeFiles/project.dir/src/LIBs/Audio.c.o
 project: CMakeFiles/project.dir/src/LIBs/Logic.c.o
 project: CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o
 project: CMakeFiles/project.dir/src/LIBs/Physics.c.o
@@ -155,7 +170,7 @@ project: CMakeFiles/project.dir/src/LIBs/View.c.o
 project: CMakeFiles/project.dir/src/main.c.o
 project: CMakeFiles/project.dir/build.make
 project: CMakeFiles/project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable project"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/project.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
