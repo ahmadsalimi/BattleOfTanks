@@ -18,15 +18,15 @@
 #define SHOT_RADIUS ((double) BOX_WIDTH * 0.04)
 #define LENGTH ((double) BOX_WIDTH * 0.28)
 #define MAX_BALLS 5
-#define LIFE_OF_SHOT (8 * FPS)
+#define LIFE_OF_SHOT (10 * FPS)
 #define POWER_RADIUS ((double) BOX_WIDTH * 0.18)
 #define POWER_NUMBER 2
 #define POWER_MAKE_TIME (15 * FPS)
-#define POWER_BOX_TIME (15 * FPS)
-#define POWER_TIME (8 * FPS)
+#define POWER_BOX_TIME (25 * FPS)
+#define POWER_TIME (12 * FPS)
 #define LASER_KILL_TIME (FPS / 5)
 #define MINE_SHOW_TIME (2 * FPS)
-#define MINE_HIDE_TIME (13 * FPS)
+#define MINE_HIDE_TIME (15 * FPS)
 #define MINE_KILL_TIME (FPS)
 
 

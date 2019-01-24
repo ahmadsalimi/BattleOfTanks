@@ -26,4 +26,3 @@ void Quit();
 
 
 #endif //PROJECT_VIEW_H
-

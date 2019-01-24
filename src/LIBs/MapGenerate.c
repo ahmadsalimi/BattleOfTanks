@@ -88,8 +88,8 @@ MAP *connect_cells(MAP *n) {
 
 void render_walls() {
     //separate the prepared walls into vertical and horizontal walls.
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
+    for (Sint8 i = 0; i < height; i++) {
+        for (Sint8 j = 0; j < width; j++) {
             if (!(i % 2) && (j % 2) && (cells[j][i].wall) && (cells[j + 1][i].wall)) {
                 horizontal_walls[i / 2][j / 2] = 1;
             }
@@ -99,10 +99,10 @@ void render_walls() {
         }
     }
     //check if map has single cells to remove some walls.
-    for (int i = 0; i < max_boxes_y - 1; i++) {
-        for (int j = 0; j < max_boxes_x - 1; j++) {
+    for (Sint8 i = 0; i < max_boxes_y - 1; i++) {
+        for (Sint8 j = 0; j < max_boxes_x - 1; j++) {
             if (!cells_connection[i][j]) {
-                int a = rand() % 2, b = rand() % 2;
+                Sint8 a = (Sint8) (rand() % 2), b = (Sint8) (rand() % 2);
                 if (horizontal_walls[i + a][j] && i + a < max_boxes_y - 1 && j < max_boxes_x) {
                     horizontal_walls[i + a][j] = 0;
                 }
@@ -113,18 +113,18 @@ void render_walls() {
         }
     }
 
-    int counter = max_boxes_x * max_boxes_y / 9;
+    Sint8 counter = (Sint8) (max_boxes_x * max_boxes_y / 9);
     while (counter) {
-        int h_or_v = rand() % 2;
+        Sint8 h_or_v = (Sint8) (rand() % 2);
         if (h_or_v) {
-            int r_y = 1 + rand() % (max_boxes_y - 2), r_x = rand() % (max_boxes_x - 1);
+            Sint8 r_y = (Sint8) (1 + rand() % (max_boxes_y - 2)), r_x = (Sint8) (rand() % (max_boxes_x - 1));
             if (horizontal_walls[r_y][r_x]) {
                 horizontal_walls[r_y][r_x] = 0;
                 counter--;
                 continue;
             }
         } else {
-            int r_y = rand() % (max_boxes_y - 1), r_x = 1 + rand() % (max_boxes_x - 2);
+            Sint8 r_y = (Sint8) (rand() % (max_boxes_y - 1)), r_x = (Sint8) (1 + rand() % (max_boxes_x - 2));
             if (vertical_walls[r_y][r_x]) {
                 vertical_walls[r_y][r_x] = 0;
                 counter--;

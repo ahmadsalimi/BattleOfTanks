@@ -12,23 +12,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd6ae1a9-ef15-4a15-a337-31c2ff2a8765" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Sounds/Button_Click.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Button_Toggle.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Explosion.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Finish_Sound.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Game_Opening.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Game_Over.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Laser_Shoot.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Mining.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/PowerUp_Achievement.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/PowerUp_Appearance.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Regeneration_Sound.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Shoot.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/‌Background.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LIBs/Audio.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LIBs/Audio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LIBs/Storage.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LIBs/Storage.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/Button_Click.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/Button_Toggle.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/Game_Opening.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/Game_Over.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/Laser_Shoot.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/Mining.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/PowerUp_Achievement.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/MP3/PowerUp_Apearance.mp3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/C.includecache" afterDir="false" />
@@ -39,6 +35,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Audio.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Audio.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Logic.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Logic.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Physics.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Physics.c.o" afterDir="false" />
@@ -48,11 +45,20 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/project" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/project" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/project.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/project.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/Audio.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Audio.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/Audio.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Audio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Constants.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LIBs/Logic.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Logic.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/Logic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Logic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/MapGenerate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/MapGenerate.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/MapGenerate.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/MapGenerate.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LIBs/Physics.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Physics.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/Physics.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Physics.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LIBs/Play.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Play.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/Play.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Play.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LIBs/Struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/Struct.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LIBs/View.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/View.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LIBs/View.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/LIBs/View.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage.b" beforeDir="false" afterPath="$PROJECT_DIR$/storage.b" afterDir="false" />
     </list>
@@ -72,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+            <state relative-caret-position="250">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -84,22 +90,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LIBs/Play.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="747">
-              <caret line="161" column="13" lean-forward="true" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
+            <state relative-caret-position="742">
+              <caret line="190" column="44" selection-start-line="190" selection-start-column="26" selection-end-line="190" selection-end-column="44" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LIBs/Logic.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="842">
-              <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#629#968#0" />
+                <element signature="e#970#2004#0" />
+                <element signature="e#2006#2580#0" />
+                <element signature="e#2608#2638#0" />
+                <element signature="e#3131#3563#0" />
+                <element signature="e#2954#4311#0" />
+                <element signature="e#3424#4112#0" />
+                <element signature="e#4562#4595#0" />
+                <element signature="e#4114#4550#0" />
               </folding>
             </state>
           </provider>
@@ -108,20 +111,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LIBs/Audio.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+            <state relative-caret-position="1650">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#1075#1461#0" />
+                <element signature="e#1463#1707#0" />
+                <element signature="e#1709#2433#0" />
+                <element signature="e#2435#2610#0" />
+                <element signature="e#2612#2792#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LIBs/Audio.h">
+        <entry file="file://$PROJECT_DIR$/src/LIBs/Logic.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="100">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+              <folding>
+                <element signature="e#118#145#0" />
+                <element signature="e#147#826#0" />
+                <element signature="e#793#1440#0" />
+                <element signature="e#1442#1763#0" />
+                <element signature="e#1765#2091#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,36 +144,85 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LIBs/View.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3053">
-              <caret line="330" column="30" selection-start-line="330" selection-start-column="30" selection-end-line="330" selection-end-column="30" />
+            <state relative-caret-position="3600">
+              <caret line="551" selection-start-line="551" selection-end-line="551" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#605#772#0" />
+                <element signature="e#774#1144#0" />
+                <element signature="e#1146#7235#0" />
+                <element signature="e#7237#9505#0" />
+                <element signature="e#9507#12304#0" />
+                <element signature="e#12306#12741#0" />
+                <element signature="e#12743#13458#0" />
+                <element signature="e#13460#15502#0" />
+                <element signature="e#15504#15964#0" />
+                <element signature="e#15966#17981#0" />
+                <element signature="e#17983#18364#0" />
+                <element signature="e#18366#23703#0" />
+                <element signature="e#23705#24112#0" />
+                <element signature="e#24114#27630#0" />
+                <element signature="e#27632#28132#0" />
+                <element signature="e#28134#28345#0" />
+                <element signature="e#28347#28917#0" />
+                <element signature="e#28919#29246#0" />
+                <element signature="e#29248#29785#0" />
+                <element signature="e#29787#30224#0" />
+                <element signature="e#30226#30853#0" />
+                <element signature="e#30855#31570#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/LIBs/Physics.c">
+        <entry file="file://$PROJECT_DIR$/src/LIBs/Storage.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1057">
-              <caret line="204" column="12" selection-start-line="204" selection-start-column="12" selection-end-line="204" selection-end-column="12" />
+            <state relative-caret-position="600">
+              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
               <folding>
-                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
+                <element signature="e#131#525#0" />
+                <element signature="e#527#3197#0" />
+                <element signature="e#3199#5346#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LIBs/MapGenerate.c">
+        <entry file="file://$PROJECT_DIR$/src/LIBs/Physics.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4350">
-              <caret line="87" selection-start-line="87" selection-end-line="87" />
+            <state relative-caret-position="700">
+              <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
               <folding>
-                <element signature="e#222#953#0" />
-                <element signature="e#955#2426#0" />
-                <element signature="e#2428#4187#0" />
+                <element signature="e#286#342#0" />
+                <element signature="e#344#3738#0" />
+                <element signature="e#3664#3932#0" />
+                <element signature="e#3934#8608#0" />
+                <element signature="e#8610#14069#0" />
+                <element signature="e#14071#14572#0" />
+                <element signature="e#14574#15055#0" />
+                <element signature="e#15057#15214#0" />
+                <element signature="e#15216#16476#0" />
+                <element signature="e#16478#17113#0" />
+                <element signature="e#17115#20297#0" />
+                <element signature="e#20299#20851#0" />
+                <element signature="e#20853#21217#0" />
+                <element signature="e#21219#21396#0" />
+                <element signature="e#21398#23165#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LIBs/Struct.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,20 +231,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LIBs/Constants.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LIBs/Struct.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="942">
-              <caret line="95" column="40" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1450">
+              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -189,36 +241,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>motion</find>
-      <find>power.laser.time</find>
-      <find>flag</find>
-      <find>multiplayer_state</find>
-      <find>men</find>
-      <find>players.tank[i].power.laser</find>
-      <find>players.tank[i].shot_type = 0</find>
-      <find>check</find>
-      <find>players.tank[i].power.laser.time</find>
-      <find>laser_kill</find>
-      <find>setting</find>
-      <find>max_boxes_y</find>
-      <find>% 401</find>
-      <find>--</find>
-      <find>play_time</find>
-      <find>shot</find>
-      <find>-</find>
-      <find>-&gt;tim</find>
-      <find>draw_ma</find>
-      <find>printf</find>
-      <find>0</find>
-      <find>printf</find>
-      <find>2</find>
-      <find>4</find>
-      <find>3</find>
+      <find>int</find>
       <find>7</find>
-      <find>sound</find>
-      <find>play</find>
-      <find>play_</find>
-      <find>err</find>
+      <find>last_number</find>
+      <find>POWER_ACHIEVE</find>
+      <find>ox.</find>
+      <find>box-&gt;</find>
+      <find>ox-&gt;</find>
+      <find>0</find>
+      <find>shot_type</find>
+      <find>mode</find>
+      <find>players.state</find>
+      <find>.life</find>
+      <find>MINING</find>
+      <find>.mode</find>
+      <find>enable</find>
+      <find>menu_button_state</find>
+      <find>B_NEW_GAME</find>
+      <find>M_NEW_</find>
+      <find>M_NEW</find>
+      <find>M_LO</find>
+      <find>B_NEW__</find>
+      <find>M_EX</find>
+      <find>menu_state</find>
+      <find>save_mode</find>
+      <find>keys[SDLK_ESCAPE % 501] = 0;</find>
+      <find>FINISH_S</find>
+      <find>int</find>
+      <find>_box</find>
+      <find>laser_box</find>
+      <find>POWER_NUMBER</find>
     </findStrings>
     <replaceStrings>
       <replace>*x</replace>
@@ -236,6 +288,12 @@
       <replace>4</replace>
       <replace>3</replace>
       <replace>7</replace>
+      <replace>box.</replace>
+      <replace>ox-&gt;</replace>
+      <replace>ox.</replace>
+      <replace>B_LO</replace>
+      <replace>B_NEW_</replace>
+      <replace>B_EX</replace>
       <replace>i</replace>
     </replaceStrings>
   </component>
@@ -252,32 +310,36 @@
         <option value="$USER_HOME$/Desktop/saber.c" />
         <option value="$PROJECT_DIR$/src/LIBs/Generated_Maps/gmaps.txt" />
         <option value="$PROJECT_DIR$/src/LIBs/play.c" />
-        <option value="$PROJECT_DIR$/src/LIBs/MapGenerate.h" />
-        <option value="$PROJECT_DIR$/src/LIBs/Play.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/LIBs/Physics.h" />
-        <option value="$PROJECT_DIR$/src/LIBs/Logic.h" />
         <option value="$PROJECT_DIR$/src/LIBs/View.h" />
-        <option value="$PROJECT_DIR$/src/LIBs/Constants.h" />
-        <option value="$PROJECT_DIR$/storage.b" />
+        <option value="$PROJECT_DIR$/src/LIBs/Storage.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/MapGenerate.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/Keyboard.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/Keyboard.c" />
+        <option value="$PROJECT_DIR$/src/main.c" />
         <option value="$PROJECT_DIR$/src/LIBs/MapGenerate.c" />
-        <option value="$PROJECT_DIR$/src/LIBs/View.c" />
+        <option value="$PROJECT_DIR$/src/LIBs/Audio.c" />
+        <option value="$PROJECT_DIR$/src/LIBs/Audio.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/Logic.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/Physics.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/Play.h" />
+        <option value="$PROJECT_DIR$/storage.b" />
         <option value="$PROJECT_DIR$/src/LIBs/Struct.h" />
         <option value="$PROJECT_DIR$/src/LIBs/Logic.c" />
-        <option value="$PROJECT_DIR$/src/main.c" />
-        <option value="$PROJECT_DIR$/src/LIBs/Audio.h" />
+        <option value="$PROJECT_DIR$/src/LIBs/Constants.h" />
         <option value="$PROJECT_DIR$/src/LIBs/Play.c" />
-        <option value="$PROJECT_DIR$/src/LIBs/Audio.c" />
+        <option value="$PROJECT_DIR$/src/LIBs/View.c" />
         <option value="$PROJECT_DIR$/src/LIBs/Physics.c" />
+        <option value="$PROJECT_DIR$/src/LIBs/Storage.c" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="1975" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="110" />
     <option name="y" value="43" />
-    <option name="width" value="1865" />
-    <option name="height" value="2117" />
+    <option name="width" value="1810" />
+    <option name="height" value="1037" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -304,18 +366,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="project" type="b2602c69:ProjectViewProjectNode" />
               <item name="97106013" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="97106013" type="462c0819:PsiDirectoryNode" />
-              <item name="Sounds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project" type="b2602c69:ProjectViewProjectNode" />
@@ -332,6 +388,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -339,10 +396,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/LIBs" />
       <recent name="C:\Users\nik\Documents\GitHub\97106013\src\LIBs" />
     </key>
   </component>
@@ -454,12 +513,17 @@
       <workItem from="1548170591711" duration="1826000" />
       <workItem from="1548180971112" duration="261000" />
       <workItem from="1548181415754" duration="10224000" />
-      <workItem from="1548235297626" duration="13077000" />
+      <workItem from="1548235297626" duration="24071000" />
+      <workItem from="1548263316783" duration="1372000" />
+      <workItem from="1548265098069" duration="864000" />
+      <workItem from="1548265971207" duration="4177000" />
+      <workItem from="1548275406443" duration="4879000" />
+      <workItem from="1548325382478" duration="16916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="413938000" />
+    <option name="totallyTimeSpent" value="453140000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,10 +535,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1975" y="43" width="1865" height="2117" extended-state="4" />
+    <frame x="110" y="43" width="3730" height="2117" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49843848" weight="0.12444812" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49843848" visible="true" weight="0.16004415" />
       <window_info id="Structure" order="1" sideWeight="0.5015615" side_tool="true" weight="0.35133597" />
       <window_info id="Favorites" order="2" sideWeight="0.5013089" side_tool="true" weight="0.12037618" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -485,11 +549,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32984293" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.29750693" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.29639888" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.0" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.29450262" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.32936507" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.3290859" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -544,44 +608,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Play.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sdl2/sdl2-include/SDL.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3897" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Logic.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Physics.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/MapGenerate.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
-        </state>
       </provider>
     </entry>
     <entry file="file:///usr/include/SDL2/SDL2_gfxPrimitives.h">
@@ -598,20 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/View.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage.b">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/SDL2/SDL_audio.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -619,56 +634,166 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/MapGenerate.c">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4350">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#222#953#0" />
-            <element signature="e#955#2426#0" />
-            <element signature="e#2428#4187#0" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Constants.h">
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Storage.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+        <state relative-caret-position="450">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Struct.h">
+    <entry file="file://$PROJECT_DIR$/src/LIBs/MapGenerate.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="942">
-          <caret line="95" column="40" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="40" />
+        <state relative-caret-position="200">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Keyboard.h" />
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Keyboard.c" />
+    <entry file="file://$USER_HOME$/Desktop/97106013/src/LIBs/View.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15836">
+          <caret line="160" column="5" lean-forward="true" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#8192#11927#0" />
+            <element signature="e#11929#14676#0" />
+            <element signature="e#14678#15111#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LIBs/Audio.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="250">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Logic.c">
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Physics.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="842">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+        <state relative-caret-position="450">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Play.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/View.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage.b">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Constants.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1450">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/MapGenerate.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="136" column="20" selection-start-line="136" selection-start-column="20" selection-end-line="136" selection-end-column="20" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#222#953#0" />
+            <element signature="e#955#2426#0" />
+            <element signature="e#2428#4285#0" />
+            <element signature="e#4287#4677#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Physics.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+          <folding>
+            <element signature="e#286#342#0" />
+            <element signature="e#344#3738#0" />
+            <element signature="e#3664#3932#0" />
+            <element signature="e#3934#8608#0" />
+            <element signature="e#8610#14069#0" />
+            <element signature="e#14071#14572#0" />
+            <element signature="e#14574#15055#0" />
+            <element signature="e#15057#15214#0" />
+            <element signature="e#15216#16476#0" />
+            <element signature="e#16478#17113#0" />
+            <element signature="e#17115#20297#0" />
+            <element signature="e#20299#20851#0" />
+            <element signature="e#20853#21217#0" />
+            <element signature="e#21219#21396#0" />
+            <element signature="e#21398#23165#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Struct.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/View.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3600">
+          <caret line="551" selection-start-line="551" selection-end-line="551" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#605#772#0" />
+            <element signature="e#774#1144#0" />
+            <element signature="e#1146#7235#0" />
+            <element signature="e#7237#9505#0" />
+            <element signature="e#9507#12304#0" />
+            <element signature="e#12306#12741#0" />
+            <element signature="e#12743#13458#0" />
+            <element signature="e#13460#15502#0" />
+            <element signature="e#15504#15964#0" />
+            <element signature="e#15966#17981#0" />
+            <element signature="e#17983#18364#0" />
+            <element signature="e#18366#23703#0" />
+            <element signature="e#23705#24112#0" />
+            <element signature="e#24114#27630#0" />
+            <element signature="e#27632#28132#0" />
+            <element signature="e#28134#28345#0" />
+            <element signature="e#28347#28917#0" />
+            <element signature="e#28919#29246#0" />
+            <element signature="e#29248#29785#0" />
+            <element signature="e#29787#30224#0" />
+            <element signature="e#30226#30853#0" />
+            <element signature="e#30855#31570#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        <state relative-caret-position="250">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
@@ -677,40 +802,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LIBs/Play.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="161" column="13" lean-forward="true" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
+        <state relative-caret-position="742">
+          <caret line="190" column="44" selection-start-line="190" selection-start-column="26" selection-end-line="190" selection-end-column="44" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#629#968#0" />
+            <element signature="e#970#2004#0" />
+            <element signature="e#2006#2580#0" />
+            <element signature="e#2608#2638#0" />
+            <element signature="e#3131#3563#0" />
+            <element signature="e#2954#4311#0" />
+            <element signature="e#3424#4112#0" />
+            <element signature="e#4562#4595#0" />
+            <element signature="e#4114#4550#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LIBs/Audio.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+        <state relative-caret-position="1650">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#1075#1461#0" />
+            <element signature="e#1463#1707#0" />
+            <element signature="e#1709#2433#0" />
+            <element signature="e#2435#2610#0" />
+            <element signature="e#2612#2792#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/View.c">
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Logic.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3053">
-          <caret line="330" column="30" selection-start-line="330" selection-start-column="30" selection-end-line="330" selection-end-column="30" />
+        <state relative-caret-position="100">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#118#145#0" />
+            <element signature="e#147#826#0" />
+            <element signature="e#793#1440#0" />
+            <element signature="e#1442#1763#0" />
+            <element signature="e#1765#2091#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LIBs/Physics.c">
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Logic.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1057">
-          <caret line="204" column="12" selection-start-line="204" selection-start-column="12" selection-end-line="204" selection-end-column="12" />
+        <state relative-caret-position="450">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LIBs/Storage.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#131#525#0" />
+            <element signature="e#527#3197#0" />
+            <element signature="e#3199#5346#0" />
           </folding>
         </state>
       </provider>

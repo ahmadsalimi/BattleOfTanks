@@ -11,69 +11,64 @@
 #include "Audio.h"
 
 bool not_closed = 1;
-LASER_BOX *laser_box;
-MINE_BOX *mine_box;
+LASER_BOX laser_box[2];
+MINE_BOX mine_box[2];
 int power_make_time = POWER_MAKE_TIME;
 int play_time;
+Sint16 colors[3][3] = {
+        239, 0, 0,
+        0, 132, 0,
+        0, 84, 204
+};
+int directions[3][4] = {
+        SDLK_UP, SDLK_DOWN, SDLK_RIGHT, SDLK_LEFT,
+        SDLK_e, SDLK_d, SDLK_f, SDLK_s,
+        SDLK_i, SDLK_k, SDLK_l, SDLK_j
+};
+int shooting_keys[] = {SDLK_RCTRL, SDLK_q, SDLK_y};
+
 
 void tank_presetting() {
-    laser_box = malloc(sizeof(LASER_BOX));
-    mine_box = malloc(sizeof(MINE_BOX));
-    // PLAYER 0
-    players.tank[0].RGBA_color[0] = 239;
-    players.tank[0].RGBA_color[1] = 0;
-    players.tank[0].RGBA_color[2] = 0; //red
-    players.tank[0].shooting_key = SDLK_RCTRL; //shoot; Right ctrl
-    players.tank[0].directions[0] = SDLK_UP; //up;
-    players.tank[0].directions[1] = SDLK_DOWN; //down;
-    players.tank[0].directions[2] = SDLK_RIGHT; //right;
-    players.tank[0].directions[3] = SDLK_LEFT; //left;
-    // PLAYER 1
-    players.tank[1].RGBA_color[0] = 0;
-    players.tank[1].RGBA_color[1] = 132;
-    players.tank[1].RGBA_color[2] = 0; //green
-    players.tank[1].shooting_key = SDLK_q; //shoot;
-    players.tank[1].directions[0] = SDLK_e; //up;
-    players.tank[1].directions[1] = SDLK_d; //down;
-    players.tank[1].directions[2] = SDLK_f; //right;
-    players.tank[1].directions[3] = SDLK_s; //left;
-    // PLAYER 2
-    players.tank[2].RGBA_color[0] = 0;
-    players.tank[2].RGBA_color[1] = 84;
-    players.tank[2].RGBA_color[2] = 204; //blue
-    players.tank[2].shooting_key = SDLK_y; //shoot;
-    players.tank[2].directions[0] = SDLK_i; //up;
-    players.tank[2].directions[1] = SDLK_k; //down;
-    players.tank[2].directions[2] = SDLK_l; //right;
-    players.tank[2].directions[3] = SDLK_j; //left;
+    for (Sint8 i = 0; i < 3; i++) {
+        for (Sint8 j = 0; j < 3; j++) {
+            players.tank[i].RGBA_color[j] = colors[i][j];
+        }
+        for (Sint8 j = 0; j < 4; j++) {
+            players.tank[i].directions[j] = directions[i][j];
+        }
+        players.tank[i].shooting_key = shooting_keys[i];
+    }
 }
 
 void setting() {
     srand(SDL_GetTicks());
     generate_map();
     players.lives = players.number;
-    for (int i = 0; i < players.number; i++) {
-        players.tank[i].shot_type = 0;
-        players.tank[i].life = 1;
+    for (Sint8 i = 0; i < players.number; i++) {
+        players.tank[i].shot_type = T_NORMAL;
+        players.tank[i].life = true;
         players.tank[i].x = START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2);
         players.tank[i].y = START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2);
         if ((i == 1 && players.tank[i - 1].x == players.tank[i].x && players.tank[i - 1].y == players.tank[i].y) || (i == 2 && ((players.tank[i - 1].x == players.tank[i].x && players.tank[i - 1].y == players.tank[i].y) || (players.tank[i - 2].x == players.tank[i].x && players.tank[i - 2].y == players.tank[i].y)))) {
             i--;
         }
         players.tank[i].angle = (Sint16) (rand() % 360);
-        for (int j = 0; j < MAX_BALLS; j++) {
+        for (Sint8 j = 0; j < MAX_BALLS; j++) {
             players.tank[i].shot[j].time = 0;
         }
     }
-    laser_box->enable = false;
-    mine_box->enable = false;
-    power_make_time = 15 * FPS;
+    for (Sint8 i = 0; i < 2; i++) {
+        laser_box[i].enable = false;
+        mine_box[i].enable = false;
+    }
+
+    power_make_time = POWER_MAKE_TIME;
 }
 
-void make_shot(int i) {
-    for (int j = 0; j < MAX_BALLS; j++) {
+void make_shot(Sint8 i) {
+    for (Sint8 j = 0; j < MAX_BALLS; j++) {
         if (players.tank[i].shot[j].time <= 0) {
-            play_sound(SHOOT);
+            play_sound(SHOOT_S);
             players.tank[i].shot[j].time = LIFE_OF_SHOT;
             players.tank[i].shot[j].x = players.tank[i].x + (TANK_RADIUS + SHOT_RADIUS) * cos(players.tank[i].angle * PI / 180);
             players.tank[i].shot[j].y = players.tank[i].y + (TANK_RADIUS + SHOT_RADIUS) * sin(players.tank[i].angle * PI / 180);;
@@ -83,71 +78,103 @@ void make_shot(int i) {
     }
 }
 
-void make_power() {
-    if (rand() % 3) {
-        play_sound(POWER_APPEAR);
-        int n = rand() % POWER_NUMBER;
-        if (n == 0) { //LASER
-            laser_box->enable = 1;
-            laser_box->time = POWER_BOX_TIME;
-            laser_box->center.x = (Sint16) (START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
-            laser_box->center.y = (Sint16) (START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
-        } else if (n == 1) { //MINE
-            mine_box->enable = 1;
-            mine_box->time = POWER_BOX_TIME;
-            mine_box->center.x = (Sint16) (START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
-            mine_box->center.y = (Sint16) (START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
+void make_laser_box() {
+    for (Sint8 i = 0; i < 2; i++) {
+        if (!laser_box[i].enable) {
+            laser_box[i].enable = true;
+            laser_box[i].time = POWER_BOX_TIME;
+            laser_box[i].center.x = (Sint16) (START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
+            laser_box[i].center.y = (Sint16) (START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
+            break;
         }
     }
 }
 
+void make_mine_box() {
+    for (Sint8 i = 0; i < 2; i++) {
+        if (!mine_box[i].enable) {
+            mine_box[i].enable = true;
+            mine_box[i].time = POWER_BOX_TIME;
+            mine_box[i].center.x = (Sint16) (START_MAP_X + rand() % (max_boxes_x - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
+            mine_box[i].center.y = (Sint16) (START_MAP_Y + rand() % (max_boxes_y - 2) * BOX_WIDTH + (int) (BOX_WIDTH / 2));
+            break;
+        }
+    }
+}
+
+void make_power() {
+    if (rand() % 3) {
+        play_sound(POWER_APPEAR_S);
+        Sint8 n = (Sint8) (rand() % POWER_NUMBER);
+        if (n == 0) { //LASER
+            make_laser_box();
+        } else if (n == 1) { //MINE
+            make_mine_box();
+        }
+    }
+}
+
+void destroy_power() {
+    for (Sint8 i = 0; i < players.number; i++) {
+        if (players.tank[i].power.laser.enable && players.tank[i].power.laser.time <= 0) {
+            players.tank[i].power.laser.enable = false;
+            players.tank[i].power.laser.time = 0;
+            players.tank[i].power.laser.target = -1;
+            players.tank[i].shot_type = T_NORMAL;
+        }
+        if (players.tank[i].power.mine.enable && players.tank[i].power.mine.mode == M_CARRYING && players.tank[i].power.mine.carrying_time <= 0) {
+            players.tank[i].power.mine.enable = false;
+            players.tank[i].power.mine.carrying_time = 0;
+            players.tank[i].shot_type = T_NORMAL;
+        }
+    }
+}
+
+void destroy_power_box() {
+    for (Sint8 i = 0; i < 2; i++) {
+        if (laser_box[i].enable && laser_box[i].time <= 0) {
+            laser_box[i].enable = false;
+            laser_box[i].time = 0;
+        }
+        if (mine_box[i].enable && mine_box[i].time <= 0) {
+            mine_box[i].enable = false;
+            mine_box[i].time = 0;
+        }
+    }
+}
+
+void power_box_handle() {
+    if (!save_mode) {
+        power_make_time--;
+    }
+    if (power_make_time <= 0) {
+        power_make_time = POWER_MAKE_TIME;
+        make_power();
+    }
+    destroy_power_box();
+    destroy_power();
+}
+
 void play_game() {
     load_number = 1;
-    menu_button_state = 0;
-    while (not_closed && players.state == 2) {
-        int one_left_delay = 0, one_left_counter = 0;
-        if (players.lives <= 1) {
-            play_sound(REGENERATION);
+    menu_button_state = B_NEW_GAME;
+    while (not_closed && players.state == P_PLAYING) {
+        Uint32 one_left_delay = 0, one_left_counter = 0;
+        if (!save_mode && players.lives <= 1) {
+            play_sound(REGENERATION_S);
             setting();
         }
         keys[SDLK_ESCAPE % 501] = 0;
-        while (players.lives >= 1 && players.state == 2) {
+        while (players.lives >= 1 && players.state == P_PLAYING) {
             handle_sounds();
-            play_sound(BACKGROUND);
+            play_sound(BACKGROUND_S);
             int start_ticks = SDL_GetTicks();
             if (events() == -1) {
                 not_closed = 0;
                 break;
             }
             death_check();
-            if (!save_mode) {
-                power_make_time--;
-            }
-            if (power_make_time <= 0) {
-                power_make_time = POWER_MAKE_TIME;
-                make_power();
-            }
-            if (laser_box->enable && laser_box->time <= 0) {
-                laser_box->enable = 0;
-                laser_box->time = 0;
-            }
-            if (mine_box->enable && mine_box->time <= 0) {
-                mine_box->enable = 0;
-                mine_box->time = 0;
-            }
-            for (int i = 0; i < players.number; i++) {
-                if (players.tank[i].power.laser.enable && players.tank[i].power.laser.time <= 0) {
-                    players.tank[i].power.laser.enable = false;
-                    players.tank[i].power.laser.time = 0;
-                    players.tank[i].power.laser.target = -1;
-                    players.tank[i].shot_type = 0;
-                }
-                if (players.tank[i].power.mine.enable && players.tank[i].power.mine.mode == 0 && players.tank[i].power.mine.carrying_time <= 0) {
-                    players.tank[i].power.mine.enable = false;
-                    players.tank[i].power.mine.carrying_time = 0;
-                    players.tank[i].shot_type = 0;
-                }
-            }
+            power_box_handle();
             drawing();
             if (players.lives == 1 && !one_left_counter) {
                 one_left_delay = SDL_GetTicks();
@@ -161,7 +188,7 @@ void play_game() {
                 play_time++;
             }
         }
-        if (players.lives <= 1) {
+        if (!save_mode && players.lives <= 1) {
             set_score();
         }
         if (not_closed && !players.lives) {

@@ -7,12 +7,12 @@ double absolute(double x);
 
 void shoot(SHOT *shot);
 
-int menu_events();
+Sint8 menu_events();
 
-int waiting_events();
+Sint8 waiting_events();
 
-int game_over_events();
+Sint8 game_over_events();
 
-int events();
+Sint8 events();
 
 #endif //PROJECT_PHYSICS_H

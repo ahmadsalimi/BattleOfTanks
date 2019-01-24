@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <stdbool.h>
 #include "Audio.h"
+#include "Struct.h"
 
 typedef struct {
     Uint8 *position;
@@ -39,14 +40,14 @@ void audioCallback(void *userData, Uint8 *stream, int streamLength) {
 }
 
 void load_audio() {
-    for (int i = 0; i < 13; i++) {
+    for (Sint8 i = 0; i < 13; i++) {
         if (SDL_LoadWAV(files[i], &wavSpec[i], &wavStart[i], &wavLength[i]) == NULL) {
             printf("%d : Error: file could not be loaded as an audio file.\n", i);
         }
     }
 }
 
-void play_sound(int i) {
+void play_sound(Sint8 i) {
     if (audio[i].length <= 0 || i) {
         SDL_CloseAudioDevice(audioDevice[i]);
         if (SDL_LoadWAV(files[i], &wavSpec[i], &wavStart[i], &wavLength[i]) == NULL) {
@@ -66,14 +67,14 @@ void play_sound(int i) {
 }
 
 void pause_background() {
-    if (audio[0].length > 0) {
-        SDL_PauseAudioDevice(audioDevice[0], 1);
-        audio[0].length = 0;
+    if (audio[BACKGROUND_S].length > 0) {
+        SDL_PauseAudioDevice(audioDevice[BACKGROUND_S], 1);
+        audio[BACKGROUND_S].length = 0;
     }
 }
 
 void handle_sounds() {
-    for (int i = 1; i < 13; i++) {
+    for (Sint8 i = 1; i < 13; i++) {
         if (!audio[i].length && audioDevice[i]) {
             SDL_PauseAudioDevice(audioDevice[i], 1);
         }

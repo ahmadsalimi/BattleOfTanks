@@ -258,6 +258,33 @@ src/LIBs/Play.c.s:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Play.c.s
 .PHONY : src/LIBs/Play.c.s
 
+src/LIBs/Storage.o: src/LIBs/Storage.c.o
+
+.PHONY : src/LIBs/Storage.o
+
+# target to build an object file
+src/LIBs/Storage.c.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Storage.c.o
+.PHONY : src/LIBs/Storage.c.o
+
+src/LIBs/Storage.i: src/LIBs/Storage.c.i
+
+.PHONY : src/LIBs/Storage.i
+
+# target to preprocess a source file
+src/LIBs/Storage.c.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Storage.c.i
+.PHONY : src/LIBs/Storage.c.i
+
+src/LIBs/Storage.s: src/LIBs/Storage.c.s
+
+.PHONY : src/LIBs/Storage.s
+
+# target to generate assembly for a file
+src/LIBs/Storage.c.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/LIBs/Storage.c.s
+.PHONY : src/LIBs/Storage.c.s
+
 src/LIBs/View.o: src/LIBs/View.c.o
 
 .PHONY : src/LIBs/View.o
@@ -336,6 +363,9 @@ help:
 	@echo "... src/LIBs/Play.o"
 	@echo "... src/LIBs/Play.i"
 	@echo "... src/LIBs/Play.s"
+	@echo "... src/LIBs/Storage.o"
+	@echo "... src/LIBs/Storage.i"
+	@echo "... src/LIBs/Storage.s"
 	@echo "... src/LIBs/View.o"
 	@echo "... src/LIBs/View.i"
 	@echo "... src/LIBs/View.s"

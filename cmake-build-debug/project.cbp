@@ -119,6 +119,12 @@
 		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Storage.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Storage.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h">
 			<Option target="project"/>
 		</Unit>

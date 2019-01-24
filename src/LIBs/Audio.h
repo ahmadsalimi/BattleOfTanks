@@ -3,7 +3,7 @@
 
 void load_audio();
 
-void play_sound(int i);
+void play_sound(Sint8 i);
 
 void pause_background();
 

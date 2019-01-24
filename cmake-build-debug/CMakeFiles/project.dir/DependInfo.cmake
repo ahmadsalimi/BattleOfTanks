@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Physics.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Play.c.o"
+  "/home/ahmad/Documents/GitHub/97106013/src/LIBs/Storage.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/Storage.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/LIBs/View.c.o"
   "/home/ahmad/Documents/GitHub/97106013/src/main.c" "/home/ahmad/Documents/GitHub/97106013/cmake-build-debug/CMakeFiles/project.dir/src/main.c.o"
   )

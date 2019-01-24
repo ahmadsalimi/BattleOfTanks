@@ -43,11 +43,13 @@ typedef struct {
 
 typedef struct {
     bool enable;
-    Sint8 mode; //0: carrying, 1: laid out and showing, 2: hide, 3: killing
+    enum {
+      M_CARRYING, M_MINING, M_HIDDEN, M_KILLING
+    } mode;
     POINT position;
     Sint8 target;
     Sint16 carrying_time;
-    Sint8 show_time;
+    Sint16 show_time;
     Sint16 hide_time;
     Sint8 kill_time;
 } MINE;
@@ -67,7 +69,9 @@ typedef struct {
     int directions[4]; //up, down, right, left
     SHOT shot[MAX_BALLS];
     Sint16 score;
-    Sint8 shot_type; // 0: normal, 1: laser
+    enum {
+        T_NORMAL, T_LASER, T_MINE
+    } shot_type;
     POWER power;
 } TANK;
 
@@ -83,7 +87,9 @@ typedef struct {
     Sint8 number;
     Sint8 lives;
     TANK tank[3];
-    Sint8 state;
+    enum {
+     P_MENU, P_WAITING, P_PLAYING, P_GAME_OVER
+    } state;
 } PLAYERS;
 
 typedef struct {
@@ -93,14 +99,22 @@ typedef struct {
 } IMAGE;
 
 typedef enum {
-    BACKGROUND, CLICK, TOGGLE, EXPLOSION, FINISH, OPENING, GAME_OVER, LASER_SHOOT, MINING, POWER_ACHIEVE, POWER_APPEAR, REGENERATION, SHOOT
+    BACKGROUND_S, CLICK_S, TOGGLE_S, EXPLOSION_S, FINISH_S, OPENING_S, GAME_OVER_S, LASER_SHOOT_S, MINING_S, POWER_ACHIEVE_S, POWER_APPEAR_S, REGENERATION_S, SHOOT_S
 } SOUNDS;
 
+typedef enum {
+    M_OPENING, M_NEW_GAME, M_LOAD
+} MENU_STATES;
+
+typedef enum{
+    B_NEW_GAME, B_LOAD, B_EXIT
+} MENU_BUTTON_STATE;
+
 extern PLAYERS players;
-extern LASER_BOX *laser_box;
-extern MINE_BOX *mine_box;
-extern Sint8 menu_state;
-extern Sint8 menu_button_state;
+extern LASER_BOX laser_box[2];
+extern MINE_BOX mine_box[2];
+extern MENU_STATES menu_state;
+extern MENU_BUTTON_STATE menu_button_state;
 extern bool menu_playtime;
 extern Sint8 multiplayer_state;
 extern Sint16 finish_point;
@@ -110,5 +124,11 @@ extern bool save_mode;
 extern int last_number;
 extern int load_number;
 extern int keys[501];
+extern bool file_checked;
+extern Sint8 max_boxes_x;
+extern Sint8 max_boxes_y;
+extern bool vertical_walls[10][10];
+extern bool horizontal_walls[10][10];
+extern bool not_closed;
 
 #endif //PROJECT_STRUCT_H

@@ -5,9 +5,9 @@
 
 void death_check();
 
-void laser_kill(int i);
+void laser_kill(Sint8 i);
 
-void mine_kill(int i);
+void mine_kill(Sint8 i);
 
 void set_score();
 

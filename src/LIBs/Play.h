@@ -1,3 +1,4 @@
+
 #ifndef PROJECT_PLAY_H
 #define PROJECT_PLAY_H
 
@@ -9,8 +10,7 @@ void setting();
 
 void play_game();
 
-void make_shot(int i);
+void make_shot(Sint8 i);
 
-extern bool not_closed;
 
 #endif //PROJECT_PLAY_H
