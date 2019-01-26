@@ -5,7 +5,7 @@
 #define FPS 60
 #define BOX_WIDTH 100
 #define SCREEN_WIDTH (11 * BOX_WIDTH)
-#define SCREEN_HEIGHT (9 * BOX_WIDTH)
+#define SCREEN_HEIGHT (10 * BOX_WIDTH)
 #define START_MAP_X ((SCREEN_WIDTH - BOX_WIDTH * (max_boxes_x - 1)) / 2)
 #define START_MAP_Y ((SCREEN_HEIGHT - BOX_WIDTH * (max_boxes_y - 1)) / 2)
 #define FINISH_MAP_X ((int) (START_MAP_X + BOX_WIDTH * (max_boxes_x - 1)))

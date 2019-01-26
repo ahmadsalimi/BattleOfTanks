@@ -1,11 +1,4 @@
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include "Physics.h"
 #include "View.h"
-#include "Constants.h"
-#include "Struct.h"
-#include "MapGenerate.h"
 #include "Play.h"
 #include "Logic.h"
 #include "Audio.h"
@@ -388,7 +381,7 @@ Sint8 events() {
             if (players.tank[i].life) {
                 if (keys[players.tank[i].shooting_key % 501]) {
                     if (!shooting_flag[i]) {
-                        if (players.tank[i].shot_type == T_NORMAL || (players.tank[i].power.mine.enable && players.tank[i].power.mine.mode != M_CARRYING)) {
+                        if (players.tank[i].shot_type == T_NORMAL || (players.tank[i].shot_type == T_MINE && players.tank[i].power.mine.mode != M_CARRYING)) {
                             make_shot(i);
                         } else if (players.tank[i].shot_type == T_LASER) {
                             play_sound(LASER_SHOOT_S);

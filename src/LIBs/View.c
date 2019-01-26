@@ -1,12 +1,5 @@
-#include <stdio.h>
-#include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
-#include "View.h"
 #include "Physics.h"
-#include "Struct.h"
-#include "Constants.h"
-#include "MapGenerate.h"
-#include "Play.h"
 #include "Audio.h"
 #include "Storage.h"
 
@@ -27,7 +20,7 @@ MENU_BUTTON_STATE menu_button_state;
 bool menu_playtime;
 Sint8 multiplayer_state;
 Sint16 finish_point = 1;
-
+Sint32 winner;
 
 void load_icon() {
     icon = SDL_LoadBMP("icon.bmp");
@@ -163,7 +156,9 @@ void show_starting_menu() {
         SDL_RenderCopy(renderer, logo.texture, NULL, &logo.rect);
         if (menu_state == M_OPENING) {
             if (menu_playtime) {
-                stringRGBA(renderer, SCREEN_WIDTH / 2 - 130, (Sint16) (logo.rect.y - 20), "Press \"ESC\" to resume the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
+                SDL_RenderSetScale(renderer, 1.5, 1.75);
+                stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 200) / 1.5), (Sint16) ((logo.rect.y - 20) / 1.75), "Press \"ESC\" to resume the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
+                SDL_RenderSetScale(renderer, 1, 1);
             }
             for (Sint8 i = 0; i < 3; i++) {
                 i == menu_button_state ? SDL_RenderCopy(renderer, menu_images_hover[i].texture, NULL, &menu_images_hover[i].rect) : SDL_RenderCopy(renderer, menu_images[i].texture, NULL, &menu_images[i].rect);
@@ -176,14 +171,17 @@ void show_starting_menu() {
             if (!file_checked) {
                 check_storage();
             }
+            SDL_RenderSetScale(renderer, 1.5, 1.75);
             if (!(last_number - 1)) {
-                stringRGBA(renderer, SCREEN_WIDTH / 2 - 140, (Sint16) (logo.rect.y + logo.rect.h + 20), "There is no saved game! Press \"ESC\".", 0, 0, 0, 255);
+                stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 210) / 1.5), (Sint16) ((logo.rect.y + logo.rect.h + 20) / 1.75), "There is no saved game! Press \"ESC\".", 0, 0, 0, 255);
             } else {
                 char loading_str[50];
                 sprintf(loading_str, "Set the number of saved game you want to play: %d.", load_number);
-                stringRGBA(renderer, SCREEN_WIDTH / 2 - 185, (Sint16) (logo.rect.y + logo.rect.h + 20), loading_str, 0, 0, 0, 255);
-                stringRGBA(renderer, SCREEN_WIDTH / 2 - 255, (Sint16) (logo.rect.y + logo.rect.h + 40), "Change the number using keys \"up\" or \"down\". Press \"ENTER\" to load.", 0, 0, 0, 255);
+                char help[] = "Change the number using keys \"up\" or \"down\". Press \"ENTER\" to load.";
+                stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 280) / 1.5), (Sint16) ((logo.rect.y + logo.rect.h + 20) / 1.75), loading_str, 0, 0, 0, 255);
+                stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 380) / 1.5), (Sint16) ((logo.rect.y + logo.rect.h + 60) / 1.75), help, 0, 0, 0, 255);
             }
+            SDL_RenderSetScale(renderer, 1, 1);
         }
         SDL_RenderPresent(renderer);
     }
@@ -215,8 +213,10 @@ void waiting_for_start() {
         SDL_RenderClear(renderer);
         char finish[80];
         sprintf(finish, "Please set the finish score of the game by keys \"up\" and \"down\": %d", finish_point);
-        stringRGBA(renderer, SCREEN_WIDTH / 2 - 260, (Sint16) (key_images[0].rect.y - 40), finish, 0, 0, 0, 255);
-        stringRGBA(renderer, SCREEN_WIDTH / 2 - 130, (Sint16) (key_images[0].rect.y - 20), "Press ENTER to start the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
+        SDL_RenderSetScale(renderer, 1.5, 1.75);
+        stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 390) / 1.5), (Sint16) ((key_images[0].rect.y - 80) / 1.75), finish, 0, 0, 0, 255);
+        stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 195) / 1.5), (Sint16) ((key_images[0].rect.y - 40) / 1.75), "Press ENTER to start the game...", 0, 0, 0, (Uint8) (255 * pow(sin((double) SDL_GetTicks() / 500), 2)));
+        SDL_RenderSetScale(renderer, 1, 1);
         for (Sint8 i = 0; i < players.number; i++) {
             SDL_RenderCopy(renderer, key_images[i].texture, NULL, &key_images[i].rect);
             filledCircleRGBA(renderer, (Sint16) (key_images[i].rect.x + key_images[i].rect.w / 2), (Sint16) (key_images[i].rect.y + key_images[i].rect.h + 60), (Sint16) (TANK_RADIUS * 2), (Uint8) players.tank[i].RGBA_color[0], (Uint8) players.tank[i].RGBA_color[1], (Uint8) players.tank[i].RGBA_color[2], 255);
@@ -235,7 +235,9 @@ void show_players_points() {
         SDL_RenderCopy(renderer, player_points[i].texture, NULL, &player_points[i].rect);
         char point[4];
         sprintf(point, "%d", players.tank[i].score);
-        stringRGBA(renderer, (Sint16) (player_points[i].rect.x + player_points[i].rect.w + 10), (Sint16) (player_points[i].rect.y + player_points[i].rect.h / 2), point, 0, 0, 0, 255);
+        SDL_RenderSetScale(renderer, 1.5, 1.75);
+        stringRGBA(renderer, (Sint16) ((player_points[i].rect.x + player_points[i].rect.w + 15) / 1.5), (Sint16) ((player_points[i].rect.y + player_points[i].rect.h / 2) / 1.75), point, 0, 0, 0, 255);
+        SDL_RenderSetScale(renderer, 1, 1);
     }
 }
 
@@ -465,29 +467,37 @@ void show_time(Sint8 i) {
     char time[10];
     sprintf(time, "%02d:%02d:%02d", h, m, s);
     if (!i) {
-        stringRGBA(renderer, (Sint16) (FINISH_MAP_X + 10), (Sint16) (START_MAP_Y + 10), time, 0, 0, 0, 255);
+        SDL_RenderSetScale(renderer, 1.2, 1.5);
+        stringRGBA(renderer, (Sint16) ((FINISH_MAP_X - 90) / 1.2), (Sint16) ((FINISH_MAP_Y + 15) / 1.5), time, 0, 0, 0, 255);
     } else {
-        stringRGBA(renderer, (Sint16) (SCREEN_WIDTH / 2 - 30), (Sint16) (player_points[0].rect.y - 180), time, 0, 0, 0, 255);
+        SDL_RenderSetScale(renderer, 1.5, 1.75);
+        stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 45) / 1.5), (Sint16) ((player_points[0].rect.y - 180) / 1.75), time, 0, 0, 0, 255);
     }
+    SDL_RenderSetScale(renderer, 1, 1);
 }
 
 void show_finish_score() {
     char finish[20];
     sprintf(finish, "Finish score: %d", finish_point);
-    stringRGBA(renderer, (Sint16) (START_MAP_X + 10), (Sint16) (FINISH_MAP_Y + 10), finish, 0, 0, 0, 255);
+    SDL_RenderSetScale(renderer, 1.2, 1.5);
+    stringRGBA(renderer, (Sint16) ((START_MAP_X + 12) / 1.2), (Sint16) ((FINISH_MAP_Y + 15) / 1.5), finish, 0, 0, 0, 255);
+    SDL_RenderSetScale(renderer, 1, 1);
 }
 
 void show_save_tool() {
+    SDL_RenderSetScale(renderer, 1.2, 1.5);
     if (!save_mode) {
-        stringRGBA(renderer, (Sint16) (START_MAP_X + 20), (Sint16) (START_MAP_Y - 20), "Press \"Left CTRL + S\" to save this game!", 0, 0, 0, 255);
+        stringRGBA(renderer, (Sint16) ((START_MAP_X + 12) / 1.2), (Sint16) ((START_MAP_Y - 20) / 1.5), "Press \"Left CTRL + S\" to save this game!", 0, 0, 0, 255);
     } else if (save_mode) {
         if (!file_checked) {
             check_storage();
         }
         char number[100];
-        sprintf(number, "Save number will be %d. Press \"ESC\" to back to the game... Press \"ENTER\" to confirm saving.", last_number);
-        stringRGBA(renderer, (Sint16) (START_MAP_X + 20), (Sint16) (START_MAP_Y - 20), number, 0, 0, 0, 255);
+        sprintf(number, "Save number will be %d.", last_number);
+        stringRGBA(renderer, (Sint16) ((START_MAP_X + 12) / 1.2), (Sint16) ((START_MAP_Y - 50) / 1.5), number, 0, 0, 0, 255);
+        stringRGBA(renderer, (Sint16) ((START_MAP_X + 12) / 1.2), (Sint16) ((START_MAP_Y - 20) / 1.5), "Press \"ESC\" to back to the game... Press \"ENTER\" to confirm saving.", 0, 0, 0, 255);
     }
+    SDL_RenderSetScale(renderer, 1, 1);
 }
 
 void drawing() {
@@ -507,16 +517,11 @@ void drawing() {
 
 void show_winner() {
     char colors[][6] = {"red", "green", "blue"};
-    Sint32 winner = 0, best_point = players.tank[0].score;
-    for (Sint8 i = 1; i < players.number; i++) {
-        if (players.tank[i].score > best_point) {
-            best_point = players.tank[i].score;
-            winner = i;
-        }
-    }
     char winner_str[50];
     sprintf(winner_str, "Game Over!! the winner is \"%s\".", colors[winner]);
-    stringRGBA(renderer, SCREEN_WIDTH / 2 - 140, (Sint16) (player_points[0].rect.y - 200), winner_str, 0, 0, 0, 255);
+    SDL_RenderSetScale(renderer, 1.5, 1.75);
+    stringRGBA(renderer, (Sint16) ((SCREEN_WIDTH / 2 - 190) / 1.5), (Sint16) ((player_points[0].rect.y - 210) / 1.75), winner_str, (Uint8) players.tank[winner].RGBA_color[0], (Uint8) players.tank[winner].RGBA_color[1], (Uint8) players.tank[winner].RGBA_color[2], 255);
+    SDL_RenderSetScale(renderer, 1, 1);
 }
 
 void show_game_over_points() {
@@ -524,15 +529,29 @@ void show_game_over_points() {
         SDL_RenderCopy(renderer, player_points[i].texture, NULL, &player_points[i].rect);
         char point[4];
         sprintf(point, "%d", players.tank[i].score);
-        stringRGBA(renderer, (Sint16) (player_points[i].rect.x + player_points[i].rect.w + 10), (Sint16) (player_points[i].rect.y + player_points[i].rect.h / 2), point, 0, 0, 0, 255);
+        SDL_RenderSetScale(renderer, 1.5, 1.75);
+        stringRGBA(renderer, (Sint16) ((player_points[i].rect.x + player_points[i].rect.w + 15) / 1.5), (Sint16) ((player_points[i].rect.y + player_points[i].rect.h / 2) / 1.75), point, 0, 0, 0, 255);
+        SDL_RenderSetScale(renderer, 1, 1);
+    }
+}
+
+void set_winner() {
+    winner = 0;
+    Sint32 best_point = players.tank[0].score;
+    for (Sint8 i = 1; i < players.number; i++) {
+        if (players.tank[i].score > best_point) {
+            best_point = players.tank[i].score;
+            winner = i;
+        }
     }
 }
 
 void game_over() {
     for (Sint8 i = 0; i < 3; i++) {
+        player_points[i].rect.x += 30;
         player_points[i].rect.y = (SCREEN_HEIGHT - player_points[i].rect.h) / 2;
     }
-
+    set_winner();
     while (players.state == P_GAME_OVER) {
         if (game_over_events() == -1) {
             not_closed = 0;
@@ -546,6 +565,7 @@ void game_over() {
         SDL_RenderPresent(renderer);
     }
     for (Sint8 i = 0; i < 3; i++) {
+        player_points[i].rect.x = 200 + i * 250;
         player_points[i].rect.y = SCREEN_HEIGHT - player_points[i].rect.h * 4 / 3;
     }
 }

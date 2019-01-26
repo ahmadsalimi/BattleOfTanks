@@ -1,12 +1,6 @@
-#include <SDL.h>
-#include <stdbool.h>
-#include <time.h>
-#include <math.h>
-#include "Play.h"
 #include "View.h"
 #include "Physics.h"
 #include "Logic.h"
-#include "Constants.h"
 #include "MapGenerate.h"
 #include "Audio.h"
 

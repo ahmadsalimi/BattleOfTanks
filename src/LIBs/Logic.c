@@ -1,8 +1,4 @@
-#include <math.h>
-#include "Logic.h"
 #include "Struct.h"
-#include "View.h"
-#include "Constants.h"
 #include "Audio.h"
 
 void kill(Sint8 i) {

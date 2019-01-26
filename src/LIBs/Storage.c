@@ -1,5 +1,3 @@
-#include "Storage.h"
-#include "Struct.h"
 #include "Logic.h"
 
 bool save_mode;

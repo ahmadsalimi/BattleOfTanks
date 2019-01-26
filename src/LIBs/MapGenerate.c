@@ -1,4 +1,3 @@
-#include "MapGenerate.h"
 #include "Struct.h"
 
 MAP cells[17][19];
@@ -137,7 +136,7 @@ void render_walls() {
 void generate_map() {
     MAP *start, *last;
     height = (Sint8) ((5 + rand() % 3) * 2 + 1);
-    width = (Sint8) ((7 + rand() % 3) * 2 + 1);
+    width =(Sint8) ((7 + rand() % 3) * 2 + 1);
     max_boxes_y = (Sint8) (height / 2 + 1);
     max_boxes_x = (Sint8) (width / 2 + 1);
     initialize();

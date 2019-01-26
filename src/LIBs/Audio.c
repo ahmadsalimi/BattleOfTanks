@@ -1,6 +1,3 @@
-#include <SDL.h>
-#include <stdbool.h>
-#include "Audio.h"
 #include "Struct.h"
 
 typedef struct {

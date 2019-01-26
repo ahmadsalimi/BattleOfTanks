@@ -3,7 +3,6 @@
 
 CMakeFiles/project.dir/src/LIBs/Audio.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /usr/include/SDL2/SDL.h
@@ -54,9 +53,7 @@ CMakeFiles/project.dir/src/LIBs/Logic.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h
@@ -104,7 +101,6 @@ CMakeFiles/project.dir/src/LIBs/Logic.c.o
 CMakeFiles/project.dir/src/LIBs/MapGenerate.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
@@ -154,9 +150,7 @@ CMakeFiles/project.dir/src/LIBs/Physics.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
@@ -211,7 +205,6 @@ CMakeFiles/project.dir/src/LIBs/Play.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
  /usr/include/SDL2/SDL.h
@@ -262,7 +255,6 @@ CMakeFiles/project.dir/src/LIBs/Storage.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Logic.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Storage.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Storage.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
@@ -311,13 +303,10 @@ CMakeFiles/project.dir/src/LIBs/Storage.c.o
 CMakeFiles/project.dir/src/LIBs/View.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/MapGenerate.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Storage.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.c
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL2_gfxPrimitives.h
  /usr/include/SDL2/SDL_assert.h
@@ -366,7 +355,6 @@ CMakeFiles/project.dir/src/LIBs/View.c.o
 CMakeFiles/project.dir/src/main.c.o
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Audio.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Constants.h
- /home/ahmad/Documents/GitHub/97106013/src/LIBs/Physics.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Play.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/Struct.h
  /home/ahmad/Documents/GitHub/97106013/src/LIBs/View.h
