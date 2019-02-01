@@ -25,8 +25,8 @@
 #define POWER_BOX_TIME (25 * FPS)
 #define POWER_TIME (12 * FPS)
 #define LASER_KILL_TIME (FPS / 5)
-#define MINE_SHOW_TIME (2 * FPS)
-#define MINE_HIDE_TIME (15 * FPS)
+#define MINE_SHOW_TIME (3 * FPS)
+#define MINE_HIDE_TIME (14 * FPS)
 #define MINE_KILL_TIME (FPS)
 
 
